@@ -108,11 +108,14 @@ Each question in the JSONL files contains:
 ## Citation
 
 ```bibtex
-@inproceedings{sun2026kinshipqa,
-  title={Kinship Data Benchmark for Multi-hop Reasoning},
-  author={Sun, Tianda and Kazakov, Dimitar},
-  booktitle={Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics},
-  year={2026}
+@misc{sun2026kinshipdatabenchmarkmultihop,
+      title={Kinship Data Benchmark for Multi-hop Reasoning}, 
+      author={Tianda Sun and Dimitar Kazakov},
+      year={2026},
+      eprint={2601.07794},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2601.07794}, 
 }
 ```
 

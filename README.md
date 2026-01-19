@@ -1,4 +1,4 @@
-# KinshipQA
+# Kinship Data Benchmark for Multi-hop Reasoning
 
 A benchmark for evaluating multi-hop reasoning in Large Language Models using culturally diverse kinship systems.
 

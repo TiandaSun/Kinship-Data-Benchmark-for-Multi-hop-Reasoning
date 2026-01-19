@@ -25,12 +25,6 @@ Usage:
     # With custom parameters
     python kinship_tree_generator.py --system crow --start-year 1900 --end-year 1960 --seed 42
 
-Fixes in v2.0:
-- Fixed name collision bug (children now get unique names)
-- Added birth year to labels for disambiguation
-- Added Sudanese-specific descriptive properties
-- Added Eskimo maternal/paternal distinctions
-- Added all 4 grandparent type distinctions
 """
 
 import random

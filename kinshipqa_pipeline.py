@@ -1,27 +1,5 @@
 #!/usr/bin/env python3
-"""
-KinshipQA Pipeline v6.1
-=======================
-Path-based question generation with kinship system mapping tables.
 
-Key Changes from v6.0:
-- Fixed duplicate question issue: now tracks seen question texts
-- All multi-target answers included: uses plural phrasing when multiple valid answers exist
-- Sorted target names for consistency
-- Cat 4 disambiguation questions now include all target names to avoid ambiguity
-
-Key Changes from v5.2:
-- Replaces proof graph buckets with n-hops as complexity measure
-- Implements path-based generation for Cat 2 and Cat 4
-- Adds mapping table for path-to-term conversion across 7 kinship systems
-- Cat 1: Minimal (50 questions) for sanity check
-- Cat 2: Path-based multi-hop with biological terms
-- Cat 3: Template-based counting/filtering (unchanged)
-- Cat 4: Path-based with cultural override required
-
-Author: Tianda (ACL 2026 Submission)
-Version: 6.1
-"""
 
 import json
 import random

@@ -1,26 +1,5 @@
 #!/usr/bin/env python3
-"""
-KinshipQA LLM Tester v5.1
-=========================
-Evaluates LLM performance on kinship reasoning questions.
-Updated to work with pipeline v6.1 dataset format.
 
-v5.1 Changes:
-- Fixed None response handling for Gemini (safety filters, empty responses)
-- Improved error handling and retry logic
-- Better logging for debugging
-
-Supports: Ollama, OpenAI GPT, Google Gemini, Anthropic Claude
-
-Installation:
-    pip install google-genai openai anthropic llama-index-llms-ollama
-
-Usage:
-    python llm_tester_v5.py --all --dataset-dir ./datasets/ --provider gemini --model gemini-2.5-flash
-
-Author: Tianda (ACL 2026)
-Version: 5.1
-"""
 
 import json
 import os

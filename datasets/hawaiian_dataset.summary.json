@@ -1,0 +1,40 @@
+{
+  "kinship_system": "hawaiian",
+  "total_questions": 432,
+  "by_category": {
+    "1": 50,
+    "2": 150,
+    "3": 100,
+    "4": 132
+  },
+  "by_hops": {
+    "1": 141,
+    "2": 125,
+    "3": 116,
+    "4": 50
+  },
+  "config": {
+    "cat1": {
+      "count": 50
+    },
+    "cat2": {
+      "count": 150,
+      "hops_distribution": {
+        "2": 50,
+        "3": 50,
+        "4": 50
+      }
+    },
+    "cat3": {
+      "count": 100
+    },
+    "cat4": {
+      "count": 200,
+      "hops_distribution": {
+        "2": 66,
+        "3": 66,
+        "4": 68
+      }
+    }
+  }
+}

@@ -1,0 +1,3182 @@
+@prefix family: <http://example.org/family/> .
+@prefix kin: <http://example.org/kinship/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix person: <http://example.org/person/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+family:Clan a owl:Class ;
+    rdfs:label "Clan" .
+
+family:Marriage a owl:Class ;
+    rdfs:label "Marriage" .
+
+family:firstName a owl:DatatypeProperty ;
+    rdfs:label "first name" ;
+    rdfs:range xsd:string .
+
+family:hasAunt a owl:ObjectProperty ;
+    rdfs:label "has aunt" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasBrother a owl:ObjectProperty ;
+    rdfs:label "has brother" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasChild a owl:ObjectProperty ;
+    rdfs:label "has child" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasCousin a owl:ObjectProperty ;
+    rdfs:label "has cousin" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasDaughter a owl:ObjectProperty ;
+    rdfs:label "has daughter" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasFather a owl:ObjectProperty ;
+    rdfs:label "has father" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasGrandchild a owl:ObjectProperty ;
+    rdfs:label "has grandchild" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasGrandfather a owl:ObjectProperty ;
+    rdfs:label "has grandfather" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasGrandmother a owl:ObjectProperty ;
+    rdfs:label "has grandmother" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasGrandparent a owl:ObjectProperty ;
+    rdfs:label "has grandparent" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasHusband a owl:ObjectProperty ;
+    rdfs:label "has husband" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasMaternalAunt a owl:ObjectProperty ;
+    rdfs:label "has maternal aunt (mother's sister)" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasMaternalGrandfather a owl:ObjectProperty ;
+    rdfs:label "has maternal grandfather" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasMaternalGrandmother a owl:ObjectProperty ;
+    rdfs:label "has maternal grandmother" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasMaternalUncle a owl:ObjectProperty ;
+    rdfs:label "has maternal uncle (mother's brother)" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasMother a owl:ObjectProperty ;
+    rdfs:label "has mother" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasNephew a owl:ObjectProperty ;
+    rdfs:label "has nephew" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasNiece a owl:ObjectProperty ;
+    rdfs:label "has niece" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasParent a owl:ObjectProperty ;
+    rdfs:label "has parent" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasPaternalAunt a owl:ObjectProperty ;
+    rdfs:label "has paternal aunt (father's sister)" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasPaternalGrandfather a owl:ObjectProperty ;
+    rdfs:label "has paternal grandfather" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasPaternalGrandmother a owl:ObjectProperty ;
+    rdfs:label "has paternal grandmother" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasPaternalUncle a owl:ObjectProperty ;
+    rdfs:label "has paternal uncle (father's brother)" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasSibling a owl:ObjectProperty ;
+    rdfs:label "has sibling" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasSister a owl:ObjectProperty ;
+    rdfs:label "has sister" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasSon a owl:ObjectProperty ;
+    rdfs:label "has son" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasSpouse a owl:ObjectProperty ;
+    rdfs:label "has spouse" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasUncle a owl:ObjectProperty ;
+    rdfs:label "has uncle" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:hasWife a owl:ObjectProperty ;
+    rdfs:label "has wife" ;
+    rdfs:domain family:Person ;
+    rdfs:range family:Person .
+
+family:surname a owl:DatatypeProperty ;
+    rdfs:label "surname" ;
+    rdfs:range xsd:string .
+
+family:yearOfBirth a owl:DatatypeProperty ;
+    rdfs:label "year of birth" ;
+    rdfs:range xsd:integer .
+
+kin:hasAffinalRelative a owl:ObjectProperty ;
+    rdfs:label "has affinal relative" .
+
+kin:hasAthai a owl:ObjectProperty ;
+    rdfs:label "has Athai (father's sister)" .
+
+kin:hasClassificatoryParent a owl:ObjectProperty ;
+    rdfs:label "has classificatory parent" .
+
+kin:hasClassificatorySibling a owl:ObjectProperty ;
+    rdfs:label "has classificatory sibling" .
+
+kin:hasCrossAunt a owl:ObjectProperty ;
+    rdfs:label "has cross-aunt (father's sister)" .
+
+kin:hasCrossCousin a owl:ObjectProperty ;
+    rdfs:label "has cross-cousin" .
+
+kin:hasCrossUncle a owl:ObjectProperty ;
+    rdfs:label "has cross-uncle (mother's brother)" .
+
+kin:hasMama a owl:ObjectProperty ;
+    rdfs:label "has Mama (mother's brother)" .
+
+kin:hasParallelCousin a owl:ObjectProperty ;
+    rdfs:label "has parallel cousin" .
+
+kin:hasPotentialSpouse a owl:ObjectProperty ;
+    rdfs:label "has potential spouse (cross-cousin)" .
+
+<http://example.org/ontology/dravidian_kinship> a owl:Ontology ;
+    rdfs:label "Dravidian Kinship Ontology" ;
+    rdfs:comment "Family tree ontology following dravidian kinship system rules. Generated on 2025-12-25T20:03:22.900557" .
+
+person:person_7 a family:Male,
+        family:Person ;
+    rdfs:label "Stephen Johnson" ;
+    family:firstName "Stephen"^^xsd:string ;
+    family:hasChild person:person_13,
+        person:person_17,
+        person:person_23 ;
+    family:hasDaughter person:person_13,
+        person:person_23 ;
+    family:hasGrandchild person:person_27,
+        person:person_28,
+        person:person_35 ;
+    family:hasSon person:person_17 ;
+    family:hasSpouse person:person_8 ;
+    family:hasWife person:person_8 ;
+    family:surname "Johnson"^^xsd:string ;
+    family:yearOfBirth 1880 .
+
+person:person_8 a family:Female,
+        family:Person ;
+    rdfs:label "Eve Johnson" ;
+    family:firstName "Eve"^^xsd:string ;
+    family:hasChild person:person_13,
+        person:person_17,
+        person:person_23 ;
+    family:hasDaughter person:person_13,
+        person:person_23 ;
+    family:hasGrandchild person:person_27,
+        person:person_28,
+        person:person_35 ;
+    family:hasHusband person:person_7 ;
+    family:hasSon person:person_17 ;
+    family:hasSpouse person:person_7 ;
+    family:surname "Johnson"^^xsd:string ;
+    family:yearOfBirth 1880 .
+
+person:person_13 a family:Female,
+        family:Person ;
+    rdfs:label "Evelyn Johnson" ;
+    family:firstName "Evelyn"^^xsd:string ;
+    family:hasBrother person:person_17 ;
+    family:hasFather person:person_7 ;
+    family:hasMother person:person_8 ;
+    family:hasParent person:person_7,
+        person:person_8 ;
+    family:hasSibling person:person_17,
+        person:person_23 ;
+    family:hasSister person:person_23 ;
+    family:surname "Johnson"^^xsd:string ;
+    family:yearOfBirth 1900 .
+
+person:person_23 a family:Female,
+        family:Person ;
+    rdfs:label "Jessica Johnson" ;
+    family:firstName "Jessica"^^xsd:string ;
+    family:hasBrother person:person_17 ;
+    family:hasFather person:person_7 ;
+    family:hasMother person:person_8 ;
+    family:hasParent person:person_7,
+        person:person_8 ;
+    family:hasSibling person:person_13,
+        person:person_17 ;
+    family:hasSister person:person_13 ;
+    family:surname "Johnson"^^xsd:string ;
+    family:yearOfBirth 1904 .
+
+family:Male a owl:Class ;
+    rdfs:label "Male" .
+
+person:person_1 a family:Male,
+        family:Person ;
+    rdfs:label "John Smith" ;
+    family:firstName "John"^^xsd:string ;
+    family:hasChild person:person_11,
+        person:person_15,
+        person:person_21 ;
+    family:hasDaughter person:person_11,
+        person:person_15,
+        person:person_21 ;
+    family:hasGrandchild person:person_26,
+        person:person_27,
+        person:person_28,
+        person:person_31,
+        person:person_35,
+        person:person_37 ;
+    family:hasSpouse person:person_2 ;
+    family:hasWife person:person_2 ;
+    family:surname "Smith"^^xsd:string ;
+    family:yearOfBirth 1880 .
+
+person:person_10 a family:Female,
+        family:Person ;
+    rdfs:label "Olga Williams" ;
+    family:firstName "Olga"^^xsd:string ;
+    family:hasChild person:person_14,
+        person:person_20,
+        person:person_22 ;
+    family:hasDaughter person:person_22 ;
+    family:hasGrandchild person:person_26,
+        person:person_29,
+        person:person_30,
+        person:person_31,
+        person:person_32,
+        person:person_37 ;
+    family:hasHusband person:person_9 ;
+    family:hasSon person:person_14,
+        person:person_20 ;
+    family:hasSpouse person:person_9 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1880 .
+
+person:person_12 a family:Female,
+        family:Person ;
+    rdfs:label "Carol Brown" ;
+    family:firstName "Carol"^^xsd:string ;
+    family:hasFather person:person_5 ;
+    family:hasMother person:person_6 ;
+    family:hasParent person:person_5,
+        person:person_6 ;
+    family:hasSibling person:person_19,
+        person:person_25 ;
+    family:hasSister person:person_19,
+        person:person_25 ;
+    family:surname "Brown"^^xsd:string ;
+    family:yearOfBirth 1900 .
+
+person:person_2 a family:Female,
+        family:Person ;
+    rdfs:label "Mary Smith" ;
+    family:firstName "Mary"^^xsd:string ;
+    family:hasChild person:person_11,
+        person:person_15,
+        person:person_21 ;
+    family:hasDaughter person:person_11,
+        person:person_15,
+        person:person_21 ;
+    family:hasGrandchild person:person_26,
+        person:person_27,
+        person:person_28,
+        person:person_31,
+        person:person_35,
+        person:person_37 ;
+    family:hasHusband person:person_1 ;
+    family:hasSpouse person:person_1 ;
+    family:surname "Smith"^^xsd:string ;
+    family:yearOfBirth 1880 .
+
+person:person_21 a family:Female,
+        family:Person ;
+    rdfs:label "Susan Smith" ;
+    family:firstName "Susan"^^xsd:string ;
+    family:hasFather person:person_1 ;
+    family:hasMother person:person_2 ;
+    family:hasParent person:person_1,
+        person:person_2 ;
+    family:hasSibling person:person_11,
+        person:person_15 ;
+    family:hasSister person:person_11,
+        person:person_15 ;
+    family:surname "Smith"^^xsd:string ;
+    family:yearOfBirth 1903 .
+
+person:person_5 a family:Male,
+        family:Person ;
+    rdfs:label "Paul Brown" ;
+    family:firstName "Paul"^^xsd:string ;
+    family:hasChild person:person_12,
+        person:person_19,
+        person:person_25 ;
+    family:hasDaughter person:person_12,
+        person:person_19,
+        person:person_25 ;
+    family:hasGrandchild person:person_33,
+        person:person_34,
+        person:person_36,
+        person:person_38,
+        person:person_39,
+        person:person_40 ;
+    family:hasSpouse person:person_6 ;
+    family:hasWife person:person_6 ;
+    family:surname "Brown"^^xsd:string ;
+    family:yearOfBirth 1880 .
+
+person:person_6 a family:Female,
+        family:Person ;
+    rdfs:label "Anne Brown" ;
+    family:firstName "Anne"^^xsd:string ;
+    family:hasChild person:person_12,
+        person:person_19,
+        person:person_25 ;
+    family:hasDaughter person:person_12,
+        person:person_19,
+        person:person_25 ;
+    family:hasGrandchild person:person_33,
+        person:person_34,
+        person:person_36,
+        person:person_38,
+        person:person_39,
+        person:person_40 ;
+    family:hasHusband person:person_5 ;
+    family:hasSpouse person:person_5 ;
+    family:surname "Brown"^^xsd:string ;
+    family:yearOfBirth 1880 .
+
+person:person_9 a family:Male,
+        family:Person ;
+    rdfs:label "Mike Williams" ;
+    family:firstName "Mike"^^xsd:string ;
+    family:hasChild person:person_14,
+        person:person_20,
+        person:person_22 ;
+    family:hasDaughter person:person_22 ;
+    family:hasGrandchild person:person_26,
+        person:person_29,
+        person:person_30,
+        person:person_31,
+        person:person_32,
+        person:person_37 ;
+    family:hasSon person:person_14,
+        person:person_20 ;
+    family:hasSpouse person:person_10 ;
+    family:hasWife person:person_10 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1880 .
+
+family:Female a owl:Class ;
+    rdfs:label "Female" .
+
+person:person_22 a family:Female,
+        family:Person ;
+    rdfs:label "Olivia Williams" ;
+    family:firstName "Olivia"^^xsd:string ;
+    family:hasBrother person:person_14,
+        person:person_20 ;
+    family:hasFather person:person_9 ;
+    family:hasMother person:person_10 ;
+    family:hasParent person:person_10,
+        person:person_9 ;
+    family:hasSibling person:person_14,
+        person:person_20 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1903 .
+
+person:person_3 a family:Male,
+        family:Person ;
+    rdfs:label "Peter Jones" ;
+    family:firstName "Peter"^^xsd:string ;
+    family:hasChild person:person_16,
+        person:person_18,
+        person:person_24 ;
+    family:hasDaughter person:person_16 ;
+    family:hasGrandchild person:person_29,
+        person:person_30,
+        person:person_32,
+        person:person_33,
+        person:person_34,
+        person:person_36,
+        person:person_38,
+        person:person_39,
+        person:person_40 ;
+    family:hasSon person:person_18,
+        person:person_24 ;
+    family:hasSpouse person:person_4 ;
+    family:hasWife person:person_4 ;
+    family:surname "Jones"^^xsd:string ;
+    family:yearOfBirth 1880 .
+
+person:person_4 a family:Female,
+        family:Person ;
+    rdfs:label "Jane Jones" ;
+    family:firstName "Jane"^^xsd:string ;
+    family:hasChild person:person_16,
+        person:person_18,
+        person:person_24 ;
+    family:hasDaughter person:person_16 ;
+    family:hasGrandchild person:person_29,
+        person:person_30,
+        person:person_32,
+        person:person_33,
+        person:person_34,
+        person:person_36,
+        person:person_38,
+        person:person_39,
+        person:person_40 ;
+    family:hasHusband person:person_3 ;
+    family:hasSon person:person_18,
+        person:person_24 ;
+    family:hasSpouse person:person_3 ;
+    family:surname "Jones"^^xsd:string ;
+    family:yearOfBirth 1880 .
+
+person:person_11 a family:Female,
+        family:Person ;
+    rdfs:label "Amelia Smith" ;
+    family:firstName "Amelia"^^xsd:string ;
+    family:hasChild person:person_26,
+        person:person_31,
+        person:person_37 ;
+    family:hasDaughter person:person_26,
+        person:person_31 ;
+    family:hasFather person:person_1 ;
+    family:hasGrandchild person:person_48,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    family:hasHusband person:person_14 ;
+    family:hasMother person:person_2 ;
+    family:hasParent person:person_1,
+        person:person_2 ;
+    family:hasSibling person:person_15,
+        person:person_21 ;
+    family:hasSister person:person_15,
+        person:person_21 ;
+    family:hasSon person:person_37 ;
+    family:hasSpouse person:person_14 ;
+    family:surname "Smith"^^xsd:string ;
+    family:yearOfBirth 1900 .
+
+person:person_14 a family:Male,
+        family:Person ;
+    rdfs:label "Robert Williams" ;
+    family:firstName "Robert"^^xsd:string ;
+    family:hasBrother person:person_20 ;
+    family:hasChild person:person_26,
+        person:person_31,
+        person:person_37 ;
+    family:hasDaughter person:person_26,
+        person:person_31 ;
+    family:hasFather person:person_9 ;
+    family:hasGrandchild person:person_48,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    family:hasMother person:person_10 ;
+    family:hasParent person:person_10,
+        person:person_9 ;
+    family:hasSibling person:person_20,
+        person:person_22 ;
+    family:hasSister person:person_22 ;
+    family:hasSon person:person_37 ;
+    family:hasSpouse person:person_11 ;
+    family:hasWife person:person_11 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1900 .
+
+person:person_19 a family:Female,
+        family:Person ;
+    rdfs:label "Sharon Brown" ;
+    family:firstName "Sharon"^^xsd:string ;
+    family:hasChild person:person_33,
+        person:person_38,
+        person:person_40 ;
+    family:hasFather person:person_5 ;
+    family:hasGrandchild person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_54,
+        person:person_56 ;
+    family:hasHusband person:person_18 ;
+    family:hasMother person:person_6 ;
+    family:hasParent person:person_5,
+        person:person_6 ;
+    family:hasSibling person:person_12,
+        person:person_25 ;
+    family:hasSister person:person_12,
+        person:person_25 ;
+    family:hasSon person:person_33,
+        person:person_38,
+        person:person_40 ;
+    family:hasSpouse person:person_18 ;
+    family:surname "Brown"^^xsd:string ;
+    family:yearOfBirth 1902 .
+
+person:person_17 a family:Male,
+        family:Person ;
+    rdfs:label "George Johnson" ;
+    family:firstName "George"^^xsd:string ;
+    family:hasChild person:person_27,
+        person:person_28,
+        person:person_35 ;
+    family:hasDaughter person:person_27,
+        person:person_28 ;
+    family:hasFather person:person_7 ;
+    family:hasGrandchild person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_55 ;
+    family:hasMother person:person_8 ;
+    family:hasParent person:person_7,
+        person:person_8 ;
+    family:hasSibling person:person_13,
+        person:person_23 ;
+    family:hasSister person:person_13,
+        person:person_23 ;
+    family:hasSon person:person_35 ;
+    family:hasSpouse person:person_15 ;
+    family:hasWife person:person_15 ;
+    family:surname "Johnson"^^xsd:string ;
+    family:yearOfBirth 1901 .
+
+person:person_25 a family:Female,
+        family:Person ;
+    rdfs:label "Jenny Brown" ;
+    family:firstName "Jenny"^^xsd:string ;
+    family:hasChild person:person_34,
+        person:person_36,
+        person:person_39 ;
+    family:hasDaughter person:person_34,
+        person:person_36,
+        person:person_39 ;
+    family:hasFather person:person_5 ;
+    family:hasGrandchild person:person_48,
+        person:person_50,
+        person:person_52,
+        person:person_53,
+        person:person_55,
+        person:person_57 ;
+    family:hasHusband person:person_24 ;
+    family:hasMother person:person_6 ;
+    family:hasParent person:person_5,
+        person:person_6 ;
+    family:hasSibling person:person_12,
+        person:person_19 ;
+    family:hasSister person:person_12,
+        person:person_19 ;
+    family:hasSpouse person:person_24 ;
+    family:surname "Brown"^^xsd:string ;
+    family:yearOfBirth 1905 .
+
+person:person_33 a family:Male,
+        family:Person ;
+    rdfs:label "Scott Jones" ;
+    family:firstName "Scott"^^xsd:string ;
+    family:hasAunt person:person_12,
+        person:person_16,
+        person:person_25 ;
+    family:hasBrother person:person_38,
+        person:person_40 ;
+    family:hasChild person:person_45,
+        person:person_46,
+        person:person_47 ;
+    family:hasCousin person:person_29,
+        person:person_30,
+        person:person_32,
+        person:person_34,
+        person:person_36,
+        person:person_39 ;
+    family:hasDaughter person:person_47 ;
+    family:hasFather person:person_18 ;
+    family:hasGrandfather person:person_3,
+        person:person_5 ;
+    family:hasGrandmother person:person_4,
+        person:person_6 ;
+    family:hasGrandparent person:person_3,
+        person:person_4,
+        person:person_5,
+        person:person_6 ;
+    family:hasMaternalAunt person:person_12,
+        person:person_25 ;
+    family:hasMaternalGrandfather person:person_5 ;
+    family:hasMaternalGrandmother person:person_6 ;
+    family:hasMother person:person_19 ;
+    family:hasParent person:person_18,
+        person:person_19 ;
+    family:hasPaternalAunt person:person_16 ;
+    family:hasPaternalGrandfather person:person_3 ;
+    family:hasPaternalGrandmother person:person_4 ;
+    family:hasPaternalUncle person:person_24 ;
+    family:hasSibling person:person_38,
+        person:person_40 ;
+    family:hasSon person:person_45,
+        person:person_46 ;
+    family:hasSpouse person:person_29 ;
+    family:hasUncle person:person_24 ;
+    family:hasWife person:person_29 ;
+    family:surname "Jones"^^xsd:string ;
+    family:yearOfBirth 1924 ;
+    kin:hasAthai person:person_16 ;
+    kin:hasClassificatoryParent person:person_12,
+        person:person_24,
+        person:person_25 ;
+    kin:hasClassificatorySibling person:person_34,
+        person:person_36,
+        person:person_39 ;
+    kin:hasCrossAunt person:person_16 ;
+    kin:hasCrossCousin person:person_29,
+        person:person_30,
+        person:person_32 ;
+    kin:hasParallelCousin person:person_34,
+        person:person_36,
+        person:person_39 ;
+    kin:hasPotentialSpouse person:person_29,
+        person:person_30,
+        person:person_32 .
+
+person:person_38 a family:Male,
+        family:Person ;
+    rdfs:label "Alexander Jones" ;
+    family:firstName "Alexander"^^xsd:string ;
+    family:hasAunt person:person_12,
+        person:person_16,
+        person:person_25 ;
+    family:hasBrother person:person_33,
+        person:person_40 ;
+    family:hasChild person:person_54,
+        person:person_56 ;
+    family:hasCousin person:person_29,
+        person:person_30,
+        person:person_32,
+        person:person_34,
+        person:person_36,
+        person:person_39 ;
+    family:hasDaughter person:person_56 ;
+    family:hasFather person:person_18 ;
+    family:hasGrandfather person:person_3,
+        person:person_5 ;
+    family:hasGrandmother person:person_4,
+        person:person_6 ;
+    family:hasGrandparent person:person_3,
+        person:person_4,
+        person:person_5,
+        person:person_6 ;
+    family:hasMaternalAunt person:person_12,
+        person:person_25 ;
+    family:hasMaternalGrandfather person:person_5 ;
+    family:hasMaternalGrandmother person:person_6 ;
+    family:hasMother person:person_19 ;
+    family:hasParent person:person_18,
+        person:person_19 ;
+    family:hasPaternalAunt person:person_16 ;
+    family:hasPaternalGrandfather person:person_3 ;
+    family:hasPaternalGrandmother person:person_4 ;
+    family:hasPaternalUncle person:person_24 ;
+    family:hasSibling person:person_33,
+        person:person_40 ;
+    family:hasSon person:person_54 ;
+    family:hasSpouse person:person_31 ;
+    family:hasUncle person:person_24 ;
+    family:hasWife person:person_31 ;
+    family:surname "Jones"^^xsd:string ;
+    family:yearOfBirth 1927 ;
+    kin:hasAthai person:person_16 ;
+    kin:hasClassificatoryParent person:person_12,
+        person:person_24,
+        person:person_25 ;
+    kin:hasClassificatorySibling person:person_34,
+        person:person_36,
+        person:person_39 ;
+    kin:hasCrossAunt person:person_16 ;
+    kin:hasCrossCousin person:person_29,
+        person:person_30,
+        person:person_32 ;
+    kin:hasParallelCousin person:person_34,
+        person:person_36,
+        person:person_39 ;
+    kin:hasPotentialSpouse person:person_29,
+        person:person_30,
+        person:person_32 .
+
+person:person_37 a family:Male,
+        family:Person ;
+    rdfs:label "Thomas Williams" ;
+    family:firstName "Thomas"^^xsd:string ;
+    family:hasAunt person:person_15,
+        person:person_21,
+        person:person_22 ;
+    family:hasChild person:person_48,
+        person:person_53,
+        person:person_57 ;
+    family:hasCousin person:person_27,
+        person:person_28,
+        person:person_29,
+        person:person_30,
+        person:person_32,
+        person:person_35 ;
+    family:hasDaughter person:person_57 ;
+    family:hasFather person:person_14 ;
+    family:hasGrandfather person:person_1,
+        person:person_9 ;
+    family:hasGrandmother person:person_10,
+        person:person_2 ;
+    family:hasGrandparent person:person_1,
+        person:person_10,
+        person:person_2,
+        person:person_9 ;
+    family:hasMaternalAunt person:person_15,
+        person:person_21 ;
+    family:hasMaternalGrandfather person:person_1 ;
+    family:hasMaternalGrandmother person:person_2 ;
+    family:hasMother person:person_11 ;
+    family:hasParent person:person_11,
+        person:person_14 ;
+    family:hasPaternalAunt person:person_22 ;
+    family:hasPaternalGrandfather person:person_9 ;
+    family:hasPaternalGrandmother person:person_10 ;
+    family:hasPaternalUncle person:person_20 ;
+    family:hasSibling person:person_26,
+        person:person_31 ;
+    family:hasSister person:person_26,
+        person:person_31 ;
+    family:hasSon person:person_48,
+        person:person_53 ;
+    family:hasSpouse person:person_34 ;
+    family:hasUncle person:person_20 ;
+    family:hasWife person:person_34 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1926 ;
+    kin:hasAthai person:person_22 ;
+    kin:hasClassificatoryParent person:person_15,
+        person:person_20,
+        person:person_21 ;
+    kin:hasClassificatorySibling person:person_27,
+        person:person_28,
+        person:person_29,
+        person:person_30,
+        person:person_32,
+        person:person_35 ;
+    kin:hasCrossAunt person:person_22 ;
+    kin:hasParallelCousin person:person_27,
+        person:person_28,
+        person:person_29,
+        person:person_30,
+        person:person_32,
+        person:person_35 .
+
+person:person_34 a family:Female,
+        family:Person ;
+    rdfs:label "Nancy Jones" ;
+    family:firstName "Nancy"^^xsd:string ;
+    family:hasAunt person:person_12,
+        person:person_16,
+        person:person_19 ;
+    family:hasChild person:person_48,
+        person:person_53,
+        person:person_57 ;
+    family:hasCousin person:person_29,
+        person:person_30,
+        person:person_32,
+        person:person_33,
+        person:person_38,
+        person:person_40 ;
+    family:hasDaughter person:person_57 ;
+    family:hasFather person:person_24 ;
+    family:hasGrandfather person:person_3,
+        person:person_5 ;
+    family:hasGrandmother person:person_4,
+        person:person_6 ;
+    family:hasGrandparent person:person_3,
+        person:person_4,
+        person:person_5,
+        person:person_6 ;
+    family:hasHusband person:person_37 ;
+    family:hasMaternalAunt person:person_12,
+        person:person_19 ;
+    family:hasMaternalGrandfather person:person_5 ;
+    family:hasMaternalGrandmother person:person_6 ;
+    family:hasMother person:person_25 ;
+    family:hasParent person:person_24,
+        person:person_25 ;
+    family:hasPaternalAunt person:person_16 ;
+    family:hasPaternalGrandfather person:person_3 ;
+    family:hasPaternalGrandmother person:person_4 ;
+    family:hasPaternalUncle person:person_18 ;
+    family:hasSibling person:person_36,
+        person:person_39 ;
+    family:hasSister person:person_36,
+        person:person_39 ;
+    family:hasSon person:person_48,
+        person:person_53 ;
+    family:hasSpouse person:person_37 ;
+    family:hasUncle person:person_18 ;
+    family:surname "Jones"^^xsd:string ;
+    family:yearOfBirth 1924 ;
+    kin:hasAthai person:person_16 ;
+    kin:hasClassificatoryParent person:person_12,
+        person:person_18,
+        person:person_19 ;
+    kin:hasClassificatorySibling person:person_33,
+        person:person_38,
+        person:person_40 ;
+    kin:hasCrossAunt person:person_16 ;
+    kin:hasCrossCousin person:person_29,
+        person:person_30,
+        person:person_32 ;
+    kin:hasParallelCousin person:person_33,
+        person:person_38,
+        person:person_40 ;
+    kin:hasPotentialSpouse person:person_29,
+        person:person_30,
+        person:person_32 .
+
+person:person_36 a family:Female,
+        family:Person ;
+    rdfs:label "Margaret Jones" ;
+    family:firstName "Margaret"^^xsd:string ;
+    family:hasAunt person:person_12,
+        person:person_16,
+        person:person_19 ;
+    family:hasChild person:person_50,
+        person:person_52,
+        person:person_55 ;
+    family:hasCousin person:person_29,
+        person:person_30,
+        person:person_32,
+        person:person_33,
+        person:person_38,
+        person:person_40 ;
+    family:hasDaughter person:person_50,
+        person:person_52 ;
+    family:hasFather person:person_24 ;
+    family:hasGrandfather person:person_3,
+        person:person_5 ;
+    family:hasGrandmother person:person_4,
+        person:person_6 ;
+    family:hasGrandparent person:person_3,
+        person:person_4,
+        person:person_5,
+        person:person_6 ;
+    family:hasHusband person:person_35 ;
+    family:hasMaternalAunt person:person_12,
+        person:person_19 ;
+    family:hasMaternalGrandfather person:person_5 ;
+    family:hasMaternalGrandmother person:person_6 ;
+    family:hasMother person:person_25 ;
+    family:hasParent person:person_24,
+        person:person_25 ;
+    family:hasPaternalAunt person:person_16 ;
+    family:hasPaternalGrandfather person:person_3 ;
+    family:hasPaternalGrandmother person:person_4 ;
+    family:hasPaternalUncle person:person_18 ;
+    family:hasSibling person:person_34,
+        person:person_39 ;
+    family:hasSister person:person_34,
+        person:person_39 ;
+    family:hasSon person:person_55 ;
+    family:hasSpouse person:person_35 ;
+    family:hasUncle person:person_18 ;
+    family:surname "Jones"^^xsd:string ;
+    family:yearOfBirth 1925 ;
+    kin:hasAthai person:person_16 ;
+    kin:hasClassificatoryParent person:person_12,
+        person:person_18,
+        person:person_19 ;
+    kin:hasClassificatorySibling person:person_33,
+        person:person_38,
+        person:person_40 ;
+    kin:hasCrossAunt person:person_16 ;
+    kin:hasCrossCousin person:person_29,
+        person:person_30,
+        person:person_32 ;
+    kin:hasParallelCousin person:person_33,
+        person:person_38,
+        person:person_40 ;
+    kin:hasPotentialSpouse person:person_29,
+        person:person_30,
+        person:person_32 .
+
+person:person_40 a family:Male,
+        family:Person ;
+    rdfs:label "Edward Jones" ;
+    family:firstName "Edward"^^xsd:string ;
+    family:hasAunt person:person_12,
+        person:person_16,
+        person:person_25 ;
+    family:hasBrother person:person_33,
+        person:person_38 ;
+    family:hasCousin person:person_29,
+        person:person_30,
+        person:person_32,
+        person:person_34,
+        person:person_36,
+        person:person_39 ;
+    family:hasFather person:person_18 ;
+    family:hasGrandfather person:person_3,
+        person:person_5 ;
+    family:hasGrandmother person:person_4,
+        person:person_6 ;
+    family:hasGrandparent person:person_3,
+        person:person_4,
+        person:person_5,
+        person:person_6 ;
+    family:hasMaternalAunt person:person_12,
+        person:person_25 ;
+    family:hasMaternalGrandfather person:person_5 ;
+    family:hasMaternalGrandmother person:person_6 ;
+    family:hasMother person:person_19 ;
+    family:hasParent person:person_18,
+        person:person_19 ;
+    family:hasPaternalAunt person:person_16 ;
+    family:hasPaternalGrandfather person:person_3 ;
+    family:hasPaternalGrandmother person:person_4 ;
+    family:hasPaternalUncle person:person_24 ;
+    family:hasSibling person:person_33,
+        person:person_38 ;
+    family:hasSpouse person:person_26 ;
+    family:hasUncle person:person_24 ;
+    family:hasWife person:person_26 ;
+    family:surname "Jones"^^xsd:string ;
+    family:yearOfBirth 1929 ;
+    kin:hasAthai person:person_16 ;
+    kin:hasClassificatoryParent person:person_12,
+        person:person_24,
+        person:person_25 ;
+    kin:hasClassificatorySibling person:person_34,
+        person:person_36,
+        person:person_39 ;
+    kin:hasCrossAunt person:person_16 ;
+    kin:hasCrossCousin person:person_29,
+        person:person_30,
+        person:person_32 ;
+    kin:hasParallelCousin person:person_34,
+        person:person_36,
+        person:person_39 ;
+    kin:hasPotentialSpouse person:person_29,
+        person:person_30,
+        person:person_32 .
+
+person:person_31 a family:Female,
+        family:Person ;
+    rdfs:label "Lisa Williams" ;
+    family:firstName "Lisa"^^xsd:string ;
+    family:hasAunt person:person_15,
+        person:person_21,
+        person:person_22 ;
+    family:hasBrother person:person_37 ;
+    family:hasChild person:person_54,
+        person:person_56 ;
+    family:hasCousin person:person_27,
+        person:person_28,
+        person:person_29,
+        person:person_30,
+        person:person_32,
+        person:person_35 ;
+    family:hasDaughter person:person_56 ;
+    family:hasFather person:person_14 ;
+    family:hasGrandfather person:person_1,
+        person:person_9 ;
+    family:hasGrandmother person:person_10,
+        person:person_2 ;
+    family:hasGrandparent person:person_1,
+        person:person_10,
+        person:person_2,
+        person:person_9 ;
+    family:hasHusband person:person_38 ;
+    family:hasMaternalAunt person:person_15,
+        person:person_21 ;
+    family:hasMaternalGrandfather person:person_1 ;
+    family:hasMaternalGrandmother person:person_2 ;
+    family:hasMother person:person_11 ;
+    family:hasParent person:person_11,
+        person:person_14 ;
+    family:hasPaternalAunt person:person_22 ;
+    family:hasPaternalGrandfather person:person_9 ;
+    family:hasPaternalGrandmother person:person_10 ;
+    family:hasPaternalUncle person:person_20 ;
+    family:hasSibling person:person_26,
+        person:person_37 ;
+    family:hasSister person:person_26 ;
+    family:hasSon person:person_54 ;
+    family:hasSpouse person:person_38 ;
+    family:hasUncle person:person_20 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1923 ;
+    kin:hasAthai person:person_22 ;
+    kin:hasClassificatoryParent person:person_15,
+        person:person_20,
+        person:person_21 ;
+    kin:hasClassificatorySibling person:person_27,
+        person:person_28,
+        person:person_29,
+        person:person_30,
+        person:person_32,
+        person:person_35 ;
+    kin:hasCrossAunt person:person_22 ;
+    kin:hasParallelCousin person:person_27,
+        person:person_28,
+        person:person_29,
+        person:person_30,
+        person:person_32,
+        person:person_35 .
+
+person:person_39 a family:Female,
+        family:Person ;
+    rdfs:label "Isabella Jones" ;
+    family:firstName "Isabella"^^xsd:string ;
+    family:hasAunt person:person_12,
+        person:person_16,
+        person:person_19 ;
+    family:hasCousin person:person_29,
+        person:person_30,
+        person:person_32,
+        person:person_33,
+        person:person_38,
+        person:person_40 ;
+    family:hasFather person:person_24 ;
+    family:hasGrandfather person:person_3,
+        person:person_5 ;
+    family:hasGrandmother person:person_4,
+        person:person_6 ;
+    family:hasGrandparent person:person_3,
+        person:person_4,
+        person:person_5,
+        person:person_6 ;
+    family:hasMaternalAunt person:person_12,
+        person:person_19 ;
+    family:hasMaternalGrandfather person:person_5 ;
+    family:hasMaternalGrandmother person:person_6 ;
+    family:hasMother person:person_25 ;
+    family:hasParent person:person_24,
+        person:person_25 ;
+    family:hasPaternalAunt person:person_16 ;
+    family:hasPaternalGrandfather person:person_3 ;
+    family:hasPaternalGrandmother person:person_4 ;
+    family:hasPaternalUncle person:person_18 ;
+    family:hasSibling person:person_34,
+        person:person_36 ;
+    family:hasSister person:person_34,
+        person:person_36 ;
+    family:hasUncle person:person_18 ;
+    family:surname "Jones"^^xsd:string ;
+    family:yearOfBirth 1928 ;
+    kin:hasAthai person:person_16 ;
+    kin:hasClassificatoryParent person:person_12,
+        person:person_18,
+        person:person_19 ;
+    kin:hasClassificatorySibling person:person_33,
+        person:person_38,
+        person:person_40 ;
+    kin:hasCrossAunt person:person_16 ;
+    kin:hasCrossCousin person:person_29,
+        person:person_30,
+        person:person_32 ;
+    kin:hasParallelCousin person:person_33,
+        person:person_38,
+        person:person_40 ;
+    kin:hasPotentialSpouse person:person_29,
+        person:person_30,
+        person:person_32 .
+
+person:person_26 a family:Female,
+        family:Person ;
+    rdfs:label "Michelle Williams" ;
+    family:firstName "Michelle"^^xsd:string ;
+    family:hasAunt person:person_15,
+        person:person_21,
+        person:person_22 ;
+    family:hasBrother person:person_37 ;
+    family:hasCousin person:person_27,
+        person:person_28,
+        person:person_29,
+        person:person_30,
+        person:person_32,
+        person:person_35 ;
+    family:hasFather person:person_14 ;
+    family:hasGrandfather person:person_1,
+        person:person_9 ;
+    family:hasGrandmother person:person_10,
+        person:person_2 ;
+    family:hasGrandparent person:person_1,
+        person:person_10,
+        person:person_2,
+        person:person_9 ;
+    family:hasHusband person:person_40 ;
+    family:hasMaternalAunt person:person_15,
+        person:person_21 ;
+    family:hasMaternalGrandfather person:person_1 ;
+    family:hasMaternalGrandmother person:person_2 ;
+    family:hasMother person:person_11 ;
+    family:hasParent person:person_11,
+        person:person_14 ;
+    family:hasPaternalAunt person:person_22 ;
+    family:hasPaternalGrandfather person:person_9 ;
+    family:hasPaternalGrandmother person:person_10 ;
+    family:hasPaternalUncle person:person_20 ;
+    family:hasSibling person:person_31,
+        person:person_37 ;
+    family:hasSister person:person_31 ;
+    family:hasSpouse person:person_40 ;
+    family:hasUncle person:person_20 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1920 ;
+    kin:hasAthai person:person_22 ;
+    kin:hasClassificatoryParent person:person_15,
+        person:person_20,
+        person:person_21 ;
+    kin:hasClassificatorySibling person:person_27,
+        person:person_28,
+        person:person_29,
+        person:person_30,
+        person:person_32,
+        person:person_35 ;
+    kin:hasCrossAunt person:person_22 ;
+    kin:hasParallelCousin person:person_27,
+        person:person_28,
+        person:person_29,
+        person:person_30,
+        person:person_32,
+        person:person_35 .
+
+person:person_27 a family:Female,
+        family:Person ;
+    rdfs:label "Angela Johnson" ;
+    family:firstName "Angela"^^xsd:string ;
+    family:hasAunt person:person_11,
+        person:person_13,
+        person:person_21,
+        person:person_23 ;
+    family:hasBrother person:person_35 ;
+    family:hasChild person:person_43,
+        person:person_49,
+        person:person_51 ;
+    family:hasCousin person:person_26,
+        person:person_31,
+        person:person_37 ;
+    family:hasDaughter person:person_43 ;
+    family:hasFather person:person_17 ;
+    family:hasGrandfather person:person_1,
+        person:person_7 ;
+    family:hasGrandmother person:person_2,
+        person:person_8 ;
+    family:hasGrandparent person:person_1,
+        person:person_2,
+        person:person_7,
+        person:person_8 ;
+    family:hasHusband person:person_32 ;
+    family:hasMaternalAunt person:person_11,
+        person:person_21 ;
+    family:hasMaternalGrandfather person:person_1 ;
+    family:hasMaternalGrandmother person:person_2 ;
+    family:hasMother person:person_15 ;
+    family:hasParent person:person_15,
+        person:person_17 ;
+    family:hasPaternalAunt person:person_13,
+        person:person_23 ;
+    family:hasPaternalGrandfather person:person_7 ;
+    family:hasPaternalGrandmother person:person_8 ;
+    family:hasSibling person:person_28,
+        person:person_35 ;
+    family:hasSister person:person_28 ;
+    family:hasSon person:person_49,
+        person:person_51 ;
+    family:hasSpouse person:person_32 ;
+    family:surname "Johnson"^^xsd:string ;
+    family:yearOfBirth 1920 ;
+    kin:hasAthai person:person_13,
+        person:person_23 ;
+    kin:hasClassificatoryParent person:person_11,
+        person:person_21 ;
+    kin:hasClassificatorySibling person:person_26,
+        person:person_31,
+        person:person_37 ;
+    kin:hasCrossAunt person:person_13,
+        person:person_23 ;
+    kin:hasParallelCousin person:person_26,
+        person:person_31,
+        person:person_37 .
+
+person:person_28 a family:Female,
+        family:Person ;
+    rdfs:label "Mia Johnson" ;
+    family:firstName "Mia"^^xsd:string ;
+    family:hasAunt person:person_11,
+        person:person_13,
+        person:person_21,
+        person:person_23 ;
+    family:hasBrother person:person_35 ;
+    family:hasChild person:person_41,
+        person:person_42,
+        person:person_44 ;
+    family:hasCousin person:person_26,
+        person:person_31,
+        person:person_37 ;
+    family:hasDaughter person:person_41,
+        person:person_44 ;
+    family:hasFather person:person_17 ;
+    family:hasGrandfather person:person_1,
+        person:person_7 ;
+    family:hasGrandmother person:person_2,
+        person:person_8 ;
+    family:hasGrandparent person:person_1,
+        person:person_2,
+        person:person_7,
+        person:person_8 ;
+    family:hasHusband person:person_30 ;
+    family:hasMaternalAunt person:person_11,
+        person:person_21 ;
+    family:hasMaternalGrandfather person:person_1 ;
+    family:hasMaternalGrandmother person:person_2 ;
+    family:hasMother person:person_15 ;
+    family:hasParent person:person_15,
+        person:person_17 ;
+    family:hasPaternalAunt person:person_13,
+        person:person_23 ;
+    family:hasPaternalGrandfather person:person_7 ;
+    family:hasPaternalGrandmother person:person_8 ;
+    family:hasSibling person:person_27,
+        person:person_35 ;
+    family:hasSister person:person_27 ;
+    family:hasSon person:person_42 ;
+    family:hasSpouse person:person_30 ;
+    family:surname "Johnson"^^xsd:string ;
+    family:yearOfBirth 1921 ;
+    kin:hasAthai person:person_13,
+        person:person_23 ;
+    kin:hasClassificatoryParent person:person_11,
+        person:person_21 ;
+    kin:hasClassificatorySibling person:person_26,
+        person:person_31,
+        person:person_37 ;
+    kin:hasCrossAunt person:person_13,
+        person:person_23 ;
+    kin:hasParallelCousin person:person_26,
+        person:person_31,
+        person:person_37 .
+
+person:person_15 a family:Female,
+        family:Person ;
+    rdfs:label "Abigail Smith" ;
+    family:firstName "Abigail"^^xsd:string ;
+    family:hasChild person:person_27,
+        person:person_28,
+        person:person_35 ;
+    family:hasDaughter person:person_27,
+        person:person_28 ;
+    family:hasFather person:person_1 ;
+    family:hasGrandchild person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_55 ;
+    family:hasHusband person:person_17 ;
+    family:hasMother person:person_2 ;
+    family:hasParent person:person_1,
+        person:person_2 ;
+    family:hasSibling person:person_11,
+        person:person_21 ;
+    family:hasSister person:person_11,
+        person:person_21 ;
+    family:hasSon person:person_35 ;
+    family:hasSpouse person:person_17 ;
+    family:surname "Smith"^^xsd:string ;
+    family:yearOfBirth 1901 .
+
+person:person_18 a family:Male,
+        family:Person ;
+    rdfs:label "Brian Jones" ;
+    family:firstName "Brian"^^xsd:string ;
+    family:hasBrother person:person_24 ;
+    family:hasChild person:person_33,
+        person:person_38,
+        person:person_40 ;
+    family:hasFather person:person_3 ;
+    family:hasGrandchild person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_54,
+        person:person_56 ;
+    family:hasMother person:person_4 ;
+    family:hasParent person:person_3,
+        person:person_4 ;
+    family:hasSibling person:person_16,
+        person:person_24 ;
+    family:hasSister person:person_16 ;
+    family:hasSon person:person_33,
+        person:person_38,
+        person:person_40 ;
+    family:hasSpouse person:person_19 ;
+    family:hasWife person:person_19 ;
+    family:surname "Jones"^^xsd:string ;
+    family:yearOfBirth 1902 .
+
+person:person_20 a family:Male,
+        family:Person ;
+    rdfs:label "Larry Williams" ;
+    family:firstName "Larry"^^xsd:string ;
+    family:hasBrother person:person_14 ;
+    family:hasChild person:person_29,
+        person:person_30,
+        person:person_32 ;
+    family:hasDaughter person:person_29 ;
+    family:hasFather person:person_9 ;
+    family:hasGrandchild person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_49,
+        person:person_51 ;
+    family:hasMother person:person_10 ;
+    family:hasParent person:person_10,
+        person:person_9 ;
+    family:hasSibling person:person_14,
+        person:person_22 ;
+    family:hasSister person:person_22 ;
+    family:hasSon person:person_30,
+        person:person_32 ;
+    family:hasSpouse person:person_16 ;
+    family:hasWife person:person_16 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1902 .
+
+person:person_35 a family:Male,
+        family:Person ;
+    rdfs:label "Paul Johnson" ;
+    family:firstName "Paul"^^xsd:string ;
+    family:hasAunt person:person_11,
+        person:person_13,
+        person:person_21,
+        person:person_23 ;
+    family:hasChild person:person_50,
+        person:person_52,
+        person:person_55 ;
+    family:hasCousin person:person_26,
+        person:person_31,
+        person:person_37 ;
+    family:hasDaughter person:person_50,
+        person:person_52 ;
+    family:hasFather person:person_17 ;
+    family:hasGrandfather person:person_1,
+        person:person_7 ;
+    family:hasGrandmother person:person_2,
+        person:person_8 ;
+    family:hasGrandparent person:person_1,
+        person:person_2,
+        person:person_7,
+        person:person_8 ;
+    family:hasMaternalAunt person:person_11,
+        person:person_21 ;
+    family:hasMaternalGrandfather person:person_1 ;
+    family:hasMaternalGrandmother person:person_2 ;
+    family:hasMother person:person_15 ;
+    family:hasParent person:person_15,
+        person:person_17 ;
+    family:hasPaternalAunt person:person_13,
+        person:person_23 ;
+    family:hasPaternalGrandfather person:person_7 ;
+    family:hasPaternalGrandmother person:person_8 ;
+    family:hasSibling person:person_27,
+        person:person_28 ;
+    family:hasSister person:person_27,
+        person:person_28 ;
+    family:hasSon person:person_55 ;
+    family:hasSpouse person:person_36 ;
+    family:hasWife person:person_36 ;
+    family:surname "Johnson"^^xsd:string ;
+    family:yearOfBirth 1925 ;
+    kin:hasAthai person:person_13,
+        person:person_23 ;
+    kin:hasClassificatoryParent person:person_11,
+        person:person_21 ;
+    kin:hasClassificatorySibling person:person_26,
+        person:person_31,
+        person:person_37 ;
+    kin:hasCrossAunt person:person_13,
+        person:person_23 ;
+    kin:hasParallelCousin person:person_26,
+        person:person_31,
+        person:person_37 .
+
+person:person_41 a family:Female,
+        family:Person ;
+    rdfs:label "Betty Williams" ;
+    family:firstName "Betty"^^xsd:string ;
+    family:hasAunt person:person_27,
+        person:person_29 ;
+    family:hasBrother person:person_42 ;
+    family:hasCousin person:person_43,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_48,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_53,
+        person:person_54,
+        person:person_55,
+        person:person_56,
+        person:person_57 ;
+    family:hasFather person:person_30 ;
+    family:hasGrandfather person:person_17,
+        person:person_20 ;
+    family:hasGrandmother person:person_15,
+        person:person_16 ;
+    family:hasGrandparent person:person_15,
+        person:person_16,
+        person:person_17,
+        person:person_20 ;
+    family:hasMaternalAunt person:person_27 ;
+    family:hasMaternalGrandfather person:person_17 ;
+    family:hasMaternalGrandmother person:person_15 ;
+    family:hasMaternalUncle person:person_35 ;
+    family:hasMother person:person_28 ;
+    family:hasParent person:person_28,
+        person:person_30 ;
+    family:hasPaternalAunt person:person_29 ;
+    family:hasPaternalGrandfather person:person_20 ;
+    family:hasPaternalGrandmother person:person_16 ;
+    family:hasPaternalUncle person:person_32 ;
+    family:hasSibling person:person_42,
+        person:person_44 ;
+    family:hasSister person:person_44 ;
+    family:hasUncle person:person_32,
+        person:person_35 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1941 ;
+    kin:hasAthai person:person_29 ;
+    kin:hasClassificatoryParent person:person_27,
+        person:person_32 ;
+    kin:hasClassificatorySibling person:person_43,
+        person:person_48,
+        person:person_49,
+        person:person_51,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasCrossAunt person:person_29 ;
+    kin:hasCrossCousin person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_50,
+        person:person_52,
+        person:person_55 ;
+    kin:hasCrossUncle person:person_35 ;
+    kin:hasMama person:person_35 ;
+    kin:hasParallelCousin person:person_43,
+        person:person_48,
+        person:person_49,
+        person:person_51,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasPotentialSpouse person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_50,
+        person:person_52,
+        person:person_55 .
+
+person:person_42 a family:Male,
+        family:Person ;
+    rdfs:label "Nicholas Williams" ;
+    family:firstName "Nicholas"^^xsd:string ;
+    family:hasAunt person:person_27,
+        person:person_29 ;
+    family:hasCousin person:person_43,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_48,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_53,
+        person:person_54,
+        person:person_55,
+        person:person_56,
+        person:person_57 ;
+    family:hasFather person:person_30 ;
+    family:hasGrandfather person:person_17,
+        person:person_20 ;
+    family:hasGrandmother person:person_15,
+        person:person_16 ;
+    family:hasGrandparent person:person_15,
+        person:person_16,
+        person:person_17,
+        person:person_20 ;
+    family:hasMaternalAunt person:person_27 ;
+    family:hasMaternalGrandfather person:person_17 ;
+    family:hasMaternalGrandmother person:person_15 ;
+    family:hasMaternalUncle person:person_35 ;
+    family:hasMother person:person_28 ;
+    family:hasParent person:person_28,
+        person:person_30 ;
+    family:hasPaternalAunt person:person_29 ;
+    family:hasPaternalGrandfather person:person_20 ;
+    family:hasPaternalGrandmother person:person_16 ;
+    family:hasPaternalUncle person:person_32 ;
+    family:hasSibling person:person_41,
+        person:person_44 ;
+    family:hasSister person:person_41,
+        person:person_44 ;
+    family:hasUncle person:person_32,
+        person:person_35 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1942 ;
+    kin:hasAthai person:person_29 ;
+    kin:hasClassificatoryParent person:person_27,
+        person:person_32 ;
+    kin:hasClassificatorySibling person:person_43,
+        person:person_48,
+        person:person_49,
+        person:person_51,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasCrossAunt person:person_29 ;
+    kin:hasCrossCousin person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_50,
+        person:person_52,
+        person:person_55 ;
+    kin:hasCrossUncle person:person_35 ;
+    kin:hasMama person:person_35 ;
+    kin:hasParallelCousin person:person_43,
+        person:person_48,
+        person:person_49,
+        person:person_51,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasPotentialSpouse person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_50,
+        person:person_52,
+        person:person_55 .
+
+person:person_43 a family:Female,
+        family:Person ;
+    rdfs:label "Samantha Williams" ;
+    family:firstName "Samantha"^^xsd:string ;
+    family:hasAunt person:person_28,
+        person:person_29 ;
+    family:hasBrother person:person_49,
+        person:person_51 ;
+    family:hasCousin person:person_41,
+        person:person_42,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_48,
+        person:person_50,
+        person:person_52,
+        person:person_53,
+        person:person_54,
+        person:person_55,
+        person:person_56,
+        person:person_57 ;
+    family:hasFather person:person_32 ;
+    family:hasGrandfather person:person_17,
+        person:person_20 ;
+    family:hasGrandmother person:person_15,
+        person:person_16 ;
+    family:hasGrandparent person:person_15,
+        person:person_16,
+        person:person_17,
+        person:person_20 ;
+    family:hasMaternalAunt person:person_28 ;
+    family:hasMaternalGrandfather person:person_17 ;
+    family:hasMaternalGrandmother person:person_15 ;
+    family:hasMaternalUncle person:person_35 ;
+    family:hasMother person:person_27 ;
+    family:hasParent person:person_27,
+        person:person_32 ;
+    family:hasPaternalAunt person:person_29 ;
+    family:hasPaternalGrandfather person:person_20 ;
+    family:hasPaternalGrandmother person:person_16 ;
+    family:hasPaternalUncle person:person_30 ;
+    family:hasSibling person:person_49,
+        person:person_51 ;
+    family:hasUncle person:person_30,
+        person:person_35 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1942 ;
+    kin:hasAthai person:person_29 ;
+    kin:hasClassificatoryParent person:person_28,
+        person:person_30 ;
+    kin:hasClassificatorySibling person:person_41,
+        person:person_42,
+        person:person_44,
+        person:person_48,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasCrossAunt person:person_29 ;
+    kin:hasCrossCousin person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_50,
+        person:person_52,
+        person:person_55 ;
+    kin:hasCrossUncle person:person_35 ;
+    kin:hasMama person:person_35 ;
+    kin:hasParallelCousin person:person_41,
+        person:person_42,
+        person:person_44,
+        person:person_48,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasPotentialSpouse person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_50,
+        person:person_52,
+        person:person_55 .
+
+person:person_44 a family:Female,
+        family:Person ;
+    rdfs:label "Ashley Williams" ;
+    family:firstName "Ashley"^^xsd:string ;
+    family:hasAunt person:person_27,
+        person:person_29 ;
+    family:hasBrother person:person_42 ;
+    family:hasCousin person:person_43,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_48,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_53,
+        person:person_54,
+        person:person_55,
+        person:person_56,
+        person:person_57 ;
+    family:hasFather person:person_30 ;
+    family:hasGrandfather person:person_17,
+        person:person_20 ;
+    family:hasGrandmother person:person_15,
+        person:person_16 ;
+    family:hasGrandparent person:person_15,
+        person:person_16,
+        person:person_17,
+        person:person_20 ;
+    family:hasMaternalAunt person:person_27 ;
+    family:hasMaternalGrandfather person:person_17 ;
+    family:hasMaternalGrandmother person:person_15 ;
+    family:hasMaternalUncle person:person_35 ;
+    family:hasMother person:person_28 ;
+    family:hasParent person:person_28,
+        person:person_30 ;
+    family:hasPaternalAunt person:person_29 ;
+    family:hasPaternalGrandfather person:person_20 ;
+    family:hasPaternalGrandmother person:person_16 ;
+    family:hasPaternalUncle person:person_32 ;
+    family:hasSibling person:person_41,
+        person:person_42 ;
+    family:hasSister person:person_41 ;
+    family:hasUncle person:person_32,
+        person:person_35 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1943 ;
+    kin:hasAthai person:person_29 ;
+    kin:hasClassificatoryParent person:person_27,
+        person:person_32 ;
+    kin:hasClassificatorySibling person:person_43,
+        person:person_48,
+        person:person_49,
+        person:person_51,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasCrossAunt person:person_29 ;
+    kin:hasCrossCousin person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_50,
+        person:person_52,
+        person:person_55 ;
+    kin:hasCrossUncle person:person_35 ;
+    kin:hasMama person:person_35 ;
+    kin:hasParallelCousin person:person_43,
+        person:person_48,
+        person:person_49,
+        person:person_51,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasPotentialSpouse person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_50,
+        person:person_52,
+        person:person_55 .
+
+person:person_45 a family:Male,
+        family:Person ;
+    rdfs:label "Jeffrey Jones" ;
+    family:firstName "Jeffrey"^^xsd:string ;
+    family:hasBrother person:person_46 ;
+    family:hasCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_48,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_53,
+        person:person_54,
+        person:person_55,
+        person:person_56,
+        person:person_57 ;
+    family:hasFather person:person_33 ;
+    family:hasGrandfather person:person_18,
+        person:person_20 ;
+    family:hasGrandmother person:person_16,
+        person:person_19 ;
+    family:hasGrandparent person:person_16,
+        person:person_18,
+        person:person_19,
+        person:person_20 ;
+    family:hasMaternalGrandfather person:person_20 ;
+    family:hasMaternalGrandmother person:person_16 ;
+    family:hasMaternalUncle person:person_30,
+        person:person_32 ;
+    family:hasMother person:person_29 ;
+    family:hasParent person:person_29,
+        person:person_33 ;
+    family:hasPaternalGrandfather person:person_18 ;
+    family:hasPaternalGrandmother person:person_19 ;
+    family:hasPaternalUncle person:person_38,
+        person:person_40 ;
+    family:hasSibling person:person_46,
+        person:person_47 ;
+    family:hasSister person:person_47 ;
+    family:hasUncle person:person_30,
+        person:person_32,
+        person:person_38,
+        person:person_40 ;
+    family:surname "Jones"^^xsd:string ;
+    family:yearOfBirth 1943 ;
+    kin:hasClassificatoryParent person:person_38,
+        person:person_40 ;
+    kin:hasClassificatorySibling person:person_48,
+        person:person_50,
+        person:person_52,
+        person:person_53,
+        person:person_54,
+        person:person_55,
+        person:person_56,
+        person:person_57 ;
+    kin:hasCrossCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_49,
+        person:person_51 ;
+    kin:hasCrossUncle person:person_30,
+        person:person_32 ;
+    kin:hasMama person:person_30,
+        person:person_32 ;
+    kin:hasParallelCousin person:person_48,
+        person:person_50,
+        person:person_52,
+        person:person_53,
+        person:person_54,
+        person:person_55,
+        person:person_56,
+        person:person_57 ;
+    kin:hasPotentialSpouse person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_49,
+        person:person_51 .
+
+person:person_46 a family:Male,
+        family:Person ;
+    rdfs:label "Jacob Jones" ;
+    family:firstName "Jacob"^^xsd:string ;
+    family:hasBrother person:person_45 ;
+    family:hasCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_48,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_53,
+        person:person_54,
+        person:person_55,
+        person:person_56,
+        person:person_57 ;
+    family:hasFather person:person_33 ;
+    family:hasGrandfather person:person_18,
+        person:person_20 ;
+    family:hasGrandmother person:person_16,
+        person:person_19 ;
+    family:hasGrandparent person:person_16,
+        person:person_18,
+        person:person_19,
+        person:person_20 ;
+    family:hasMaternalGrandfather person:person_20 ;
+    family:hasMaternalGrandmother person:person_16 ;
+    family:hasMaternalUncle person:person_30,
+        person:person_32 ;
+    family:hasMother person:person_29 ;
+    family:hasParent person:person_29,
+        person:person_33 ;
+    family:hasPaternalGrandfather person:person_18 ;
+    family:hasPaternalGrandmother person:person_19 ;
+    family:hasPaternalUncle person:person_38,
+        person:person_40 ;
+    family:hasSibling person:person_45,
+        person:person_47 ;
+    family:hasSister person:person_47 ;
+    family:hasUncle person:person_30,
+        person:person_32,
+        person:person_38,
+        person:person_40 ;
+    family:surname "Jones"^^xsd:string ;
+    family:yearOfBirth 1944 ;
+    kin:hasClassificatoryParent person:person_38,
+        person:person_40 ;
+    kin:hasClassificatorySibling person:person_48,
+        person:person_50,
+        person:person_52,
+        person:person_53,
+        person:person_54,
+        person:person_55,
+        person:person_56,
+        person:person_57 ;
+    kin:hasCrossCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_49,
+        person:person_51 ;
+    kin:hasCrossUncle person:person_30,
+        person:person_32 ;
+    kin:hasMama person:person_30,
+        person:person_32 ;
+    kin:hasParallelCousin person:person_48,
+        person:person_50,
+        person:person_52,
+        person:person_53,
+        person:person_54,
+        person:person_55,
+        person:person_56,
+        person:person_57 ;
+    kin:hasPotentialSpouse person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_49,
+        person:person_51 .
+
+person:person_47 a family:Female,
+        family:Person ;
+    rdfs:label "Donna Jones" ;
+    family:firstName "Donna"^^xsd:string ;
+    family:hasBrother person:person_45,
+        person:person_46 ;
+    family:hasCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_48,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_53,
+        person:person_54,
+        person:person_55,
+        person:person_56,
+        person:person_57 ;
+    family:hasFather person:person_33 ;
+    family:hasGrandfather person:person_18,
+        person:person_20 ;
+    family:hasGrandmother person:person_16,
+        person:person_19 ;
+    family:hasGrandparent person:person_16,
+        person:person_18,
+        person:person_19,
+        person:person_20 ;
+    family:hasMaternalGrandfather person:person_20 ;
+    family:hasMaternalGrandmother person:person_16 ;
+    family:hasMaternalUncle person:person_30,
+        person:person_32 ;
+    family:hasMother person:person_29 ;
+    family:hasParent person:person_29,
+        person:person_33 ;
+    family:hasPaternalGrandfather person:person_18 ;
+    family:hasPaternalGrandmother person:person_19 ;
+    family:hasPaternalUncle person:person_38,
+        person:person_40 ;
+    family:hasSibling person:person_45,
+        person:person_46 ;
+    family:hasUncle person:person_30,
+        person:person_32,
+        person:person_38,
+        person:person_40 ;
+    family:surname "Jones"^^xsd:string ;
+    family:yearOfBirth 1945 ;
+    kin:hasClassificatoryParent person:person_38,
+        person:person_40 ;
+    kin:hasClassificatorySibling person:person_48,
+        person:person_50,
+        person:person_52,
+        person:person_53,
+        person:person_54,
+        person:person_55,
+        person:person_56,
+        person:person_57 ;
+    kin:hasCrossCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_49,
+        person:person_51 ;
+    kin:hasCrossUncle person:person_30,
+        person:person_32 ;
+    kin:hasMama person:person_30,
+        person:person_32 ;
+    kin:hasParallelCousin person:person_48,
+        person:person_50,
+        person:person_52,
+        person:person_53,
+        person:person_54,
+        person:person_55,
+        person:person_56,
+        person:person_57 ;
+    kin:hasPotentialSpouse person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_49,
+        person:person_51 .
+
+person:person_48 a family:Male,
+        family:Person ;
+    rdfs:label "Raymond Williams" ;
+    family:firstName "Raymond"^^xsd:string ;
+    family:hasAunt person:person_26,
+        person:person_31,
+        person:person_36,
+        person:person_39 ;
+    family:hasBrother person:person_53 ;
+    family:hasCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_54,
+        person:person_55,
+        person:person_56 ;
+    family:hasFather person:person_37 ;
+    family:hasGrandfather person:person_14,
+        person:person_24 ;
+    family:hasGrandmother person:person_11,
+        person:person_25 ;
+    family:hasGrandparent person:person_11,
+        person:person_14,
+        person:person_24,
+        person:person_25 ;
+    family:hasMaternalAunt person:person_36,
+        person:person_39 ;
+    family:hasMaternalGrandfather person:person_24 ;
+    family:hasMaternalGrandmother person:person_25 ;
+    family:hasMother person:person_34 ;
+    family:hasParent person:person_34,
+        person:person_37 ;
+    family:hasPaternalAunt person:person_26,
+        person:person_31 ;
+    family:hasPaternalGrandfather person:person_14 ;
+    family:hasPaternalGrandmother person:person_11 ;
+    family:hasSibling person:person_53,
+        person:person_57 ;
+    family:hasSister person:person_57 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1945 ;
+    kin:hasAthai person:person_26,
+        person:person_31 ;
+    kin:hasClassificatoryParent person:person_36,
+        person:person_39 ;
+    kin:hasClassificatorySibling person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_55 ;
+    kin:hasCrossAunt person:person_26,
+        person:person_31 ;
+    kin:hasCrossCousin person:person_54,
+        person:person_56 ;
+    kin:hasParallelCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_55 ;
+    kin:hasPotentialSpouse person:person_54,
+        person:person_56 .
+
+person:person_49 a family:Male,
+        family:Person ;
+    rdfs:label "Jerry Williams" ;
+    family:firstName "Jerry"^^xsd:string ;
+    family:hasAunt person:person_28,
+        person:person_29 ;
+    family:hasBrother person:person_51 ;
+    family:hasCousin person:person_41,
+        person:person_42,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_48,
+        person:person_50,
+        person:person_52,
+        person:person_53,
+        person:person_54,
+        person:person_55,
+        person:person_56,
+        person:person_57 ;
+    family:hasFather person:person_32 ;
+    family:hasGrandfather person:person_17,
+        person:person_20 ;
+    family:hasGrandmother person:person_15,
+        person:person_16 ;
+    family:hasGrandparent person:person_15,
+        person:person_16,
+        person:person_17,
+        person:person_20 ;
+    family:hasMaternalAunt person:person_28 ;
+    family:hasMaternalGrandfather person:person_17 ;
+    family:hasMaternalGrandmother person:person_15 ;
+    family:hasMaternalUncle person:person_35 ;
+    family:hasMother person:person_27 ;
+    family:hasParent person:person_27,
+        person:person_32 ;
+    family:hasPaternalAunt person:person_29 ;
+    family:hasPaternalGrandfather person:person_20 ;
+    family:hasPaternalGrandmother person:person_16 ;
+    family:hasPaternalUncle person:person_30 ;
+    family:hasSibling person:person_43,
+        person:person_51 ;
+    family:hasSister person:person_43 ;
+    family:hasUncle person:person_30,
+        person:person_35 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1946 ;
+    kin:hasAthai person:person_29 ;
+    kin:hasClassificatoryParent person:person_28,
+        person:person_30 ;
+    kin:hasClassificatorySibling person:person_41,
+        person:person_42,
+        person:person_44,
+        person:person_48,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasCrossAunt person:person_29 ;
+    kin:hasCrossCousin person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_50,
+        person:person_52,
+        person:person_55 ;
+    kin:hasCrossUncle person:person_35 ;
+    kin:hasMama person:person_35 ;
+    kin:hasParallelCousin person:person_41,
+        person:person_42,
+        person:person_44,
+        person:person_48,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasPotentialSpouse person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_50,
+        person:person_52,
+        person:person_55 .
+
+person:person_50 a family:Female,
+        family:Person ;
+    rdfs:label "Stephanie Johnson" ;
+    family:firstName "Stephanie"^^xsd:string ;
+    family:hasAunt person:person_27,
+        person:person_28,
+        person:person_34,
+        person:person_39 ;
+    family:hasBrother person:person_55 ;
+    family:hasCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_48,
+        person:person_49,
+        person:person_51,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    family:hasFather person:person_35 ;
+    family:hasGrandfather person:person_17,
+        person:person_24 ;
+    family:hasGrandmother person:person_15,
+        person:person_25 ;
+    family:hasGrandparent person:person_15,
+        person:person_17,
+        person:person_24,
+        person:person_25 ;
+    family:hasMaternalAunt person:person_34,
+        person:person_39 ;
+    family:hasMaternalGrandfather person:person_24 ;
+    family:hasMaternalGrandmother person:person_25 ;
+    family:hasMother person:person_36 ;
+    family:hasParent person:person_35,
+        person:person_36 ;
+    family:hasPaternalAunt person:person_27,
+        person:person_28 ;
+    family:hasPaternalGrandfather person:person_17 ;
+    family:hasPaternalGrandmother person:person_15 ;
+    family:hasSibling person:person_52,
+        person:person_55 ;
+    family:hasSister person:person_52 ;
+    family:surname "Johnson"^^xsd:string ;
+    family:yearOfBirth 1946 ;
+    kin:hasAthai person:person_27,
+        person:person_28 ;
+    kin:hasClassificatoryParent person:person_34,
+        person:person_39 ;
+    kin:hasClassificatorySibling person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_48,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasCrossAunt person:person_27,
+        person:person_28 ;
+    kin:hasCrossCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_49,
+        person:person_51 ;
+    kin:hasParallelCousin person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_48,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasPotentialSpouse person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_49,
+        person:person_51 .
+
+person:person_51 a family:Male,
+        family:Person ;
+    rdfs:label "Jason Williams" ;
+    family:firstName "Jason"^^xsd:string ;
+    family:hasAunt person:person_28,
+        person:person_29 ;
+    family:hasBrother person:person_49 ;
+    family:hasCousin person:person_41,
+        person:person_42,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_48,
+        person:person_50,
+        person:person_52,
+        person:person_53,
+        person:person_54,
+        person:person_55,
+        person:person_56,
+        person:person_57 ;
+    family:hasFather person:person_32 ;
+    family:hasGrandfather person:person_17,
+        person:person_20 ;
+    family:hasGrandmother person:person_15,
+        person:person_16 ;
+    family:hasGrandparent person:person_15,
+        person:person_16,
+        person:person_17,
+        person:person_20 ;
+    family:hasMaternalAunt person:person_28 ;
+    family:hasMaternalGrandfather person:person_17 ;
+    family:hasMaternalGrandmother person:person_15 ;
+    family:hasMaternalUncle person:person_35 ;
+    family:hasMother person:person_27 ;
+    family:hasParent person:person_27,
+        person:person_32 ;
+    family:hasPaternalAunt person:person_29 ;
+    family:hasPaternalGrandfather person:person_20 ;
+    family:hasPaternalGrandmother person:person_16 ;
+    family:hasPaternalUncle person:person_30 ;
+    family:hasSibling person:person_43,
+        person:person_49 ;
+    family:hasSister person:person_43 ;
+    family:hasUncle person:person_30,
+        person:person_35 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1947 ;
+    kin:hasAthai person:person_29 ;
+    kin:hasClassificatoryParent person:person_28,
+        person:person_30 ;
+    kin:hasClassificatorySibling person:person_41,
+        person:person_42,
+        person:person_44,
+        person:person_48,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasCrossAunt person:person_29 ;
+    kin:hasCrossCousin person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_50,
+        person:person_52,
+        person:person_55 ;
+    kin:hasCrossUncle person:person_35 ;
+    kin:hasMama person:person_35 ;
+    kin:hasParallelCousin person:person_41,
+        person:person_42,
+        person:person_44,
+        person:person_48,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasPotentialSpouse person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_50,
+        person:person_52,
+        person:person_55 .
+
+person:person_52 a family:Female,
+        family:Person ;
+    rdfs:label "Kimberly Johnson" ;
+    family:firstName "Kimberly"^^xsd:string ;
+    family:hasAunt person:person_27,
+        person:person_28,
+        person:person_34,
+        person:person_39 ;
+    family:hasBrother person:person_55 ;
+    family:hasCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_48,
+        person:person_49,
+        person:person_51,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    family:hasFather person:person_35 ;
+    family:hasGrandfather person:person_17,
+        person:person_24 ;
+    family:hasGrandmother person:person_15,
+        person:person_25 ;
+    family:hasGrandparent person:person_15,
+        person:person_17,
+        person:person_24,
+        person:person_25 ;
+    family:hasMaternalAunt person:person_34,
+        person:person_39 ;
+    family:hasMaternalGrandfather person:person_24 ;
+    family:hasMaternalGrandmother person:person_25 ;
+    family:hasMother person:person_36 ;
+    family:hasParent person:person_35,
+        person:person_36 ;
+    family:hasPaternalAunt person:person_27,
+        person:person_28 ;
+    family:hasPaternalGrandfather person:person_17 ;
+    family:hasPaternalGrandmother person:person_15 ;
+    family:hasSibling person:person_50,
+        person:person_55 ;
+    family:hasSister person:person_50 ;
+    family:surname "Johnson"^^xsd:string ;
+    family:yearOfBirth 1947 ;
+    kin:hasAthai person:person_27,
+        person:person_28 ;
+    kin:hasClassificatoryParent person:person_34,
+        person:person_39 ;
+    kin:hasClassificatorySibling person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_48,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasCrossAunt person:person_27,
+        person:person_28 ;
+    kin:hasCrossCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_49,
+        person:person_51 ;
+    kin:hasParallelCousin person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_48,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasPotentialSpouse person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_49,
+        person:person_51 .
+
+person:person_53 a family:Male,
+        family:Person ;
+    rdfs:label "Richard Williams" ;
+    family:firstName "Richard"^^xsd:string ;
+    family:hasAunt person:person_26,
+        person:person_31,
+        person:person_36,
+        person:person_39 ;
+    family:hasBrother person:person_48 ;
+    family:hasCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_54,
+        person:person_55,
+        person:person_56 ;
+    family:hasFather person:person_37 ;
+    family:hasGrandfather person:person_14,
+        person:person_24 ;
+    family:hasGrandmother person:person_11,
+        person:person_25 ;
+    family:hasGrandparent person:person_11,
+        person:person_14,
+        person:person_24,
+        person:person_25 ;
+    family:hasMaternalAunt person:person_36,
+        person:person_39 ;
+    family:hasMaternalGrandfather person:person_24 ;
+    family:hasMaternalGrandmother person:person_25 ;
+    family:hasMother person:person_34 ;
+    family:hasParent person:person_34,
+        person:person_37 ;
+    family:hasPaternalAunt person:person_26,
+        person:person_31 ;
+    family:hasPaternalGrandfather person:person_14 ;
+    family:hasPaternalGrandmother person:person_11 ;
+    family:hasSibling person:person_48,
+        person:person_57 ;
+    family:hasSister person:person_57 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1947 ;
+    kin:hasAthai person:person_26,
+        person:person_31 ;
+    kin:hasClassificatoryParent person:person_36,
+        person:person_39 ;
+    kin:hasClassificatorySibling person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_55 ;
+    kin:hasCrossAunt person:person_26,
+        person:person_31 ;
+    kin:hasCrossCousin person:person_54,
+        person:person_56 ;
+    kin:hasParallelCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_55 ;
+    kin:hasPotentialSpouse person:person_54,
+        person:person_56 .
+
+person:person_55 a family:Male,
+        family:Person ;
+    rdfs:label "Kevin Johnson" ;
+    family:firstName "Kevin"^^xsd:string ;
+    family:hasAunt person:person_27,
+        person:person_28,
+        person:person_34,
+        person:person_39 ;
+    family:hasCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_48,
+        person:person_49,
+        person:person_51,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    family:hasFather person:person_35 ;
+    family:hasGrandfather person:person_17,
+        person:person_24 ;
+    family:hasGrandmother person:person_15,
+        person:person_25 ;
+    family:hasGrandparent person:person_15,
+        person:person_17,
+        person:person_24,
+        person:person_25 ;
+    family:hasMaternalAunt person:person_34,
+        person:person_39 ;
+    family:hasMaternalGrandfather person:person_24 ;
+    family:hasMaternalGrandmother person:person_25 ;
+    family:hasMother person:person_36 ;
+    family:hasParent person:person_35,
+        person:person_36 ;
+    family:hasPaternalAunt person:person_27,
+        person:person_28 ;
+    family:hasPaternalGrandfather person:person_17 ;
+    family:hasPaternalGrandmother person:person_15 ;
+    family:hasSibling person:person_50,
+        person:person_52 ;
+    family:hasSister person:person_50,
+        person:person_52 ;
+    family:surname "Johnson"^^xsd:string ;
+    family:yearOfBirth 1948 ;
+    kin:hasAthai person:person_27,
+        person:person_28 ;
+    kin:hasClassificatoryParent person:person_34,
+        person:person_39 ;
+    kin:hasClassificatorySibling person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_48,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasCrossAunt person:person_27,
+        person:person_28 ;
+    kin:hasCrossCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_49,
+        person:person_51 ;
+    kin:hasParallelCousin person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_48,
+        person:person_53,
+        person:person_54,
+        person:person_56,
+        person:person_57 ;
+    kin:hasPotentialSpouse person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_49,
+        person:person_51 .
+
+person:person_57 a family:Female,
+        family:Person ;
+    rdfs:label "Emily Williams" ;
+    family:firstName "Emily"^^xsd:string ;
+    family:hasAunt person:person_26,
+        person:person_31,
+        person:person_36,
+        person:person_39 ;
+    family:hasBrother person:person_48,
+        person:person_53 ;
+    family:hasCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_54,
+        person:person_55,
+        person:person_56 ;
+    family:hasFather person:person_37 ;
+    family:hasGrandfather person:person_14,
+        person:person_24 ;
+    family:hasGrandmother person:person_11,
+        person:person_25 ;
+    family:hasGrandparent person:person_11,
+        person:person_14,
+        person:person_24,
+        person:person_25 ;
+    family:hasMaternalAunt person:person_36,
+        person:person_39 ;
+    family:hasMaternalGrandfather person:person_24 ;
+    family:hasMaternalGrandmother person:person_25 ;
+    family:hasMother person:person_34 ;
+    family:hasParent person:person_34,
+        person:person_37 ;
+    family:hasPaternalAunt person:person_26,
+        person:person_31 ;
+    family:hasPaternalGrandfather person:person_14 ;
+    family:hasPaternalGrandmother person:person_11 ;
+    family:hasSibling person:person_48,
+        person:person_53 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1949 ;
+    kin:hasAthai person:person_26,
+        person:person_31 ;
+    kin:hasClassificatoryParent person:person_36,
+        person:person_39 ;
+    kin:hasClassificatorySibling person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_55 ;
+    kin:hasCrossAunt person:person_26,
+        person:person_31 ;
+    kin:hasCrossCousin person:person_54,
+        person:person_56 ;
+    kin:hasParallelCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_55 ;
+    kin:hasPotentialSpouse person:person_54,
+        person:person_56 .
+
+person:person_24 a family:Male,
+        family:Person ;
+    rdfs:label "Joshua Jones" ;
+    family:firstName "Joshua"^^xsd:string ;
+    family:hasBrother person:person_18 ;
+    family:hasChild person:person_34,
+        person:person_36,
+        person:person_39 ;
+    family:hasDaughter person:person_34,
+        person:person_36,
+        person:person_39 ;
+    family:hasFather person:person_3 ;
+    family:hasGrandchild person:person_48,
+        person:person_50,
+        person:person_52,
+        person:person_53,
+        person:person_55,
+        person:person_57 ;
+    family:hasMother person:person_4 ;
+    family:hasParent person:person_3,
+        person:person_4 ;
+    family:hasSibling person:person_16,
+        person:person_18 ;
+    family:hasSister person:person_16 ;
+    family:hasSpouse person:person_25 ;
+    family:hasWife person:person_25 ;
+    family:surname "Jones"^^xsd:string ;
+    family:yearOfBirth 1905 .
+
+person:person_54 a family:Male,
+        family:Person ;
+    rdfs:label "Ronald Jones" ;
+    family:firstName "Ronald"^^xsd:string ;
+    family:hasAunt person:person_26 ;
+    family:hasCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_48,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_53,
+        person:person_55,
+        person:person_57 ;
+    family:hasFather person:person_38 ;
+    family:hasGrandfather person:person_14,
+        person:person_18 ;
+    family:hasGrandmother person:person_11,
+        person:person_19 ;
+    family:hasGrandparent person:person_11,
+        person:person_14,
+        person:person_18,
+        person:person_19 ;
+    family:hasMaternalAunt person:person_26 ;
+    family:hasMaternalGrandfather person:person_14 ;
+    family:hasMaternalGrandmother person:person_11 ;
+    family:hasMaternalUncle person:person_37 ;
+    family:hasMother person:person_31 ;
+    family:hasParent person:person_31,
+        person:person_38 ;
+    family:hasPaternalGrandfather person:person_18 ;
+    family:hasPaternalGrandmother person:person_19 ;
+    family:hasPaternalUncle person:person_33,
+        person:person_40 ;
+    family:hasSibling person:person_56 ;
+    family:hasSister person:person_56 ;
+    family:hasUncle person:person_33,
+        person:person_37,
+        person:person_40 ;
+    family:surname "Jones"^^xsd:string ;
+    family:yearOfBirth 1947 ;
+    kin:hasClassificatoryParent person:person_26,
+        person:person_33,
+        person:person_40 ;
+    kin:hasClassificatorySibling person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_55 ;
+    kin:hasCrossCousin person:person_48,
+        person:person_53,
+        person:person_57 ;
+    kin:hasCrossUncle person:person_37 ;
+    kin:hasMama person:person_37 ;
+    kin:hasParallelCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_55 ;
+    kin:hasPotentialSpouse person:person_48,
+        person:person_53,
+        person:person_57 .
+
+person:person_56 a family:Female,
+        family:Person ;
+    rdfs:label "Melissa Jones" ;
+    family:firstName "Melissa"^^xsd:string ;
+    family:hasAunt person:person_26 ;
+    family:hasBrother person:person_54 ;
+    family:hasCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_48,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_53,
+        person:person_55,
+        person:person_57 ;
+    family:hasFather person:person_38 ;
+    family:hasGrandfather person:person_14,
+        person:person_18 ;
+    family:hasGrandmother person:person_11,
+        person:person_19 ;
+    family:hasGrandparent person:person_11,
+        person:person_14,
+        person:person_18,
+        person:person_19 ;
+    family:hasMaternalAunt person:person_26 ;
+    family:hasMaternalGrandfather person:person_14 ;
+    family:hasMaternalGrandmother person:person_11 ;
+    family:hasMaternalUncle person:person_37 ;
+    family:hasMother person:person_31 ;
+    family:hasParent person:person_31,
+        person:person_38 ;
+    family:hasPaternalGrandfather person:person_18 ;
+    family:hasPaternalGrandmother person:person_19 ;
+    family:hasPaternalUncle person:person_33,
+        person:person_40 ;
+    family:hasSibling person:person_54 ;
+    family:hasUncle person:person_33,
+        person:person_37,
+        person:person_40 ;
+    family:surname "Jones"^^xsd:string ;
+    family:yearOfBirth 1948 ;
+    kin:hasClassificatoryParent person:person_26,
+        person:person_33,
+        person:person_40 ;
+    kin:hasClassificatorySibling person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_55 ;
+    kin:hasCrossCousin person:person_48,
+        person:person_53,
+        person:person_57 ;
+    kin:hasCrossUncle person:person_37 ;
+    kin:hasMama person:person_37 ;
+    kin:hasParallelCousin person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_49,
+        person:person_50,
+        person:person_51,
+        person:person_52,
+        person:person_55 ;
+    kin:hasPotentialSpouse person:person_48,
+        person:person_53,
+        person:person_57 .
+
+person:person_16 a family:Female,
+        family:Person ;
+    rdfs:label "Katherine Jones" ;
+    family:firstName "Katherine"^^xsd:string ;
+    family:hasBrother person:person_18,
+        person:person_24 ;
+    family:hasChild person:person_29,
+        person:person_30,
+        person:person_32 ;
+    family:hasDaughter person:person_29 ;
+    family:hasFather person:person_3 ;
+    family:hasGrandchild person:person_41,
+        person:person_42,
+        person:person_43,
+        person:person_44,
+        person:person_45,
+        person:person_46,
+        person:person_47,
+        person:person_49,
+        person:person_51 ;
+    family:hasHusband person:person_20 ;
+    family:hasMother person:person_4 ;
+    family:hasParent person:person_3,
+        person:person_4 ;
+    family:hasSibling person:person_18,
+        person:person_24 ;
+    family:hasSon person:person_30,
+        person:person_32 ;
+    family:hasSpouse person:person_20 ;
+    family:surname "Jones"^^xsd:string ;
+    family:yearOfBirth 1901 .
+
+person:person_30 a family:Male,
+        family:Person ;
+    rdfs:label "Justin Williams" ;
+    family:firstName "Justin"^^xsd:string ;
+    family:hasAunt person:person_22 ;
+    family:hasBrother person:person_32 ;
+    family:hasChild person:person_41,
+        person:person_42,
+        person:person_44 ;
+    family:hasCousin person:person_26,
+        person:person_31,
+        person:person_33,
+        person:person_34,
+        person:person_36,
+        person:person_37,
+        person:person_38,
+        person:person_39,
+        person:person_40 ;
+    family:hasDaughter person:person_41,
+        person:person_44 ;
+    family:hasFather person:person_20 ;
+    family:hasGrandfather person:person_3,
+        person:person_9 ;
+    family:hasGrandmother person:person_10,
+        person:person_4 ;
+    family:hasGrandparent person:person_10,
+        person:person_3,
+        person:person_4,
+        person:person_9 ;
+    family:hasMaternalGrandfather person:person_3 ;
+    family:hasMaternalGrandmother person:person_4 ;
+    family:hasMaternalUncle person:person_18,
+        person:person_24 ;
+    family:hasMother person:person_16 ;
+    family:hasParent person:person_16,
+        person:person_20 ;
+    family:hasPaternalAunt person:person_22 ;
+    family:hasPaternalGrandfather person:person_9 ;
+    family:hasPaternalGrandmother person:person_10 ;
+    family:hasPaternalUncle person:person_14 ;
+    family:hasSibling person:person_29,
+        person:person_32 ;
+    family:hasSister person:person_29 ;
+    family:hasSon person:person_42 ;
+    family:hasSpouse person:person_28 ;
+    family:hasUncle person:person_14,
+        person:person_18,
+        person:person_24 ;
+    family:hasWife person:person_28 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1922 ;
+    kin:hasAthai person:person_22 ;
+    kin:hasClassificatoryParent person:person_14 ;
+    kin:hasClassificatorySibling person:person_26,
+        person:person_31,
+        person:person_37 ;
+    kin:hasCrossAunt person:person_22 ;
+    kin:hasCrossCousin person:person_33,
+        person:person_34,
+        person:person_36,
+        person:person_38,
+        person:person_39,
+        person:person_40 ;
+    kin:hasCrossUncle person:person_18,
+        person:person_24 ;
+    kin:hasMama person:person_18,
+        person:person_24 ;
+    kin:hasParallelCousin person:person_26,
+        person:person_31,
+        person:person_37 ;
+    kin:hasPotentialSpouse person:person_33,
+        person:person_34,
+        person:person_36,
+        person:person_38,
+        person:person_39,
+        person:person_40 .
+
+person:person_32 a family:Male,
+        family:Person ;
+    rdfs:label "Mark Williams" ;
+    family:firstName "Mark"^^xsd:string ;
+    family:hasAunt person:person_22 ;
+    family:hasBrother person:person_30 ;
+    family:hasChild person:person_43,
+        person:person_49,
+        person:person_51 ;
+    family:hasCousin person:person_26,
+        person:person_31,
+        person:person_33,
+        person:person_34,
+        person:person_36,
+        person:person_37,
+        person:person_38,
+        person:person_39,
+        person:person_40 ;
+    family:hasDaughter person:person_43 ;
+    family:hasFather person:person_20 ;
+    family:hasGrandfather person:person_3,
+        person:person_9 ;
+    family:hasGrandmother person:person_10,
+        person:person_4 ;
+    family:hasGrandparent person:person_10,
+        person:person_3,
+        person:person_4,
+        person:person_9 ;
+    family:hasMaternalGrandfather person:person_3 ;
+    family:hasMaternalGrandmother person:person_4 ;
+    family:hasMaternalUncle person:person_18,
+        person:person_24 ;
+    family:hasMother person:person_16 ;
+    family:hasParent person:person_16,
+        person:person_20 ;
+    family:hasPaternalAunt person:person_22 ;
+    family:hasPaternalGrandfather person:person_9 ;
+    family:hasPaternalGrandmother person:person_10 ;
+    family:hasPaternalUncle person:person_14 ;
+    family:hasSibling person:person_29,
+        person:person_30 ;
+    family:hasSister person:person_29 ;
+    family:hasSon person:person_49,
+        person:person_51 ;
+    family:hasSpouse person:person_27 ;
+    family:hasUncle person:person_14,
+        person:person_18,
+        person:person_24 ;
+    family:hasWife person:person_27 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1923 ;
+    kin:hasAthai person:person_22 ;
+    kin:hasClassificatoryParent person:person_14 ;
+    kin:hasClassificatorySibling person:person_26,
+        person:person_31,
+        person:person_37 ;
+    kin:hasCrossAunt person:person_22 ;
+    kin:hasCrossCousin person:person_33,
+        person:person_34,
+        person:person_36,
+        person:person_38,
+        person:person_39,
+        person:person_40 ;
+    kin:hasCrossUncle person:person_18,
+        person:person_24 ;
+    kin:hasMama person:person_18,
+        person:person_24 ;
+    kin:hasParallelCousin person:person_26,
+        person:person_31,
+        person:person_37 ;
+    kin:hasPotentialSpouse person:person_33,
+        person:person_34,
+        person:person_36,
+        person:person_38,
+        person:person_39,
+        person:person_40 .
+
+person:person_29 a family:Female,
+        family:Person ;
+    rdfs:label "Patricia Williams" ;
+    family:firstName "Patricia"^^xsd:string ;
+    family:hasAunt person:person_22 ;
+    family:hasBrother person:person_30,
+        person:person_32 ;
+    family:hasChild person:person_45,
+        person:person_46,
+        person:person_47 ;
+    family:hasCousin person:person_26,
+        person:person_31,
+        person:person_33,
+        person:person_34,
+        person:person_36,
+        person:person_37,
+        person:person_38,
+        person:person_39,
+        person:person_40 ;
+    family:hasDaughter person:person_47 ;
+    family:hasFather person:person_20 ;
+    family:hasGrandfather person:person_3,
+        person:person_9 ;
+    family:hasGrandmother person:person_10,
+        person:person_4 ;
+    family:hasGrandparent person:person_10,
+        person:person_3,
+        person:person_4,
+        person:person_9 ;
+    family:hasHusband person:person_33 ;
+    family:hasMaternalGrandfather person:person_3 ;
+    family:hasMaternalGrandmother person:person_4 ;
+    family:hasMaternalUncle person:person_18,
+        person:person_24 ;
+    family:hasMother person:person_16 ;
+    family:hasParent person:person_16,
+        person:person_20 ;
+    family:hasPaternalAunt person:person_22 ;
+    family:hasPaternalGrandfather person:person_9 ;
+    family:hasPaternalGrandmother person:person_10 ;
+    family:hasPaternalUncle person:person_14 ;
+    family:hasSibling person:person_30,
+        person:person_32 ;
+    family:hasSon person:person_45,
+        person:person_46 ;
+    family:hasSpouse person:person_33 ;
+    family:hasUncle person:person_14,
+        person:person_18,
+        person:person_24 ;
+    family:surname "Williams"^^xsd:string ;
+    family:yearOfBirth 1921 ;
+    kin:hasAthai person:person_22 ;
+    kin:hasClassificatoryParent person:person_14 ;
+    kin:hasClassificatorySibling person:person_26,
+        person:person_31,
+        person:person_37 ;
+    kin:hasCrossAunt person:person_22 ;
+    kin:hasCrossCousin person:person_33,
+        person:person_34,
+        person:person_36,
+        person:person_38,
+        person:person_39,
+        person:person_40 ;
+    kin:hasCrossUncle person:person_18,
+        person:person_24 ;
+    kin:hasMama person:person_18,
+        person:person_24 ;
+    kin:hasParallelCousin person:person_26,
+        person:person_31,
+        person:person_37 ;
+    kin:hasPotentialSpouse person:person_33,
+        person:person_34,
+        person:person_36,
+        person:person_38,
+        person:person_39,
+        person:person_40 .
+
+family:Person a owl:Class ;
+    rdfs:label "Person" .
+

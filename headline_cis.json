@@ -1,0 +1,171 @@
+{
+  "override_gap": {
+    "point_paper": 23.6,
+    "point_recomputed": 29.94402035623409,
+    "ci_low": 27.837674000898073,
+    "ci_high": 32.01860499925161,
+    "n_questions_per_model": {
+      "gemma3_27b": {
+        "with": 850,
+        "without": 1310
+      },
+      "deepseek_r1_32b": {
+        "with": 850,
+        "without": 1310
+      },
+      "qwen3_32b": {
+        "with": 850,
+        "without": 1310
+      }
+    },
+    "per_model_point": {
+      "gemma3_27b": {
+        "with_override_em": 73.05882352941177,
+        "without_override_em": 92.29007633587786,
+        "gap_pp": 19.23125280646609,
+        "n_with": 850,
+        "n_without": 1310
+      },
+      "deepseek_r1_32b": {
+        "with_override_em": 51.76470588235295,
+        "without_override_em": 88.16793893129771,
+        "gap_pp": 36.40323304894476,
+        "n_with": 850,
+        "n_without": 1310
+      },
+      "qwen3_32b": {
+        "with_override_em": 57.1764705882353,
+        "without_override_em": 91.37404580152672,
+        "gap_pp": 34.19757521329142,
+        "n_with": 850,
+        "n_without": 1310
+      }
+    },
+    "method": "Unpaired bootstrap, N=10000. Within each model, resample questions with replacement separately within has_cultural_override=True vs False groups on Other-5 systems; compute mean EM difference; average across the 3 open-source models for each bootstrap iteration. CI is the 2.5/97.5 percentile of the resulting averaged-gap distribution. NOTE: the 23.6pp point in the paper was computed from a 6-model average (3 open + GPT-4o-mini, Gemini-2.5-Flash, Claude-3.5-Haiku); restricted to the 3 open-source models the gap is larger (~30pp)."
+  },
+  "fictional_real_gap": {
+    "point_paper": 5.1,
+    "point_recomputed": 6.111111111111112,
+    "ci_low": 3.0808080808080827,
+    "ci_high": 9.191919191919194,
+    "per_model_point": {
+      "gemma3_27b": {
+        "real_em": 65.30303030303031,
+        "fict_em": 66.36363636363637,
+        "gap_pp": 1.0606060606060619,
+        "n_real": 660,
+        "n_fict": 660
+      },
+      "deepseek_r1_32b": {
+        "real_em": 41.060606060606055,
+        "fict_em": 46.81818181818182,
+        "gap_pp": 5.757575757575761,
+        "n_real": 660,
+        "n_fict": 660
+      },
+      "qwen3_32b": {
+        "real_em": 44.84848484848485,
+        "fict_em": 56.36363636363636,
+        "gap_pp": 11.515151515151512,
+        "n_real": 660,
+        "n_fict": 660
+      }
+    },
+    "method": "Unpaired bootstrap, N=10000 (different question instances after system/term replacement, so paired pairing is not appropriate). Within each model, resample real and fictional Cat.4 questions on Other-5 systems with replacement separately; compute mean EM difference (fictional - real); average across the 3 open-source models per iteration. CI is 2.5/97.5 percentile."
+  },
+  "hop_matched_2hop": {
+    "point_paper": 38.0,
+    "point_recomputed": 37.98556998556998,
+    "ci_low": 34.859884559884556,
+    "ci_high": 41.12842712842713,
+    "per_model_point": {
+      "gemma3_27b": {
+        "cat2_em": 100.0,
+        "cat4_em": 76.66666666666667,
+        "gap_pp": 23.33333333333333,
+        "n_cat2": 350,
+        "n_cat4": 330
+      },
+      "deepseek_r1_32b": {
+        "cat2_em": 89.71428571428571,
+        "cat4_em": 48.78787878787879,
+        "gap_pp": 40.926406926406926,
+        "n_cat2": 350,
+        "n_cat4": 330
+      },
+      "qwen3_32b": {
+        "cat2_em": 100.0,
+        "cat4_em": 50.303030303030305,
+        "gap_pp": 49.696969696969695,
+        "n_cat2": 350,
+        "n_cat4": 330
+      }
+    },
+    "method": "Unpaired bootstrap, N=10000. Within each model, separately resample Cat.2 questions (at 2-hop, all 7 systems) and Cat.4 questions (at 2-hop, Other-5 systems) with replacement; compute mean EM difference (Cat.2 - Cat.4); average across the 3 open-source models per iteration. CI is 2.5/97.5 percentile."
+  },
+  "hop_matched_3hop": {
+    "point_paper": 56.3,
+    "point_recomputed": 56.25396825396825,
+    "ci_low": 53.056132756132754,
+    "ci_high": 59.39105339105339,
+    "per_model_point": {
+      "gemma3_27b": {
+        "cat2_em": 100.0,
+        "cat4_em": 53.939393939393945,
+        "gap_pp": 46.060606060606055,
+        "n_cat2": 350,
+        "n_cat4": 330
+      },
+      "deepseek_r1_32b": {
+        "cat2_em": 95.42857142857143,
+        "cat4_em": 33.33333333333333,
+        "gap_pp": 62.095238095238095,
+        "n_cat2": 350,
+        "n_cat4": 330
+      },
+      "qwen3_32b": {
+        "cat2_em": 100.0,
+        "cat4_em": 39.39393939393939,
+        "gap_pp": 60.60606060606061,
+        "n_cat2": 350,
+        "n_cat4": 330
+      }
+    },
+    "method": "Unpaired bootstrap, N=10000. Within each model, separately resample Cat.2 questions (at 3-hop, all 7 systems) and Cat.4 questions (at 3-hop, Other-5 systems) with replacement; compute mean EM difference (Cat.2 - Cat.4); average across the 3 open-source models per iteration. CI is 2.5/97.5 percentile."
+  },
+  "cat1_average": {
+    "reported_in_table_v3": 97.7,
+    "reviewer_flagged_value": 98.1,
+    "recomputed_5model": 97.7,
+    "models_included": [
+      "Qwen3-32B",
+      "Gemma3-27B",
+      "DeepSeek-R1-32B",
+      "GPT-4o-mini",
+      "Gemini-2.5-Flash"
+    ],
+    "per_model": {
+      "Qwen3-32B": {
+        "cat1_em": 99.42857142857143,
+        "n": 350
+      },
+      "Gemma3-27B": {
+        "cat1_em": 100.0,
+        "n": 350
+      },
+      "DeepSeek-R1-32B": {
+        "cat1_em": 89.14285714285714,
+        "n": 350
+      },
+      "GPT-4o-mini": {
+        "cat1_em": 100.0,
+        "n": 350
+      },
+      "Gemini-2.5-Flash": {
+        "cat1_em": 100.0,
+        "n": 350
+      }
+    },
+    "method": "Per-question Cat.1 exact-match rate computed for each of the 5 models with zero-shot-direct numbers (Qwen3-32B, Gemma3-27B, DeepSeek-R1-32B from results_<model>_zero_shot_direct/; GPT-4o-mini from results_gpt4o/ and Gemini-2.5-Flash from results_gemini/, which contain the only zero-shot-direct closed-source data). Cat.1 average is the unweighted mean of the 5 per-model rates."
+  }
+}

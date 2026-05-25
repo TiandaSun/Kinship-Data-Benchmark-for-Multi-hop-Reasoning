@@ -1,0 +1,39 @@
+{
+  "kinship_system": "dravidian",
+  "total_questions": 400,
+  "by_category": {
+    "1": 0,
+    "2": 400,
+    "3": 0,
+    "4": 0
+  },
+  "by_hops": {
+    "2": 133,
+    "3": 133,
+    "4": 134
+  },
+  "config": {
+    "cat1": {
+      "count": 0
+    },
+    "cat2": {
+      "count": 400,
+      "hops_distribution": {
+        "2": 133,
+        "3": 133,
+        "4": 134
+      }
+    },
+    "cat3": {
+      "count": 0
+    },
+    "cat4": {
+      "count": 0,
+      "hops_distribution": {
+        "2": 0,
+        "3": 0,
+        "4": 0
+      }
+    }
+  }
+}

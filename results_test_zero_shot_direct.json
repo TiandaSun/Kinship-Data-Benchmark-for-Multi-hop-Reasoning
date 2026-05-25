@@ -1,0 +1,540 @@
+{
+  "summary": {
+    "kinship_system": "eskimo",
+    "model": {
+      "provider": "ollama",
+      "model": "gemma3:27b"
+    },
+    "protocol": "zero_shot_direct",
+    "total_questions": 20,
+    "error_count": 0,
+    "accuracy": {
+      "exact_match": 1.0,
+      "partial_match": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "by_category": {
+      "cat_1": {
+        "total": 20,
+        "exact_match": 1.0,
+        "partial_match": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    },
+    "by_hops": {
+      "hop_1": {
+        "total": 20,
+        "exact_match": 1.0,
+        "partial_match": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    },
+    "by_cultural_override": {
+      "no_override": {
+        "total": 20,
+        "exact_match": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    },
+    "timing": {
+      "total_seconds": 30.235501289367676,
+      "avg_per_question": 1.5117750644683838
+    }
+  },
+  "questions": [
+    {
+      "question_id": "eskimo_0001",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Justin Williams's father?",
+      "ground_truth": "Larry Williams",
+      "predicted": [
+        "Larry Williams"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 22.599276542663574,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "Larry Williams.",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0002",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Ashley Williams's mother?",
+      "ground_truth": "Mia Johnson",
+      "predicted": [
+        "Mia Johnson"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.39530515670776367,
+      "has_cultural_override": false,
+      "bio_term": "mother",
+      "kin_term": null,
+      "raw_response": "Mia Johnson.\n\n\n\n",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0003",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Richard Williams's father?",
+      "ground_truth": "Thomas Williams",
+      "predicted": [
+        "Thomas Williams"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.36598753929138184,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "Thomas Williams.",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0004",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who are Jane Jones's children?",
+      "ground_truth": [
+        "Brian Jones",
+        "Joshua Jones",
+        "Katherine Jones"
+      ],
+      "predicted": [
+        "Brian Jones",
+        "Joshua Jones",
+        "Katherine Jones"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.49761199951171875,
+      "has_cultural_override": false,
+      "bio_term": "child",
+      "kin_term": null,
+      "raw_response": "Brian Jones, Joshua Jones, Katherine Jones.\n\n\n\n",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0005",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Emily Jones's father?",
+      "ground_truth": "Alexander Jones",
+      "predicted": [
+        "Alexander Jones"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.3771169185638428,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "Alexander Jones.",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0006",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Jessica Johnson's father?",
+      "ground_truth": "Stephen Johnson",
+      "predicted": [
+        "Stephen Johnson"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.3599972724914551,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "Stephen Johnson.",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0007",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Nicholas Williams's mother?",
+      "ground_truth": "Mia Johnson",
+      "predicted": [
+        "Mia Johnson"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.36742448806762695,
+      "has_cultural_override": false,
+      "bio_term": "mother",
+      "kin_term": null,
+      "raw_response": "Mia Johnson.",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0008",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who are Margaret Jones's children?",
+      "ground_truth": [
+        "Kevin Johnson",
+        "Kimberly Johnson",
+        "Stephanie Johnson"
+      ],
+      "predicted": [
+        "Kevin Johnson",
+        "Kimberly Johnson",
+        "Stephanie Johnson"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.5036263465881348,
+      "has_cultural_override": false,
+      "bio_term": "child",
+      "kin_term": null,
+      "raw_response": "Kevin Johnson, Kimberly Johnson, Stephanie Johnson.\n\n\n\n",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0009",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Melissa Jones's mother?",
+      "ground_truth": "Michelle Williams",
+      "predicted": [
+        "Michelle Williams"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.3810451030731201,
+      "has_cultural_override": false,
+      "bio_term": "mother",
+      "kin_term": null,
+      "raw_response": "Michelle Williams.",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0010",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who are Anne Brown's children?",
+      "ground_truth": [
+        "Carol Brown",
+        "Jenny Brown",
+        "Sharon Brown"
+      ],
+      "predicted": [
+        "Carol Brown",
+        "Jenny Brown",
+        "Sharon Brown"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.5064554214477539,
+      "has_cultural_override": false,
+      "bio_term": "child",
+      "kin_term": null,
+      "raw_response": "Carol Brown, Jenny Brown, Sharon Brown.\n\n\n\n",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0011",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Jacob Jones's father?",
+      "ground_truth": "Scott Jones",
+      "predicted": [
+        "Scott Jones"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.34856224060058594,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "Scott Jones.",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0012",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Sharon Brown's mother?",
+      "ground_truth": "Anne Brown",
+      "predicted": [
+        "Anne Brown"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.38860559463500977,
+      "has_cultural_override": false,
+      "bio_term": "mother",
+      "kin_term": null,
+      "raw_response": "Anne Brown.",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0013",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who are Michelle Williams's siblings?",
+      "ground_truth": [
+        "Lisa Williams",
+        "Thomas Williams"
+      ],
+      "predicted": [
+        "Lisa Williams",
+        "Thomas Williams"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.4556620121002197,
+      "has_cultural_override": false,
+      "bio_term": "sibling",
+      "kin_term": null,
+      "raw_response": "Lisa Williams, Thomas Williams.\n",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0014",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Sharon Brown's spouse?",
+      "ground_truth": "Brian Jones",
+      "predicted": [
+        "Brian Jones"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.3635706901550293,
+      "has_cultural_override": false,
+      "bio_term": "spouse",
+      "kin_term": null,
+      "raw_response": "Brian Jones",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0015",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Olivia Williams's father?",
+      "ground_truth": "Mike Williams",
+      "predicted": [
+        "Mike Williams"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.3593790531158447,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "Mike Williams.",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0016",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Ronald Jones's father?",
+      "ground_truth": "Alexander Jones",
+      "predicted": [
+        "Alexander Jones"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.36408495903015137,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "Alexander Jones.",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0017",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Mia Johnson's spouse?",
+      "ground_truth": "Justin Williams",
+      "predicted": [
+        "Justin Williams"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.40346503257751465,
+      "has_cultural_override": false,
+      "bio_term": "spouse",
+      "kin_term": null,
+      "raw_response": "Justin Williams.",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0018",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Joshua Jones's father?",
+      "ground_truth": "Peter Jones",
+      "predicted": [
+        "Peter Jones"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.3632078170776367,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "Peter Jones.",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0019",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who are Thomas Williams's siblings?",
+      "ground_truth": [
+        "Lisa Williams",
+        "Michelle Williams"
+      ],
+      "predicted": [
+        "Lisa Williams",
+        "Michelle Williams"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.47023606300354004,
+      "has_cultural_override": false,
+      "bio_term": "sibling",
+      "kin_term": null,
+      "raw_response": "Lisa Williams, Michelle Williams.\n",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    },
+    {
+      "question_id": "eskimo_0020",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Scott Jones's father?",
+      "ground_truth": "Brian Jones",
+      "predicted": [
+        "Brian Jones"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 0.3648810386657715,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "Brian Jones.",
+      "is_error": false,
+      "protocol": "zero_shot_direct"
+    }
+  ]
+}

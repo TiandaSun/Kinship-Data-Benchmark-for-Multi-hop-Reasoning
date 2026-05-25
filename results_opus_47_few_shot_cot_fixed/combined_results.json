@@ -1,0 +1,8 @@
+{
+  "summary": {
+    "accuracy": 0.8457142857142858,
+    "n_correct": 592,
+    "n_total": 700,
+    "parser_fix_applied": true
+  }
+}

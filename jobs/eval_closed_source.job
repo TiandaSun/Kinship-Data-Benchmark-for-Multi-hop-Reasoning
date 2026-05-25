@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+#SBATCH --job-name=kinshipqa_closed_source
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=16G
+#SBATCH --time=24:00:00
+#SBATCH --account=cs-ontrel-2021
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=tianda.sun@york.ac.uk
+#SBATCH --output=%x-%j.log
+#SBATCH --error=%x-%j.err
+#SBATCH --partition=nodes
+
+# KinshipQA Closed-Source Model Evaluation
+# Runs GPT-4o-mini + Claude-Haiku-4.5 on CoT + few-shot CoT
+# NOTE: Gemini-2.5-Flash skipped — free-tier quota exceeded
+# No GPU needed — API calls only
+# Providers patched to use `requests` instead of SDK httpx (HPC compatibility)
+
+cd ~/scratch/Family-Tree-reasoning/familytree_v6/
+
+# Force unbuffered Python output so SLURM log updates in real-time
+export PYTHONUNBUFFERED=1
+
+module load Miniconda3
+source activate MHQA
+
+echo "DEBUG: Python=$(which python3), Node=$(hostname)"
+echo "DEBUG: Testing API connectivity..."
+timeout 15 python3 -c "
+import requests, os
+r = requests.get('https://api.openai.com/v1/models',
+    headers={'Authorization': 'Bearer ' + os.environ['OPENAI_API_KEY']}, timeout=10)
+print(f'DEBUG: OpenAI API status={r.status_code}')
+" || echo "DEBUG: OpenAI test FAILED"
+
+# API keys must be exported in the shell before sbatch (do NOT commit).
+: "${OPENAI_API_KEY:?OPENAI_API_KEY not set}"
+: "${ANTHROPIC_API_KEY:?ANTHROPIC_API_KEY not set}"
+
+echo "========================================"
+echo "KinshipQA Closed-Source API Evaluation"
+echo "Started: $(date)"
+echo "Models: GPT-4o-mini, Claude-Haiku-4.5"
+echo "Protocols: zero_shot_cot, few_shot_cot"
+echo "========================================"
+
+# Model configs: provider model_name output_suffix
+declare -a CONFIGS=(
+    "openai gpt-4o-mini gpt4o_mini"
+    "anthropic claude-haiku-4-5-20251001 claude_haiku_4_5"
+)
+
+PROTOCOLS=("zero_shot_cot" "few_shot_cot")
+
+for config_str in "${CONFIGS[@]}"; do
+    read -r PROVIDER MODEL OUTPUT_NAME <<< "$config_str"
+
+    for PROTOCOL in "${PROTOCOLS[@]}"; do
+        OUTPUT_DIR="./results_${OUTPUT_NAME}_${PROTOCOL}"
+
+        echo ""
+        echo "========================================"
+        echo "Provider: ${PROVIDER} | Model: ${MODEL} | Protocol: ${PROTOCOL}"
+        echo "Output: ${OUTPUT_DIR}"
+        echo "Time: $(date)"
+        echo "========================================"
+
+        if [ -f "${OUTPUT_DIR}/combined_results.json" ]; then
+            echo "Results already exist, skipping..."
+            continue
+        fi
+
+        EXTRA_ARGS=""
+        if [ "$PROTOCOL" == "few_shot_cot" ]; then
+            EXTRA_ARGS="--few-shot-file ./few_shot_examples.json"
+        fi
+
+        python llm_tester_v6.py \
+            --all \
+            --dataset-dir ./datasets/ \
+            --provider "$PROVIDER" \
+            --model "$MODEL" \
+            --protocol "$PROTOCOL" \
+            --cot-style structured \
+            --output-dir "$OUTPUT_DIR" \
+            --verbose \
+            $EXTRA_ARGS
+
+        echo "Completed: ${PROVIDER}/${MODEL} / ${PROTOCOL} at $(date)"
+    done
+done
+
+echo ""
+echo "========================================"
+echo "All closed-source evaluations complete: $(date)"
+echo "========================================"

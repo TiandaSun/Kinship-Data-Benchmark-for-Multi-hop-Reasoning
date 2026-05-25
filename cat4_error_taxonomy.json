@@ -1,0 +1,66 @@
+{
+  "total_cat4_predictions": 1980,
+  "total_errors": 1000,
+  "category_counts": {
+    "over_inclusion": 205,
+    "default_substitution": 328,
+    "wrong_disjoint": 98,
+    "partial_overlap": 4,
+    "empty_format": 358,
+    "partial_under": 7
+  },
+  "per_system": {
+    "hawaiian": {
+      "over_inclusion": 49,
+      "default_substitution": 102,
+      "wrong_disjoint": 2,
+      "empty_format": 25,
+      "partial_under": 0,
+      "partial_overlap": 0
+    },
+    "iroquois": {
+      "over_inclusion": 34,
+      "wrong_disjoint": 2,
+      "default_substitution": 56,
+      "empty_format": 65,
+      "partial_overlap": 1,
+      "partial_under": 5
+    },
+    "dravidian": {
+      "wrong_disjoint": 6,
+      "default_substitution": 60,
+      "empty_format": 61,
+      "over_inclusion": 12,
+      "partial_under": 1,
+      "partial_overlap": 0
+    },
+    "crow": {
+      "over_inclusion": 39,
+      "wrong_disjoint": 34,
+      "default_substitution": 55,
+      "empty_format": 109,
+      "partial_under": 1,
+      "partial_overlap": 0
+    },
+    "omaha": {
+      "over_inclusion": 71,
+      "wrong_disjoint": 54,
+      "default_substitution": 55,
+      "partial_overlap": 3,
+      "empty_format": 98,
+      "partial_under": 0
+    }
+  },
+  "models": [
+    "gemma3_27b",
+    "deepseek_r1_32b",
+    "qwen3_32b"
+  ],
+  "systems": [
+    "hawaiian",
+    "iroquois",
+    "dravidian",
+    "crow",
+    "omaha"
+  ]
+}

@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+#SBATCH --job-name=kinshipqa_multi_seed
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=150G
+#SBATCH --time=24:00:00
+#SBATCH --account=cs-ontrel-2021
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=tianda.sun@york.ac.uk
+#SBATCH --output=%x-%j.log
+#SBATCH --error=%x-%j.err
+#SBATCH --partition=gpuplus
+#SBATCH --gres=gpu:1
+
+# KinshipQA Multi-Seed Cat.4 Evaluation
+# -------------------------------------
+# Per-question EM rate over n=5 samples at temperature=0.7 on a
+# stratified Cat.4 subsample (40 questions x 7 systems = 280, but
+# we cap at 40 per non-Western system + 40 per Western so effective
+# size is ~280 questions x 5 samples = ~1400 generations per model).
+# Produces per-system bootstrap 95% CIs for the paper's Limitations
+# response and as supporting evidence for Table 7.
+
+cd ~/scratch/Family-Tree-reasoning/familytree_v6/
+
+module load Miniconda3
+source activate MHQA
+
+OLLAMA_MODELS=~/scratch/ollama_model ~/scratch/bin/ollama serve &
+OLLAMA_PID=$!
+sleep 10
+
+echo "========================================"
+echo "KinshipQA Multi-Seed Cat.4"
+echo "Started: $(date)"
+echo "========================================"
+
+mkdir -p ./results_multi_seed
+
+MODELS=("gemma3:27b" "deepseek-r1:32b" "qwen3:32b")
+MODEL_NAMES=("gemma3_27b" "deepseek_r1_32b" "qwen3_32b")
+
+for i in "${!MODELS[@]}"; do
+    MODEL="${MODELS[$i]}"
+    MODEL_NAME="${MODEL_NAMES[$i]}"
+    OUT="./results_multi_seed/${MODEL_NAME}.json"
+
+    if [ -f "$OUT" ]; then
+        echo "Skipping ${MODEL_NAME}: ${OUT} already exists"
+        continue
+    fi
+
+    echo ""
+    echo "----------------------------------------"
+    echo "Model: ${MODEL}  ->  ${OUT}"
+    echo "Time: $(date)"
+    echo "----------------------------------------"
+
+    python multi_seed_cat4.py \
+        --dataset-dir ./datasets/ \
+        --model "$MODEL" \
+        --output "$OUT" \
+        --num-samples 5 \
+        --temperature 0.7 \
+        --per-system-cap 40 \
+        --subsample-seed 2026 \
+        --verbose
+
+    echo "Completed ${MODEL} at $(date)"
+done
+
+kill $OLLAMA_PID 2>/dev/null
+
+echo ""
+echo "========================================"
+echo "Aggregating into table"
+echo "========================================"
+
+python aggregate_multi_seed.py \
+    --inputs ./results_multi_seed/gemma3_27b.json \
+             ./results_multi_seed/deepseek_r1_32b.json \
+             ./results_multi_seed/qwen3_32b.json \
+    --output-tex ./tables/multi_seed_cat4_table.tex \
+    --output-json ./tables/multi_seed_cat4_summary.json
+
+echo "Done: $(date)"

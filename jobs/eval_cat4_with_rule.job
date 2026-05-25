@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+#SBATCH --job-name=kinshipqa_cat4_with_rule
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=200G
+#SBATCH --time=48:00:00
+#SBATCH --account=cs-ontrel-2021
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=tianda.sun@york.ac.uk
+#SBATCH --output=%x-%j.log
+#SBATCH --error=%x-%j.err
+#SBATCH --partition=gpuplus
+#SBATCH --gres=gpu:1
+
+# Cat.4 cultural-override Other-5 evaluation — WITH in-context rule statement.
+# ---------------------------------------------------------------------------
+# Isolates rule application from rule recall: prepends a one-sentence cultural
+# override rule to each Cat.4 question (see KINSHIP_RULES in llm_tester_v6.py).
+# Compare to baseline Cat.4 results (no rule) in results_*_zero_shot_direct/ to
+# decompose the cultural-prior interference vs knowledge-deficit hypothesis.
+
+cd ~/scratch/Family-Tree-reasoning/familytree_v6/
+
+module load Miniconda3
+source activate MHQA
+
+DATA_DIR="./datasets_v6_2"
+
+if [ ! -d "$DATA_DIR" ]; then
+    echo "ERROR: $DATA_DIR does not exist."
+    exit 1
+fi
+
+echo "========================================"
+echo "Cat.4 Other-5 +rule evaluation"
+echo "Started: $(date)"
+echo "Dataset:"
+wc -l ${DATA_DIR}/{hawaiian,iroquois,dravidian,crow,omaha}_dataset.jsonl
+echo "========================================"
+
+OLLAMA_MODELS=~/scratch/ollama_model ~/scratch/bin/ollama serve &
+OLLAMA_PID=$!
+sleep 10
+
+MODELS=("gemma3:27b" "deepseek-r1:32b" "qwen3:32b")
+MODEL_NAMES=("gemma3_27b" "deepseek_r1_32b" "qwen3_32b")
+
+for i in "${!MODELS[@]}"; do
+    MODEL="${MODELS[$i]}"
+    MODEL_NAME="${MODEL_NAMES[$i]}"
+    OUT="./results_cat4_with_rule_${MODEL_NAME}_zero_shot_direct"
+
+    if [ -f "${OUT}/combined_results.json" ]; then
+        echo "Skipping ${MODEL}: results already exist"
+        continue
+    fi
+
+    echo ""
+    echo "--- ${MODEL} | Other-5 Cat.4 +rule (max_tokens=8192) ---"
+    echo "Time: $(date)"
+
+    # --all iterates 7 systems; --categories 4 restricts to Cat.4; Esk&Sud have
+    # no Cat.4 questions so they will be empty no-ops. --with-rule-context
+    # injects the one-sentence override rule keyed by kinship_system.
+    python llm_tester_v6.py \
+        --all \
+        --dataset-dir "$DATA_DIR" \
+        --provider ollama \
+        --model "$MODEL" \
+        --protocol zero_shot_direct \
+        --categories 4 \
+        --max-tokens 8192 \
+        --with-rule-context \
+        --output-dir "$OUT" \
+        --verbose
+
+    echo "Done ${MODEL}: $(date)"
+done
+
+kill $OLLAMA_PID 2>/dev/null
+echo ""
+echo "Finished: $(date)"

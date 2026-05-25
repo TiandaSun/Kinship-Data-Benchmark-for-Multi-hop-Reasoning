@@ -1,0 +1,69 @@
+{
+  "mode": "system_only",
+  "system_rename": {
+    "hawaiian": "Zorblax",
+    "iroquois": "Krendari",
+    "dravidian": "Glabran",
+    "crow": "Vespian",
+    "omaha": "Tarskan"
+  },
+  "term_rename": {},
+  "files": [
+    {
+      "system": "crow",
+      "fictional": "Vespian",
+      "cat4": 132,
+      "total": 432,
+      "skipped": false,
+      "mode": "system_only"
+    },
+    {
+      "system": "dravidian",
+      "fictional": "Glabran",
+      "cat4": 132,
+      "total": 432,
+      "skipped": false,
+      "mode": "system_only"
+    },
+    {
+      "system": "eskimo",
+      "fictional": null,
+      "cat4": 0,
+      "total": 487,
+      "skipped": true,
+      "mode": "system_only"
+    },
+    {
+      "system": "hawaiian",
+      "fictional": "Zorblax",
+      "cat4": 132,
+      "total": 432,
+      "skipped": false,
+      "mode": "system_only"
+    },
+    {
+      "system": "iroquois",
+      "fictional": "Krendari",
+      "cat4": 132,
+      "total": 432,
+      "skipped": false,
+      "mode": "system_only"
+    },
+    {
+      "system": "omaha",
+      "fictional": "Tarskan",
+      "cat4": 132,
+      "total": 432,
+      "skipped": false,
+      "mode": "system_only"
+    },
+    {
+      "system": "sudanese",
+      "fictional": null,
+      "cat4": 0,
+      "total": 487,
+      "skipped": true,
+      "mode": "system_only"
+    }
+  ]
+}

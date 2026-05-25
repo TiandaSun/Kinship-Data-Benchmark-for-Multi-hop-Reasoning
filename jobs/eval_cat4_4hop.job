@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+#SBATCH --job-name=kinshipqa_cat4_4hop
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=150G
+#SBATCH --time=12:00:00
+#SBATCH --account=cs-ontrel-2021
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=tianda.sun@york.ac.uk
+#SBATCH --output=%x-%j.log
+#SBATCH --error=%x-%j.err
+#SBATCH --partition=gpuplus
+#SBATCH --gres=gpu:1
+
+# KinshipQA 4-hop Cat.4 Augmentation + Evaluation
+# ------------------------------------------------
+# The v6.1 generator never produced 4-hop Cat.4 questions because
+# KINSHIP_OVERRIDES did not define 4-hop override paths.  This job:
+#   1) runs augment_cat4_4hop.py to inject anthropologically reasonable
+#      4-hop override paths and generate ~50 new 4-hop Cat.4 questions
+#      per non-Western system (using the existing ontologies)
+#   2) re-evaluates the three open-source models on the *augmented*
+#      datasets under zero_shot_direct (only the new questions add work
+#      over the original; if you want a full re-run, change --categories)
+#
+# Output:
+#   datasets_v6_2/                         (augmented per-system jsonl)
+#   results_4hop_<model>_zero_shot_direct/ (per-system results)
+#   tables/cat4_4hop_summary.json          (aggregated across models)
+
+cd ~/scratch/Family-Tree-reasoning/familytree_v6/
+
+module load Miniconda3
+source activate MHQA
+
+echo "========================================"
+echo "Step 1: Generate 4-hop Cat.4 questions"
+echo "Started: $(date)"
+echo "========================================"
+
+python augment_cat4_4hop.py \
+    --in-dataset-dir ./datasets/ \
+    --in-ontology-dir ./ontologies/ \
+    --out-dataset-dir ./datasets_v6_2/ \
+    --questions-per-system 50 \
+    --seed 2026
+
+if [ ! -f ./datasets_v6_2/hawaiian_dataset.jsonl ]; then
+    echo "ERROR: augmentation did not produce expected output" >&2
+    exit 1
+fi
+
+# Start Ollama
+OLLAMA_MODELS=~/scratch/ollama_model ~/scratch/bin/ollama serve &
+OLLAMA_PID=$!
+sleep 10
+
+echo ""
+echo "========================================"
+echo "Step 2: Evaluate Cat.4 (incl. new 4-hop) on 3 open-source models"
+echo "Started: $(date)"
+echo "========================================"
+
+MODELS=("gemma3:27b" "deepseek-r1:32b" "qwen3:32b")
+MODEL_NAMES=("gemma3_27b" "deepseek_r1_32b" "qwen3_32b")
+
+for i in "${!MODELS[@]}"; do
+    MODEL="${MODELS[$i]}"
+    MODEL_NAME="${MODEL_NAMES[$i]}"
+    OUTPUT_DIR="./results_4hop_${MODEL_NAME}_zero_shot_direct"
+
+    echo ""
+    echo "----------------------------------------"
+    echo "Model: ${MODEL} | Cat.4 only on augmented dataset"
+    echo "Output: ${OUTPUT_DIR}"
+    echo "Time: $(date)"
+    echo "----------------------------------------"
+
+    if [ -f "${OUTPUT_DIR}/combined_results.json" ]; then
+        echo "Results already exist, skipping..."
+        continue
+    fi
+
+    python llm_tester_v6.py \
+        --all \
+        --dataset-dir ./datasets_v6_2/ \
+        --provider ollama \
+        --model "$MODEL" \
+        --protocol zero_shot_direct \
+        --categories 4 \
+        --output-dir "$OUTPUT_DIR" \
+        --verbose
+
+    echo "Completed: ${MODEL} at $(date)"
+done
+
+kill $OLLAMA_PID 2>/dev/null
+
+echo ""
+echo "========================================"
+echo "Step 3: Aggregate per-hop Cat.4 numbers"
+echo "========================================"
+
+python summarize_cat4_4hop.py \
+    --results-dir-template "./results_4hop_{model}_zero_shot_direct" \
+    --models gemma3_27b deepseek_r1_32b qwen3_32b \
+    --output ./tables/cat4_4hop_summary.json \
+    --output-tex ./tables/cat4_4hop_table.tex
+
+echo "Done: $(date)"

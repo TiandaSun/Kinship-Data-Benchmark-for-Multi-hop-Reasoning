@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+#SBATCH --job-name=kinshipqa_extended_hops
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=150G
+#SBATCH --time=72:00:00
+#SBATCH --account=cs-ontrel-2021
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=tianda.sun@york.ac.uk
+#SBATCH --output=%x-%j.log
+#SBATCH --error=%x-%j.err
+#SBATCH --partition=gpuplus
+#SBATCH --gres=gpu:1
+
+# KinshipQA Extended Hop Evaluation (5-6 hops)
+# Runs 3 open-source models × 3 protocols on extended datasets (3,460 questions)
+# Separate from the main protocol matrix job — runs on a second GPU
+
+cd ~/scratch/Family-Tree-reasoning/familytree_v6/
+
+module load Miniconda3
+source activate MHQA
+
+# Start Ollama on default port. SLURM assigns this job to a different physical
+# node than the protocol matrix job, so each node has its own localhost:11434 —
+# no conflict. Using non-default port breaks llama_index which hardcodes 11434.
+OLLAMA_MODELS=~/scratch/ollama_model ~/scratch/bin/ollama serve &
+OLLAMA_PID=$!
+sleep 15
+
+echo "========================================"
+echo "KinshipQA Extended Hop Evaluation"
+echo "Started: $(date)"
+echo "Datasets: datasets_extended/ (1850-2000 ontologies)"
+echo "========================================"
+
+MODELS=("gemma3:27b" "deepseek-r1:32b" "qwen3:32b")
+MODEL_NAMES=("gemma3_27b" "deepseek_r1_32b" "qwen3_32b")
+PROTOCOLS=("zero_shot_direct" "zero_shot_cot" "few_shot_cot")
+
+for i in "${!MODELS[@]}"; do
+    MODEL="${MODELS[$i]}"
+    MODEL_NAME="${MODEL_NAMES[$i]}"
+
+    for PROTOCOL in "${PROTOCOLS[@]}"; do
+        OUTPUT_DIR="./results_extended_${MODEL_NAME}_${PROTOCOL}"
+
+        echo ""
+        echo "========================================"
+        echo "Model: ${MODEL} | Protocol: ${PROTOCOL}"
+        echo "Output: ${OUTPUT_DIR}"
+        echo "Time: $(date)"
+        echo "========================================"
+
+        # Skip if results already exist (resumability)
+        if [ -f "${OUTPUT_DIR}/combined_results.json" ]; then
+            echo "Results already exist, skipping..."
+            continue
+        fi
+
+        EXTRA_ARGS=""
+        if [ "$PROTOCOL" == "few_shot_cot" ]; then
+            EXTRA_ARGS="--few-shot-file ./few_shot_examples.json"
+        fi
+
+        python llm_tester_v6.py \
+            --all \
+            --dataset-dir ./datasets_extended/ \
+            --provider ollama \
+            --model "$MODEL" \
+            --protocol "$PROTOCOL" \
+            --cot-style structured \
+            --output-dir "$OUTPUT_DIR" \
+            --verbose \
+            $EXTRA_ARGS
+
+        echo "Completed: ${MODEL} / ${PROTOCOL} at $(date)"
+    done
+done
+
+# Clean up
+kill $OLLAMA_PID 2>/dev/null
+
+echo ""
+echo "========================================"
+echo "All extended evaluations complete: $(date)"
+echo "========================================"

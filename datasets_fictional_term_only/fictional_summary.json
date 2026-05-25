@@ -1,0 +1,86 @@
+{
+  "mode": "term_only",
+  "system_rename": {},
+  "term_rename": {
+    "classificatory father": "tier-pater",
+    "classificatory fathers": "tier-paters",
+    "classificatory mother": "tier-mater",
+    "classificatory mothers": "tier-maters",
+    "classificatory sibling": "tier-sibling",
+    "classificatory siblings": "tier-siblings",
+    "classificatory brother": "tier-brother",
+    "classificatory brothers": "tier-brothers",
+    "classificatory sister": "tier-sister",
+    "classificatory sisters": "tier-sisters",
+    "classificatory parent": "tier-parent",
+    "classificatory parents": "tier-parents",
+    "classificatory child": "tier-child",
+    "classificatory children": "tier-children",
+    "classificatory son": "tier-son",
+    "classificatory sons": "tier-sons",
+    "classificatory daughter": "tier-daughter",
+    "classificatory daughters": "tier-daughters",
+    "cross-cousin": "off-axis cousin",
+    "cross cousin": "off-axis cousin",
+    "parallel cousin": "on-axis cousin",
+    "parallel-cousin": "on-axis cousin"
+  },
+  "files": [
+    {
+      "system": "crow",
+      "fictional": "Vespian",
+      "cat4": 132,
+      "total": 432,
+      "skipped": false,
+      "mode": "term_only"
+    },
+    {
+      "system": "dravidian",
+      "fictional": "Glabran",
+      "cat4": 132,
+      "total": 432,
+      "skipped": false,
+      "mode": "term_only"
+    },
+    {
+      "system": "eskimo",
+      "fictional": null,
+      "cat4": 0,
+      "total": 487,
+      "skipped": true,
+      "mode": "term_only"
+    },
+    {
+      "system": "hawaiian",
+      "fictional": "Zorblax",
+      "cat4": 132,
+      "total": 432,
+      "skipped": false,
+      "mode": "term_only"
+    },
+    {
+      "system": "iroquois",
+      "fictional": "Krendari",
+      "cat4": 132,
+      "total": 432,
+      "skipped": false,
+      "mode": "term_only"
+    },
+    {
+      "system": "omaha",
+      "fictional": "Tarskan",
+      "cat4": 132,
+      "total": 432,
+      "skipped": false,
+      "mode": "term_only"
+    },
+    {
+      "system": "sudanese",
+      "fictional": null,
+      "cat4": 0,
+      "total": 487,
+      "skipped": true,
+      "mode": "term_only"
+    }
+  ]
+}

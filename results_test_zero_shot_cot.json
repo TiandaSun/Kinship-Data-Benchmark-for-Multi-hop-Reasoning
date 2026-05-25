@@ -1,0 +1,540 @@
+{
+  "summary": {
+    "kinship_system": "eskimo",
+    "model": {
+      "provider": "ollama",
+      "model": "gemma3:27b"
+    },
+    "protocol": "zero_shot_cot",
+    "total_questions": 20,
+    "error_count": 0,
+    "accuracy": {
+      "exact_match": 0.8,
+      "partial_match": 0.8,
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8
+    },
+    "by_category": {
+      "cat_1": {
+        "total": 20,
+        "exact_match": 0.8,
+        "partial_match": 0.8,
+        "precision": 0.8,
+        "recall": 0.8,
+        "f1": 0.8
+      }
+    },
+    "by_hops": {
+      "hop_1": {
+        "total": 20,
+        "exact_match": 0.8,
+        "partial_match": 0.8,
+        "precision": 0.8,
+        "recall": 0.8,
+        "f1": 0.8
+      }
+    },
+    "by_cultural_override": {
+      "no_override": {
+        "total": 20,
+        "exact_match": 0.8,
+        "precision": 0.8,
+        "recall": 0.8,
+        "f1": 0.8
+      }
+    },
+    "timing": {
+      "total_seconds": 74.11402416229248,
+      "avg_per_question": 3.705701208114624
+    }
+  },
+  "questions": [
+    {
+      "question_id": "eskimo_0001",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Justin Williams's father?",
+      "ground_truth": "Larry Williams",
+      "predicted": [
+        "Larry Williams"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 3.888063669204712,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Justin Williams and specifically, his father. We need to identify who that father is based on the provided information.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe only relevant fact provided is: \"Justin Williams's father is Larry Williams.\"\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context *directly states* the relationship we are looking for. There is no need for further tracing or inference. The statement establishes a direct link between Justin Williams and his father, Larry Williams.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nNo cultural rules are mentioned in the context, so this step is not applicable.\n\n**STEP 5 - FINAL ANSWER:**\n\nJustin Williams's father is Larry Williams.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0002",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Ashley Williams's mother?",
+      "ground_truth": "Mia Johnson",
+      "predicted": [
+        "Ashley Williams"
+      ],
+      "exact_match": false,
+      "partial_match": false,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "response_time": 3.519097328186035,
+      "has_cultural_override": false,
+      "bio_term": "mother",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Ashley Williams and specifically, who her mother is. We are looking for the maternal parent of Ashley Williams.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe context states: \"Ashley Williams's mother is Mia Johnson.\"\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context *directly* states the relationship. There is no need for further tracing or inference. Ashley Williams has a mother, and that mother is Mia Johnson.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nThere are no cultural rules mentioned in the context.\n\n**STEP 5 - FINAL ANSWER:**\n\nMia Johnson is Ashley Williams's mother.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0003",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Richard Williams's father?",
+      "ground_truth": "Thomas Williams",
+      "predicted": [
+        "Richard Williams"
+      ],
+      "exact_match": false,
+      "partial_match": false,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "response_time": 3.341749668121338,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Richard Williams and specifically, who *his father* is.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe context states: \"Richard Williams's father is Thomas Williams.\"\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context *directly* states the relationship we are looking for. There is no need to trace any further connections. The statement provides the answer directly.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nThere are no cultural rules mentioned in the context.\n\n**STEP 5 - FINAL ANSWER:**\n\nThomas Williams is Richard Williams's father.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0004",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who are Jane Jones's children?",
+      "ground_truth": [
+        "Brian Jones",
+        "Joshua Jones",
+        "Katherine Jones"
+      ],
+      "predicted": [
+        "Brian Jones",
+        "Joshua Jones",
+        "Katherine Jones"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 3.7478158473968506,
+      "has_cultural_override": false,
+      "bio_term": "child",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Jane Jones and her children. We need to identify who the context states are her children.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe context states: \"Jane Jones has the following childs: Brian Jones, Joshua Jones, Katherine Jones.\"\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context directly states that Brian Jones, Joshua Jones, and Katherine Jones are the children of Jane Jones. There is no need for further tracing or inference.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nNo cultural rules are mentioned in the context.\n\n**STEP 5 - FINAL ANSWER:**\n\nJane Jones's children are Brian Jones, Joshua Jones, and Katherine Jones.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0005",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Emily Jones's father?",
+      "ground_truth": "Alexander Jones",
+      "predicted": [
+        "Alexander Jones"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 3.8345694541931152,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Emily Jones and specifically, her father. We need to identify who that father is based on the provided information.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe only relevant fact provided is: \"Emily Jones's father is Alexander Jones.\"\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context *directly* states the relationship. There's no need for complex tracing. The statement establishes a direct link: Emily Jones is the daughter, and Alexander Jones is her father.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nNo cultural rules are mentioned in the context, so this step is not applicable.\n\n**STEP 5 - FINAL ANSWER:**\n\nEmily Jones's father is Alexander Jones.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0006",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Jessica Johnson's father?",
+      "ground_truth": "Stephen Johnson",
+      "predicted": [
+        "Stephen Johnson"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 3.751688241958618,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Jessica Johnson and specifically, her father. We need to identify who that father is based on the provided information.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe only relevant fact provided is: \"Jessica Johnson's father is Stephen Johnson.\"\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context *directly states* the relationship. There is no need for further tracing or inference. Jessica Johnson has a father, and that father is named Stephen Johnson.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nNo cultural rules are mentioned in the context, so this step is not applicable.\n\n**STEP 5 - FINAL ANSWER:**\n\nJessica Johnson's father is Stephen Johnson.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0007",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Nicholas Williams's mother?",
+      "ground_truth": "Mia Johnson",
+      "predicted": [
+        "Mia Johnson"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 3.6725363731384277,
+      "has_cultural_override": false,
+      "bio_term": "mother",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Nicholas Williams and specifically, his mother. We need to identify who that person is based on the provided information.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe relevant fact is: \"Nicholas Williams's mother is Mia Johnson.\"\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe statement directly links Nicholas Williams to his mother, Mia Johnson. There is no need for further tracing or inference. The information is explicitly stated.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nThere are no cultural rules mentioned in the context.\n\n**STEP 5 - FINAL ANSWER:**\n\nBased on the provided information, Nicholas Williams's mother is Mia Johnson.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0008",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who are Margaret Jones's children?",
+      "ground_truth": [
+        "Kevin Johnson",
+        "Kimberly Johnson",
+        "Stephanie Johnson"
+      ],
+      "predicted": [
+        "Kevin Johnson",
+        "Kimberly Johnson",
+        "Stephanie Johnson"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 3.728037118911743,
+      "has_cultural_override": false,
+      "bio_term": "child",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Margaret Jones and her children. We need to identify who the context states are her children.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe context states: \"Margaret Jones has the following childs: Kevin Johnson, Kimberly Johnson, Stephanie Johnson.\"\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context directly states that Kevin Johnson, Kimberly Johnson, and Stephanie Johnson are the children of Margaret Jones. There is no need for further tracing or inference.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nNo cultural rules are mentioned in the context.\n\n**STEP 5 - FINAL ANSWER:**\n\nMargaret Jones's children are Kevin Johnson, Kimberly Johnson, and Stephanie Johnson.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0009",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Melissa Jones's mother?",
+      "ground_truth": "Michelle Williams",
+      "predicted": [
+        "Melissa Jones"
+      ],
+      "exact_match": false,
+      "partial_match": false,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "response_time": 3.5063540935516357,
+      "has_cultural_override": false,
+      "bio_term": "mother",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Melissa Jones and specifically, who her mother is. We are looking for the maternal parent of Melissa Jones.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe context states: \"Melissa Jones's mother is Michelle Williams.\"\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context *directly* states the relationship. There is no need for further tracing. Melissa Jones has a mother, and that mother is Michelle Williams.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nThere are no cultural rules mentioned in the context.\n\n**STEP 5 - FINAL ANSWER:**\n\nMichelle Williams is Melissa Jones's mother.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0010",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who are Anne Brown's children?",
+      "ground_truth": [
+        "Carol Brown",
+        "Jenny Brown",
+        "Sharon Brown"
+      ],
+      "predicted": [
+        "Carol Brown",
+        "Jenny Brown",
+        "Sharon Brown"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 3.70574688911438,
+      "has_cultural_override": false,
+      "bio_term": "child",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Anne Brown and her children. We need to identify who the context states are her children.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe context states: \"Anne Brown has the following childs: Carol Brown, Jenny Brown, Sharon Brown.\"\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context directly states that Carol Brown, Jenny Brown, and Sharon Brown are Anne Brown's children. There is no need for further tracing or inference.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nNo cultural rules are mentioned in the context.\n\n**STEP 5 - FINAL ANSWER:**\n\nAnne Brown's children are Carol Brown, Jenny Brown, and Sharon Brown.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0011",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Jacob Jones's father?",
+      "ground_truth": "Scott Jones",
+      "predicted": [
+        "Scott Jones"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 3.8948023319244385,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Jacob Jones and specifically, his father. We need to identify who fulfills the \"father\" role in relation to Jacob.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe context provides one direct relationship:\n* Jacob Jones's father is Scott Jones.\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context *directly states* the relationship we are looking for. There is no need to infer or deduce anything. The statement \"Jacob Jones's father is Scott Jones\" establishes the father-son relationship.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nThere are no cultural rules mentioned in the context.\n\n**STEP 5 - FINAL ANSWER:**\n\nJacob Jones's father is Scott Jones.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0012",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Sharon Brown's mother?",
+      "ground_truth": "Anne Brown",
+      "predicted": [
+        "Anne Brown"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 3.5405898094177246,
+      "has_cultural_override": false,
+      "bio_term": "mother",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Sharon Brown and specifically, who her mother is. We are looking for the maternal parent of Sharon Brown.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe context states: \"Sharon Brown's mother is Anne Brown.\"\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context *directly* states the relationship. Sharon Brown has a mother, and that mother is Anne Brown. There is no need for further tracing or inference.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nThere are no cultural rules mentioned in the context.\n\n**STEP 5 - FINAL ANSWER:**\n\nSharon Brown's mother is Anne Brown.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0013",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who are Michelle Williams's siblings?",
+      "ground_truth": [
+        "Lisa Williams",
+        "Thomas Williams"
+      ],
+      "predicted": [
+        "Lisa Williams",
+        "Thomas Williams"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 3.90181040763855,
+      "has_cultural_override": false,
+      "bio_term": "sibling",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Michelle Williams and specifically, who her siblings are. We are looking for individuals who share at least one biological parent with Michelle.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe context states: \"Michelle Williams has the following siblings: Lisa Williams, Thomas Williams.\"\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context *directly* states who Michelle Williams's siblings are. There's no need to infer or deduce anything further. The statement explicitly defines Lisa Williams and Thomas Williams as Michelle's siblings.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nNo cultural rules are mentioned in the context.\n\n**STEP 5 - FINAL ANSWER:**\n\nMichelle Williams's siblings are Lisa Williams and Thomas Williams.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0014",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Sharon Brown's spouse?",
+      "ground_truth": "Brian Jones",
+      "predicted": [
+        "Sharon Brown"
+      ],
+      "exact_match": false,
+      "partial_match": false,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "response_time": 3.5060646533966064,
+      "has_cultural_override": false,
+      "bio_term": "spouse",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Sharon Brown and specifically, who her spouse is. We are looking for the person married to Sharon Brown.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe context states: \"Sharon Brown's spouse is Brian Jones.\"\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context *directly* states who Sharon Brown's spouse is. There is no need for further tracing or inference. The statement provides the answer directly.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nNo cultural rules are mentioned in the context.\n\n**STEP 5 - FINAL ANSWER:**\n\nBrian Jones is Sharon Brown's spouse.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0015",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Olivia Williams's father?",
+      "ground_truth": "Mike Williams",
+      "predicted": [
+        "Mike Williams"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 3.887829065322876,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Olivia Williams and specifically, her father. We need to identify who that father is based on the provided information.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe only relevant fact provided is: \"Olivia Williams's father is Mike Williams.\"\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context *directly states* the relationship we are looking for. There is no need for further tracing or deduction. The statement establishes a direct link between Olivia Williams and her father, Mike Williams.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nNo cultural rules are mentioned in the context, so this step is not applicable.\n\n**STEP 5 - FINAL ANSWER:**\n\nOlivia Williams's father is Mike Williams.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0016",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Ronald Jones's father?",
+      "ground_truth": "Alexander Jones",
+      "predicted": [
+        "Alexander Jones"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 3.5599026679992676,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Ronald Jones and specifically, who his father is. We are looking for the paternal relationship to Ronald.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe context provides one direct relationship:\n* Ronald Jones's father is Alexander Jones.\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context *directly states* who Ronald Jones's father is. There is no need for further tracing or inference. The relationship is explicitly given.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nThere are no cultural rules mentioned in the context.\n\n**STEP 5 - FINAL ANSWER:**\n\nRonald Jones's father is Alexander Jones.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0017",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Mia Johnson's spouse?",
+      "ground_truth": "Justin Williams",
+      "predicted": [
+        "Justin Williams"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 3.4186697006225586,
+      "has_cultural_override": false,
+      "bio_term": "spouse",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Mia Johnson and specifically, her spouse. We need to identify who that person is.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe context states: \"Mia Johnson's spouse is Justin Williams.\"\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context *directly* states the relationship we are looking for. There is no need to trace further connections. Mia Johnson is married to Justin Williams.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nThere are no cultural rules mentioned in the context.\n\n**STEP 5 - FINAL ANSWER:**\n\nMia Johnson's spouse is Justin Williams.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0018",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Joshua Jones's father?",
+      "ground_truth": "Peter Jones",
+      "predicted": [
+        "Peter Jones"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 3.8762054443359375,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Joshua Jones and specifically, his father. We need to identify who that father is based on the provided information.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe only relevant fact provided is: \"Joshua Jones's father is Peter Jones.\"\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context *directly* states the relationship we are looking for. There is no need for further tracing or deduction. The statement establishes a direct link between Joshua Jones and his father, Peter Jones.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nNo cultural rules are mentioned in the context, so this step is not applicable.\n\n**STEP 5 - FINAL ANSWER:**\n\nJoshua Jones's father is Peter Jones.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0019",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who are Thomas Williams's siblings?",
+      "ground_truth": [
+        "Lisa Williams",
+        "Michelle Williams"
+      ],
+      "predicted": [
+        "Lisa Williams",
+        "Michelle Williams"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 3.902618408203125,
+      "has_cultural_override": false,
+      "bio_term": "sibling",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Thomas Williams and specifically, who his siblings are. We are looking for individuals who share at least one biological parent with Thomas.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe context states: \"Thomas Williams has the following siblings: Lisa Williams, Michelle Williams.\"\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context *directly* states who Thomas Williams's siblings are. There is no need to infer or deduce anything further. The statement explicitly defines Lisa Williams and Michelle Williams as his siblings.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nNo cultural rules are mentioned in the context.\n\n**STEP 5 - FINAL ANSWER:**\n\nThomas Williams's siblings are Lisa Williams and Michelle Williams.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    },
+    {
+      "question_id": "eskimo_0020",
+      "category": 1,
+      "n_hops": 1,
+      "kinship_system": "eskimo",
+      "question_text": "Who is Scott Jones's father?",
+      "ground_truth": "Brian Jones",
+      "predicted": [
+        "Brian Jones"
+      ],
+      "exact_match": true,
+      "partial_match": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "response_time": 3.929872989654541,
+      "has_cultural_override": false,
+      "bio_term": "father",
+      "kin_term": null,
+      "raw_response": "**STEP 1 - IDENTIFY KEY PERSON(S):**\n\nThe question is asking about Scott Jones and specifically, his father. We need to identify who fulfills the \"father\" role in relation to Scott.\n\n**STEP 2 - EXTRACT RELEVANT FACTS:**\n\nThe context provides one direct relationship:\n* Scott Jones's father is Brian Jones.\n\n**STEP 3 - TRACE THE REASONING CHAIN:**\n\nThe context *directly states* the relationship we are looking for. There is no need to trace further connections. The statement \"Scott Jones's father is Brian Jones\" establishes the answer.\n\n**STEP 4 - APPLY CULTURAL RULES (if mentioned):**\n\nThere are no cultural rules mentioned in the context.\n\n**STEP 5 - FINAL ANSWER:**\n\nBased on the provided information, Scott Jones's father is Brian Jones.\n",
+      "is_error": false,
+      "protocol": "zero_shot_cot"
+    }
+  ]
+}

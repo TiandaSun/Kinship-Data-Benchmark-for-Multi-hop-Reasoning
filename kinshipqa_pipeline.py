@@ -1,5 +1,27 @@
 #!/usr/bin/env python3
+"""
+KinshipQA Pipeline v6.1
+=======================
+Path-based question generation with kinship system mapping tables.
 
+Key Changes from v6.0:
+- Fixed duplicate question issue: now tracks seen question texts
+- All multi-target answers included: uses plural phrasing when multiple valid answers exist
+- Sorted target names for consistency
+- Cat 4 disambiguation questions now include all target names to avoid ambiguity
+
+Key Changes from v5.2:
+- Replaces proof graph buckets with n-hops as complexity measure
+- Implements path-based generation for Cat 2 and Cat 4
+- Adds mapping table for path-to-term conversion across 7 kinship systems
+- Cat 1: Minimal (50 questions) for sanity check
+- Cat 2: Path-based multi-hop with biological terms
+- Cat 3: Template-based counting/filtering (unchanged)
+- Cat 4: Path-based with cultural override required
+
+Author: Tianda (ACL 2026 Submission)
+Version: 6.1
+"""
 
 import json
 import random
@@ -78,6 +100,20 @@ BIOLOGICAL_PATHS: Dict[Tuple[str, ...], Dict] = {
     ("hasMother", "hasSister", "hasChild", "hasChild"): {"term": "maternal aunt's grandchild", "hops": 4},
     ("hasFather", "hasFather", "hasBrother", "hasChild"): {"term": "father's paternal uncle's child", "hops": 4},
     ("hasMother", "hasMother", "hasSister", "hasChild"): {"term": "mother's maternal aunt's child", "hops": 4},
+
+    # 5-hop paths - mixed lateral+vertical chains for scaling analysis
+    # NOTE: Pure vertical chains (5+ ancestors) require ontology regeneration
+    # with wider year ranges. These mixed paths work within 4-generation trees.
+    ("hasFather", "hasFather", "hasBrother", "hasChild", "hasChild"): {"term": "father's paternal uncle's grandchild", "hops": 5},
+    ("hasMother", "hasMother", "hasSister", "hasChild", "hasChild"): {"term": "mother's maternal aunt's grandchild", "hops": 5},
+    ("hasFather", "hasMother", "hasBrother", "hasChild", "hasChild"): {"term": "paternal grandmother's brother's grandchild", "hops": 5},
+    ("hasMother", "hasFather", "hasSister", "hasChild", "hasChild"): {"term": "maternal grandfather's sister's grandchild", "hops": 5},
+
+    # 6-hop paths - deeper mixed chains (may require ontology regeneration)
+    ("hasFather", "hasFather", "hasBrother", "hasChild", "hasChild", "hasChild"): {"term": "father's paternal uncle's great-grandchild", "hops": 6},
+    ("hasMother", "hasMother", "hasSister", "hasChild", "hasChild", "hasChild"): {"term": "mother's maternal aunt's great-grandchild", "hops": 6},
+    ("hasFather", "hasFather", "hasBrother", "hasChild", "hasBrother", "hasChild"): {"term": "grandfather's brother's grandchild's nephew's child", "hops": 6},
+    ("hasMother", "hasMother", "hasSister", "hasChild", "hasSister", "hasChild"): {"term": "grandmother's sister's grandchild's niece's child", "hops": 6},
 }
 
 
@@ -1158,6 +1194,7 @@ class QuestionGenerator:
 class KinshipQAPipeline:
     """Main pipeline for generating KinshipQA datasets."""
     
+    # Default config for standard 2-4 hop evaluation
     DEFAULT_CONFIG = {
         "cat1": {"count": 50},  # Sanity check only
         "cat2": {
@@ -1168,6 +1205,20 @@ class KinshipQAPipeline:
         "cat4": {
             "count": 200,
             "hops_distribution": {2: 70, 3: 70, 4: 60}
+        }
+    }
+
+    # Extended config for 5-6 hop scaling analysis (requires regenerated ontologies)
+    EXTENDED_CONFIG = {
+        "cat1": {"count": 50},
+        "cat2": {
+            "count": 250,
+            "hops_distribution": {2: 40, 3: 40, 4: 40, 5: 40, 6: 40}
+        },
+        "cat3": {"count": 100},
+        "cat4": {
+            "count": 300,
+            "hops_distribution": {2: 60, 3: 60, 4: 50, 5: 40, 6: 40}
         }
     }
     
@@ -1315,24 +1366,48 @@ Examples:
     parser.add_argument("--cat2-count", type=int, default=150)
     parser.add_argument("--cat3-count", type=int, default=100)
     parser.add_argument("--cat4-count", type=int, default=200)
-    
+    parser.add_argument("--extended", action="store_true",
+                        help="Generate 5-6 hop questions in addition to 2-4. "
+                             "Spreads --cat2-count and --cat4-count over the "
+                             "extended hop range {2,3,4,5,6}. Requires an "
+                             "ontology spanning enough generations for the "
+                             "longest chains to be realisable.")
+
     args = parser.parse_args()
-    
+
     # Build config
-    config = {
-        "cat1": {"count": args.cat1_count},
-        "cat2": {
-            "count": args.cat2_count,
-            "hops_distribution": {2: args.cat2_count//3, 3: args.cat2_count//3, 
-                                  4: args.cat2_count - 2*(args.cat2_count//3)}
-        },
-        "cat3": {"count": args.cat3_count},
-        "cat4": {
-            "count": args.cat4_count,
-            "hops_distribution": {2: args.cat4_count//3, 3: args.cat4_count//3,
-                                  4: args.cat4_count - 2*(args.cat4_count//3)}
+    if args.extended:
+        c2 = args.cat2_count // 5
+        c2_rem = args.cat2_count - 4 * c2
+        c4 = args.cat4_count // 5
+        c4_rem = args.cat4_count - 4 * c4
+        config = {
+            "cat1": {"count": args.cat1_count},
+            "cat2": {
+                "count": args.cat2_count,
+                "hops_distribution": {2: c2, 3: c2, 4: c2, 5: c2, 6: c2_rem},
+            },
+            "cat3": {"count": args.cat3_count},
+            "cat4": {
+                "count": args.cat4_count,
+                "hops_distribution": {2: c4, 3: c4, 4: c4, 5: c4, 6: c4_rem},
+            },
         }
-    }
+    else:
+        config = {
+            "cat1": {"count": args.cat1_count},
+            "cat2": {
+                "count": args.cat2_count,
+                "hops_distribution": {2: args.cat2_count//3, 3: args.cat2_count//3,
+                                      4: args.cat2_count - 2*(args.cat2_count//3)}
+            },
+            "cat3": {"count": args.cat3_count},
+            "cat4": {
+                "count": args.cat4_count,
+                "hops_distribution": {2: args.cat4_count//3, 3: args.cat4_count//3,
+                                      4: args.cat4_count - 2*(args.cat4_count//3)}
+            }
+        }
     
     if args.all:
         # Generate for all systems

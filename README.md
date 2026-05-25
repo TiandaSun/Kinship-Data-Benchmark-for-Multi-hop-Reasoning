@@ -1,131 +1,140 @@
-# Kinship Data Benchmark for Multi-hop Reasoning
+# KinshipQA: A Cross-Cultural Kinship Multi-hop Reasoning Benchmark
 
-A benchmark for evaluating multi-hop reasoning in Large Language Models using culturally diverse kinship systems.
+A procedurally-generated benchmark for evaluating multi-hop reasoning and
+cultural-rule application in Large Language Models, covering **seven
+anthropologically-documented kinship systems**.
 
 ## Overview
 
-KinshipQA tests whether LLMs can perform multi-hop reasoning over kinship relations while accounting for cultural variation. The benchmark covers **7 anthropologically-documented kinship systems** with distinct classification rules:
+KinshipQA tests whether LLMs can chain biological-relation hops AND apply
+culture-specific classification rules that override the biological default.
+The benchmark covers Morgan's seven kinship typologies:
 
-| System | Type | Key Feature |
-|--------|------|-------------|
-| Eskimo | Descriptive | Western nuclear-family focus |
-| Sudanese | Descriptive | Unique term for each relative |
-| Hawaiian | Generational | All same-generation relatives merged |
-| Iroquois | Bifurcate | Parallel/cross cousin distinction |
-| Dravidian | Bifurcate | Cross-cousins as potential spouses |
-| Crow | Mat. Skewing | Father's sister's line skewed upward |
-| Omaha | Pat. Skewing | Mother's brother's line skewed upward |
+| System | Type | Key Rule |
+|---|---|---|
+| Eskimo | Descriptive | F ≠ FB (Western nuclear-family focus) |
+| Sudanese | Descriptive | All terms unique |
+| Hawaiian | Generational | F = FB (same-generation merging) |
+| Iroquois | Bifurcate | Parallel ≠ Cross cousins |
+| Dravidian | Bifurcate | Cross-cousin = potential spouse |
+| Crow | Mat. Skewing | FZS = F (matrilineal generation skipping) |
+| Omaha | Pat. Skewing | MBS = MB (patrilineal generation skipping) |
 
-### Key Findings
+### Headline findings (v6)
 
-- **14.1% accuracy gap** between Western (Eskimo/Sudanese) and non-Western systems
-- **23.6% drop** when cultural rules override biological intuitions
-- Performance degrades at **3-hop complexity** where cultural rules most frequently apply
+- **40.9% accuracy drop** when reasoning shifts from biological multi-hop (Cat.~1--3) to culturally-marked classification (Cat.~4) on the five non-descriptive systems
+- Drop follows the anthropological hierarchy **descriptive > bifurcate > generational > skewing**
+- Persists under chain-of-thought, few-shot prompting, depth-matched controls, stochastic decoding, and frontier-scale evaluation (Claude Opus 4.7)
+- **Compounds with chain depth**: 10.6% Other-5 Cat.~4 EM at 5--6 hops
+- **Two interventions distinguish contributing factors**:
+  - Fictional-rule control (system-name + kin-term swap): +6.1% via surface-feature interaction
+  - In-context rule probe: +17.1 pp on skewing systems but **−13.4 pp** on high-baseline non-skewing systems
+- **Human baseline** (*n*=280, IAA 96.8%): humans given the same in-context rule reach **89.0%** on Other-5 Cat.~4 vs. **50.7%** for LLMs
 
 ## Repository Structure
 
 ```
-kinshipqa/
-├── ontologies/          # RDF/OWL ontologies for 7 kinship systems
-│   ├── eskimo.ttl
-│   ├── hawaiian.ttl
-│   └── ...
-├── datasets/            # Pre-generated QA datasets (JSONL)
-│   ├── eskimo_dataset.jsonl
-│   ├── hawaiian_dataset.jsonl
-│   └── ...
-├── kinship_tree_generator.py   # Generate family trees → RDF ontologies
-├── kinshipqa_pipeline.py       # Generate QA datasets from ontologies
-└── llm_tester.py               # Evaluate LLMs on datasets
+.
+├── kinship_tree_generator.py        # Population simulator + ontology builder
+├── kinshipqa_pipeline.py            # End-to-end benchmark generator
+├── llm_tester.py                    # Evaluation harness (Ollama / OpenAI / Anthropic / Gemini)
+├── few_shot_examples.json           # Demos for few-shot CoT
+│
+├── ontologies/                      # 50-year RDF/OWL ontologies (7 systems)
+├── ontologies_extended/             # 150-year ontologies (5–6 hop Cat.2)
+├── ontologies_200yr/                # 200-year ontologies (5–6 hop Cat.4 on Other-5)
+│
+├── datasets_v6_2/                   # Main 1–4 hop dataset (3,354 questions)
+├── datasets_extended/               # 1–6 hop full extension
+├── datasets_v6_3/                   # 5–6 hop Cat.4 augmentation (Other-5, 249 q)
+├── datasets_fictional/              # Fictional-rule control (joint swap)
+├── datasets_fictional_system_only/  # Orthogonal decomp: system-name swap only
+├── datasets_fictional_term_only/    # Orthogonal decomp: kin-term swap only
+│
+├── paraphrase_robustness/           # Cat.4 question-phrasing robustness probe
+│
+├── results_*/                       # Evaluation summaries (per-protocol per-model)
+│   └── combined_results.json        # Aggregate stats only — full per-question logs
+│                                    #   available on request (omitted from public repo)
+│
+├── jobs/                            # SLURM scripts (Viking HPC; account: cs-ontrel-2021)
+│
+├── error_taxonomy_cat4.py           # Cat.4 error classifier (P2)
+├── cat4_error_taxonomy.json         # Output: 6-category breakdown (53.3% biological-default leakage)
+├── make_fictional_cat4.py           # Fictional-rule dataset builder
+├── compare_fictional_to_real.py     # Fictional control analysis
+├── aggregate_fictional_2x2.py       # Orthogonal 2×2 decomposition
+├── orthogonal_fictional_ablation.json
+├── multi_seed_cat4.py               # Multi-seed (T=0.7, n=5) Cat.4 evaluator
+├── aggregate_multi_seed.py          # Multi-seed aggregation
+├── reaggregate_multi_seed.py
+├── bootstrap_headline_cis.py        # 95% bootstrap CIs on headline numbers
+├── headline_cis.json
+├── augment_cat4_4hop.py             # 4-hop Cat.4 path augmentation
+├── augment_cat4_5_6hop.py           # 5–6 hop Cat.4 path augmentation
+├── error_analysis_cot_v2.py         # CoT error analysis (manual annotation)
+├── analyze_protocol_matrix.py       # Protocol-matrix cross-model analysis
+├── analyze_results.py
+├── check_table6.py                  # Hop-matched Cat.2 vs Cat.4 sanity check
+├── clutrr_eval.py                   # CLUTRR baseline comparison harness
+├── human_baseline_pilot.py          # Human baseline study tooling (n=280)
+└── fix_cot_parser.py                # Answer-line parser fixes for CoT responses
 ```
 
-## Installation
+## Quick start
 
 ```bash
-pip install rdflib llama-index-llms-ollama openai anthropic google-genai
+# 1. Install dependencies
+pip install llama-index-llms-ollama openai anthropic google-genai
+
+# 2. Generate the benchmark from scratch (optional — datasets/ pre-built)
+python kinshipqa_pipeline.py --all --output-dir ./my_datasets/
+
+# 3. Evaluate a model (zero-shot direct)
+python llm_tester.py --all --dataset-dir ./datasets_v6_2/ \
+    --provider ollama --model gemma3:27b \
+    --protocol zero_shot_direct \
+    --output-dir ./results/
+
+# 4. Multi-protocol evaluation
+python llm_tester.py --all --dataset-dir ./datasets_v6_2/ \
+    --provider ollama --model gemma3:27b \
+    --protocol few_shot_cot --few-shot-file few_shot_examples.json \
+    --output-dir ./results/
 ```
 
-## Quick Start
+## Probes and ablations
 
-### 1. Generate Ontologies (optional - pre-generated in `ontologies/`)
-
-```bash
-# Generate all 7 kinship systems
-python kinship_tree_generator.py --all --output-dir ./ontologies/
-
-# Generate single system
-python kinship_tree_generator.py --system dravidian --output dravidian.ttl
-```
-
-### 2. Generate QA Dataset (optional - pre-generated in `datasets/`)
-
-```bash
-# Generate all datasets
-python kinshipqa_pipeline.py --all --ttl-dir ./ontologies --output-dir ./datasets
-
-# Generate single dataset
-python kinshipqa_pipeline.py --ttl ./ontologies/hawaiian.ttl --system hawaiian
-```
-
-### 3. Evaluate LLMs
-
-```bash
-# Test all systems with a model
-python llm_tester.py --all --dataset-dir ./datasets/ --provider ollama --model qwen3:32b
-
-# Test single system
-python llm_tester.py ./datasets/crow_dataset.jsonl --provider openai --model gpt-4o-mini
-
-# Supported providers: ollama, openai, anthropic, gemini
-```
-
-## Dataset Format
-
-Each question in the JSONL files contains:
-
-```json
-{
-  "question_id": "hawaiian_0001",
-  "question_text": "Who is John's classificatory father?",
-  "category": 4,
-  "n_hops": 2,
-  "kinship_system": "hawaiian",
-  "context": "John's father is Robert. Robert's brother is Larry.",
-  "ground_truth": ["Larry"],
-  "has_cultural_override": true
-}
-```
-
-### Question Categories
-
-| Category | Description | Hops |
-|----------|-------------|------|
-| 1 | Fact Retrieval | 1 |
-| 2 | Multi-hop Biological | 2-4 |
-| 3 | Counting/Filtering | 1-2 |
-| 4 | Cultural Disambiguation | 2-4 |
+| Probe | Script | What it measures |
+|---|---|---|
+| Cat.4 error taxonomy | `error_taxonomy_cat4.py` | 6-category breakdown of non-EM Cat.4 errors; identifies biological-default leakage |
+| Paraphrase robustness | `paraphrase_robustness/sample_and_paraphrase.py` + `run_paraphrase_inference.py` | Cat.4 accuracy under rule-paraphrased questions (entity/system/kin-term preserved, frame varies) |
+| Fictional-rule control | `make_fictional_cat4.py` + `compare_fictional_to_real.py` | +6.1% Cat.4 gain when both system label + kin terms swapped to invented strings |
+| Orthogonal 2×2 decomp | `aggregate_fictional_2x2.py` | Decomposes +6.1% into system-name vs kin-term factors (interaction, not additive) |
+| In-context rule probe | `llm_tester.py --with-rule-context` | +17.1 pp on skewing; −13.4 pp on high-baseline non-skewing |
+| Multi-seed | `multi_seed_cat4.py` | T=0.7, n=5 stochastic decoding; preserves system-type ordering |
+| Bootstrap CIs | `bootstrap_headline_cis.py` | 95% percentile CIs on headline aggregates |
 
 ## Citation
 
 ```bibtex
-@misc{sun2026kinshipdatabenchmarkmultihop,
-      title={Kinship Data Benchmark for Multi-hop Reasoning}, 
-      author={Tianda Sun and Dimitar Kazakov},
-      year={2026},
-      eprint={2601.07794},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2601.07794}, 
+@inproceedings{kinshipqa2026,
+  title={Kinship Data Benchmark for Multi-hop Reasoning},
+  author={Anonymous Authors},
+  booktitle={Submission under review},
+  year={2026}
 }
 ```
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
+See [LICENSE](LICENSE).
 
-## Contact
+## Data availability
 
-- Tianda Sun - tianda.sun@york.ac.uk
-- Dimitar Kazakov - dimitar.kazakov@york.ac.uk
-
-University of York, Department of Computer Science
+Full per-question prediction logs (raw model responses, several MB per
+(model, protocol, system) cell) are not included in this public repository
+to keep clone size small. They are available on request and will be
+deposited on Zenodo upon publication. The summary statistics
+(`combined_results.json` in each `results_*/`) are sufficient to verify
+all numbers reported in the paper.

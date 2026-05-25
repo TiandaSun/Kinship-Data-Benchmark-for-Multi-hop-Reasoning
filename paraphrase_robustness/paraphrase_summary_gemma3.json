@@ -1,0 +1,61 @@
+{
+  "n_questions": 50,
+  "model": "gemma3:27b",
+  "protocol": "zero_shot_direct",
+  "orig_em": 78.0,
+  "para_em": 84.0,
+  "delta_em_pp": 6.0,
+  "orig_f1": 87.07,
+  "para_f1": 88.27,
+  "delta_f1_pp": 1.2,
+  "answer_flips": 7,
+  "by_system": {
+    "hawaiian": {
+      "n": 10,
+      "orig_em_pct": 90.0,
+      "para_em_pct": 100.0
+    },
+    "iroquois": {
+      "n": 10,
+      "orig_em_pct": 90.0,
+      "para_em_pct": 100.0
+    },
+    "dravidian": {
+      "n": 10,
+      "orig_em_pct": 100.0,
+      "para_em_pct": 100.0
+    },
+    "crow": {
+      "n": 10,
+      "orig_em_pct": 70.0,
+      "para_em_pct": 60.0
+    },
+    "omaha": {
+      "n": 10,
+      "orig_em_pct": 40.0,
+      "para_em_pct": 60.0
+    }
+  },
+  "by_pattern": {
+    "3": {
+      "n": 10,
+      "orig_em_pct": 90.0,
+      "para_em_pct": 100.0
+    },
+    "2": {
+      "n": 23,
+      "orig_em_pct": 73.9,
+      "para_em_pct": 78.3
+    },
+    "0": {
+      "n": 5,
+      "orig_em_pct": 100.0,
+      "para_em_pct": 100.0
+    },
+    "1": {
+      "n": 12,
+      "orig_em_pct": 66.7,
+      "para_em_pct": 75.0
+    }
+  }
+}

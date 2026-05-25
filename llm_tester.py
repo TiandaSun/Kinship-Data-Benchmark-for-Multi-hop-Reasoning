@@ -1,5 +1,35 @@
 #!/usr/bin/env python3
+"""
+KinshipQA LLM Tester v6.0
+=========================
+Evaluates LLM performance on kinship reasoning questions with
+multiple evaluation protocols.
 
+v6.0 Changes from v5.1:
+- Added protocol support: zero_shot_direct, zero_shot_cot, few_shot_cot
+- CoT prompt templates ported from error_analysis_cot_v2.py
+- Answer extraction from CoT responses
+- Few-shot example loading from JSON
+- Protocol recorded in results for cross-protocol comparison
+
+Supports: Ollama, OpenAI GPT, Google Gemini, Anthropic Claude
+
+Installation:
+    pip install google-genai openai anthropic llama-index-llms-ollama
+
+Usage:
+    # Zero-shot direct (default, same as v5)
+    python llm_tester_v6.py --all --dataset-dir ./datasets/ --provider ollama --model gemma3:27b
+
+    # Zero-shot CoT
+    python llm_tester_v6.py --all --dataset-dir ./datasets/ --provider ollama --model gemma3:27b --protocol zero_shot_cot
+
+    # Few-shot CoT
+    python llm_tester_v6.py --all --dataset-dir ./datasets/ --provider ollama --model gemma3:27b --protocol few_shot_cot --few-shot-file few_shot_examples.json
+
+Author: Tianda (EMNLP 2026)
+Version: 6.0
+"""
 
 import json
 import os
@@ -34,6 +64,10 @@ RATE_LIMITS = {
 # Configuration
 # =============================================================================
 
+PROTOCOLS = ["zero_shot_direct", "zero_shot_cot", "few_shot_cot"]
+COT_STYLES = ["structured", "simple", "cultural"]
+
+
 @dataclass
 class TestConfig:
     """Configuration for LLM testing"""
@@ -50,14 +84,19 @@ class TestConfig:
     max_tokens: int = 512
     retry_count: int = 3
     retry_delay: float = 2.0
-    
+    protocol: str = "zero_shot_direct"
+    cot_style: str = "structured"
+    few_shot_file: Optional[str] = None
+    few_shot_examples: Optional[Dict] = None
+    with_rule_context: bool = False
+
     def __post_init__(self):
         if self.model is None:
             defaults = {
                 "ollama": "llama3.1:8b",
                 "openai": "gpt-4o-mini",
                 "gemini": "gemini-2.5-flash",
-                "anthropic": "claude-3-5-haiku-latest"
+                "anthropic": "claude-haiku-4-5-20251001"
             }
             self.model = defaults.get(self.provider, "llama3.1:8b")
 
@@ -83,20 +122,22 @@ class LLMProvider(ABC):
 
 class OllamaProvider(LLMProvider):
     """Ollama provider for local models"""
-    
-    def __init__(self, model: str, temperature: float = 0.0):
+
+    def __init__(self, model: str, temperature: float = 0.0, max_tokens: int = 512):
         self.model = model
         self.temperature = temperature
+        self.max_tokens = max_tokens
         self.llm = None
         self._initialize()
-    
+
     def _initialize(self):
         try:
             from llama_index.llms.ollama import Ollama
             self.llm = Ollama(
                 model=self.model,
                 temperature=self.temperature,
-                request_timeout=120.0
+                request_timeout=1800.0,
+                additional_kwargs={"num_predict": self.max_tokens}
             )
         except ImportError:
             raise ImportError("Please install: pip install llama-index-llms-ollama")
@@ -111,30 +152,38 @@ class OllamaProvider(LLMProvider):
 
 
 class OpenAIProvider(LLMProvider):
-    """OpenAI GPT provider"""
-    
-    def __init__(self, model: str, api_key: str = None, temperature: float = 0.0):
+    """OpenAI GPT provider — uses requests instead of SDK to avoid httpx hangs on HPC"""
+
+    def __init__(self, model: str, api_key: str = None, temperature: float = 0.0, max_tokens: int = 512):
         self.model = model
         self.temperature = temperature
+        self.max_tokens = max_tokens
         self.api_key = api_key or os.getenv("OPENAI_API_KEY")
-        self.client = None
         self._initialize()
-    
+
     def _initialize(self):
-        try:
-            from openai import OpenAI
-            self.client = OpenAI(api_key=self.api_key)
-        except ImportError:
-            raise ImportError("Please install: pip install openai")
-    
+        import requests
+        self.session = requests.Session()
+        self.session.headers.update({
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json"
+        })
+
     def generate(self, prompt: str) -> str:
-        response = self.client.chat.completions.create(
-            model=self.model,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=self.temperature,
-            max_tokens=512
+        import requests
+        resp = self.session.post(
+            "https://api.openai.com/v1/chat/completions",
+            json={
+                "model": self.model,
+                "messages": [{"role": "user", "content": prompt}],
+                "temperature": self.temperature,
+                "max_tokens": self.max_tokens,
+            },
+            timeout=120
         )
-        content = response.choices[0].message.content
+        resp.raise_for_status()
+        data = resp.json()
+        content = data["choices"][0]["message"]["content"]
         return content if content else ""
     
     def get_model_info(self) -> Dict:
@@ -222,30 +271,38 @@ class GeminiProvider(LLMProvider):
 
 
 class AnthropicProvider(LLMProvider):
-    """Anthropic Claude provider"""
-    
-    def __init__(self, model: str, api_key: str = None, temperature: float = 0.0):
+    """Anthropic Claude provider — uses requests to avoid SDK httpx issues on HPC"""
+
+    def __init__(self, model: str, api_key: str = None, temperature: float = 0.0, max_tokens: int = 512):
         self.model = model
         self.temperature = temperature
+        self.max_tokens = max_tokens
         self.api_key = api_key or os.getenv("ANTHROPIC_API_KEY")
-        self.client = None
         self._initialize()
-    
+
     def _initialize(self):
-        try:
-            import anthropic
-            self.client = anthropic.Anthropic(api_key=self.api_key)
-        except ImportError:
-            raise ImportError("Please install: pip install anthropic")
-    
+        import requests
+        self.session = requests.Session()
+        self.session.headers.update({
+            "x-api-key": self.api_key,
+            "anthropic-version": "2023-06-01",
+            "Content-Type": "application/json"
+        })
+
     def generate(self, prompt: str) -> str:
-        message = self.client.messages.create(
-            model=self.model,
-            max_tokens=512,
-            messages=[{"role": "user", "content": prompt}]
+        resp = self.session.post(
+            "https://api.anthropic.com/v1/messages",
+            json={
+                "model": self.model,
+                "max_tokens": self.max_tokens,
+                "messages": [{"role": "user", "content": prompt}]
+            },
+            timeout=120
         )
-        if message.content and len(message.content) > 0:
-            return message.content[0].text
+        resp.raise_for_status()
+        data = resp.json()
+        if data.get("content") and len(data["content"]) > 0:
+            return data["content"][0]["text"]
         return ""
     
     def get_model_info(self) -> Dict:
@@ -258,13 +315,13 @@ class AnthropicProvider(LLMProvider):
 def create_provider(config: TestConfig) -> LLMProvider:
     """Factory function to create LLM provider"""
     if config.provider == "ollama":
-        return OllamaProvider(config.model, config.temperature)
+        return OllamaProvider(config.model, config.temperature, config.max_tokens)
     elif config.provider == "openai":
-        return OpenAIProvider(config.model, config.api_key, config.temperature)
+        return OpenAIProvider(config.model, config.api_key, config.temperature, config.max_tokens)
     elif config.provider == "gemini":
         return GeminiProvider(config.model, config.api_key, config.temperature)
     elif config.provider == "anthropic":
-        return AnthropicProvider(config.model, config.api_key, config.temperature)
+        return AnthropicProvider(config.model, config.api_key, config.temperature, config.max_tokens)
     else:
         raise ValueError(f"Unknown provider: {config.provider}")
 
@@ -495,24 +552,294 @@ def determine_question_type(question: Dict) -> str:
 
 
 # =============================================================================
-# Prompt Generation
+# Prompt Generation (Multi-Protocol)
 # =============================================================================
 
-def create_prompt(question: Dict) -> str:
-    """Create a prompt for the LLM"""
+# CoT templates ported from error_analysis_cot_v2.py
+COT_PROMPT_STRUCTURED = """You are analyzing kinship relationships in a family. Read the context carefully and answer the question by showing your complete reasoning process.
+
+Context:
+{context}
+
+Question: {question}
+
+Please think through this step-by-step:
+
+STEP 1 - IDENTIFY KEY PERSON(S):
+Who is the question asking about? What relationship are we looking for?
+
+STEP 2 - EXTRACT RELEVANT FACTS:
+List the specific family relationships from the context that are relevant.
+
+STEP 3 - TRACE THE REASONING CHAIN:
+Work through the relationships step by step. Show each connection.
+
+STEP 4 - APPLY CULTURAL RULES (if mentioned):
+If the context mentions any specific kinship system rules (like clan membership, classificatory relationships, or cultural terminology), apply them here.
+
+STEP 5 - FINAL ANSWER:
+Based on your reasoning, state ONLY the answer (name(s), number, or relationship term). Do not restate the question.
+
+IMPORTANT: End your response with exactly this format:
+FINAL ANSWER: [your answer here]
+
+Begin your analysis:"""
+
+COT_PROMPT_SIMPLE = """Read the family information below and answer the question. Think through your reasoning carefully before giving your final answer.
+
+Context:
+{context}
+
+Question: {question}
+
+Think step by step, then end your response with exactly:
+FINAL ANSWER: [your answer]
+
+Let me work through this step by step:"""
+
+COT_PROMPT_CULTURAL = """You are analyzing kinship relationships. This question involves a specific cultural kinship system that may differ from Western conventions.
+
+Context:
+{context}
+
+Question: {question}
+
+Please analyze this carefully:
+
+1. WHAT KINSHIP SYSTEM is being used here? (Look for clues like clan names, classificatory terms, etc.)
+
+2. HOW DOES THIS SYSTEM DIFFER from standard Western/English kinship terms?
+
+3. TRACE THE RELATIONSHIPS step by step, applying the cultural rules mentioned.
+
+4. State ONLY the answer (name(s), number, or relationship term).
+
+IMPORTANT: End your response with exactly this format:
+FINAL ANSWER: [your answer here]
+
+Begin:"""
+
+COT_TEMPLATES = {
+    "structured": COT_PROMPT_STRUCTURED,
+    "simple": COT_PROMPT_SIMPLE,
+    "cultural": COT_PROMPT_CULTURAL,
+}
+
+
+# Cultural override rules (one sentence each) for the in-context-rule probe.
+# Used only when --with-rule-context is set, to isolate the rule-application
+# step from the rule-recall step in Cat.4.
+KINSHIP_RULES = {
+    "hawaiian": (
+        "Hawaiian kinship merges all relatives of the same generation and sex: "
+        "mother's sisters and father's sisters are both classified as 'mothers', "
+        "mother's brothers and father's brothers are both classified as 'fathers', "
+        "and all cousins are classified as siblings."
+    ),
+    "iroquois": (
+        "Iroquois kinship distinguishes parallel relatives (same-sex parents' siblings) "
+        "from cross relatives. Father's brother is classified as 'father' and mother's "
+        "sister as 'mother' (parallel); father's sister and mother's brother receive "
+        "distinct terms (cross). Parallel cousins are classified as siblings; cross "
+        "cousins are distinguished."
+    ),
+    "dravidian": (
+        "Dravidian kinship uses the Iroquois parallel/cross distinction, but cross-"
+        "cousins (father's sister's children and mother's brother's children) are "
+        "classified as potential marriage partners rather than as kin."
+    ),
+    "crow": (
+        "Crow kinship applies matrilineal skewing: members of the father's matrilineage "
+        "are classified upward generationally. Father's sister's children are classified "
+        "as 'fathers' or 'female fathers' regardless of their actual generation."
+    ),
+    "omaha": (
+        "Omaha kinship applies patrilineal skewing (the mirror of Crow): members of the "
+        "mother's patrilineage are classified upward generationally. Mother's brother's "
+        "children are classified as 'mothers' or 'male mothers' regardless of their "
+        "actual generation."
+    ),
+}
+
+
+def create_prompt_zero_shot_direct(question: Dict, with_rule_context: bool = False) -> str:
+    """Original zero-shot direct prompt (same as v5).
+
+    When with_rule_context=True, prepend a one-sentence cultural override rule
+    keyed by the question's kinship_system. Used to isolate rule application
+    from rule recall on Cat.4 Other-5 questions.
+    """
     context = question.get('context', '')
     q_text = question.get('question_text', '')
-    
-    prompt = f"""Answer the following question based on the given context. 
+    rule_block = ""
+    if with_rule_context:
+        system = (question.get('kinship_system') or '').lower()
+        rule = KINSHIP_RULES.get(system)
+        if rule:
+            rule_block = f"Cultural Rule: {rule}\n\n"
+    return f"""Answer the following question based on the given context.
 Be concise and provide only the answer without explanation.
 
-Context: {context}
+{rule_block}Context: {context}
 
 Question: {q_text}
 
 Answer:"""
-    
-    return prompt
+
+
+def create_prompt_zero_shot_cot(question: Dict, style: str = "structured") -> str:
+    """Zero-shot chain-of-thought prompt"""
+    template = COT_TEMPLATES.get(style, COT_PROMPT_STRUCTURED)
+    return template.format(
+        context=question.get('context', ''),
+        question=question.get('question_text', '')
+    )
+
+
+def create_prompt_few_shot_cot(question: Dict, examples: List[Dict], style: str = "structured") -> str:
+    """Few-shot chain-of-thought prompt with examples"""
+    context = question.get('context', '')
+    q_text = question.get('question_text', '')
+    category = question.get('category', 1)
+
+    # Build examples section
+    examples_text = ""
+    # Select examples matching the category if possible
+    cat_examples = [e for e in examples if e.get('category') == category]
+    if not cat_examples:
+        cat_examples = examples[:3]
+    for i, ex in enumerate(cat_examples[:3], 1):
+        examples_text += f"""
+--- Example {i} ---
+Context: {ex['context']}
+Question: {ex['question_text']}
+Reasoning: {ex['reasoning']}
+FINAL ANSWER: {ex['answer']}
+"""
+
+    return f"""You are analyzing kinship relationships in families. Below are some examples showing how to reason through kinship questions, followed by a new question for you to solve.
+
+{examples_text}
+--- Now solve this question ---
+Context: {context}
+
+Question: {q_text}
+
+Think through this step by step, then give your FINAL ANSWER on the last line.
+
+Begin:"""
+
+
+def create_prompt(question: Dict, config: TestConfig = None) -> str:
+    """Create a prompt based on the configured protocol"""
+    with_rule = bool(config and getattr(config, 'with_rule_context', False))
+    if config is None or config.protocol == "zero_shot_direct":
+        return create_prompt_zero_shot_direct(question, with_rule_context=with_rule)
+    elif config.protocol == "zero_shot_cot":
+        return create_prompt_zero_shot_cot(question, config.cot_style)
+    elif config.protocol == "few_shot_cot":
+        examples = config.few_shot_examples or []
+        return create_prompt_few_shot_cot(question, examples, config.cot_style)
+    else:
+        return create_prompt_zero_shot_direct(question, with_rule_context=with_rule)
+
+
+def _clean_sentence_answer(answer: str) -> str:
+    """Strip sentence framing from CoT answers.
+
+    Models often write "X's father is Y" instead of just "Y".
+    Also handles inverted form "Y is X's father".
+    """
+    answer = answer.strip('*').strip('.').strip()
+    if not answer:
+        return answer
+
+    # Pattern: "X's [relation] is/are Y" → extract Y
+    is_match = re.search(
+        r"(?:^.*?(?:'s|is|are)\s+)?"  # optional sentence prefix
+        r"(?:is|are)\s+"               # the copula
+        r"(.+)$",                      # the actual answer
+        answer, re.IGNORECASE
+    )
+    if is_match:
+        candidate = is_match.group(1).strip().strip('*').strip('.').strip()
+        if candidate:
+            return candidate
+
+    # Pattern: "Based on ... , Y" → extract after last comma
+    if answer.lower().startswith("based on"):
+        parts = answer.rsplit(',', 1)
+        if len(parts) == 2 and parts[1].strip():
+            return parts[1].strip().strip('*').strip('.').strip()
+
+    # Pattern: "Therefore, Y" or "Thus, Y" or "So, Y"
+    for prefix in ["therefore", "thus", "so", "hence"]:
+        if answer.lower().startswith(prefix):
+            remainder = answer[len(prefix):].lstrip(',').strip()
+            if remainder:
+                return remainder.strip('*').strip('.').strip()
+
+    return answer
+
+
+def extract_answer_from_cot(response: str, question_type: str) -> str:
+    """Extract the final answer from a CoT response.
+
+    Looks for explicit FINAL ANSWER markers first, then falls back to
+    extracting from the last few lines of the response.
+    """
+    if not response:
+        return ""
+
+    lines = response.strip().split('\n')
+
+    # Strategy 1: Look for explicit "FINAL ANSWER:" marker
+    for line in reversed(lines):
+        line_clean = line.strip()
+        for marker in ["FINAL ANSWER:", "Final Answer:", "final answer:",
+                       "ANSWER:", "Answer:", "**FINAL ANSWER:**",
+                       "**Answer:**", "The answer is:", "The answer is"]:
+            if marker in line_clean:
+                answer = line_clean.split(marker, 1)[1].strip()
+                answer = _clean_sentence_answer(answer)
+                if answer:
+                    return answer
+
+    # Strategy 2: Look for "STEP 5" section (structured template)
+    in_step5 = False
+    step5_lines = []
+    for line in lines:
+        if "STEP 5" in line or "Step 5" in line:
+            in_step5 = True
+            continue
+        if in_step5:
+            stripped = line.strip()
+            if stripped and not stripped.startswith("STEP") and not stripped.startswith("Step"):
+                step5_lines.append(stripped)
+    if step5_lines:
+        return _clean_sentence_answer(step5_lines[-1])
+
+    # Strategy 3: Take the last non-empty line
+    for line in reversed(lines):
+        stripped = line.strip()
+        if stripped and not stripped.startswith(("STEP", "Step", "---", "Begin")):
+            return _clean_sentence_answer(stripped)
+
+    return _clean_sentence_answer(response.strip().split('\n')[-1])
+
+
+def load_few_shot_examples(filepath: str) -> List[Dict]:
+    """Load few-shot examples from a JSON file"""
+    with open(filepath) as f:
+        data = json.load(f)
+    if isinstance(data, dict):
+        # Flatten if organized by category
+        examples = []
+        for cat_examples in data.values():
+            if isinstance(cat_examples, list):
+                examples.extend(cat_examples)
+        return examples
+    return data
 
 
 # =============================================================================
@@ -540,6 +867,7 @@ class QuestionResult:
     kin_term: str = ""
     raw_response: str = ""
     is_error: bool = False
+    protocol: str = "zero_shot_direct"
 
 
 @dataclass
@@ -659,6 +987,7 @@ class TestResults:
         return {
             "kinship_system": self.kinship_system,
             "model": self.model_info,
+            "protocol": self.question_results[0].protocol if self.question_results else "zero_shot_direct",
             "total_questions": self.total_questions,
             "error_count": self.error_count,
             "accuracy": {
@@ -709,7 +1038,7 @@ def run_test(config: TestConfig, provider: LLMProvider) -> TestResults:
         if config.verbose:
             print(f"\n[{i+1}/{len(questions)}] {question.get('question_id', 'unknown')}")
         
-        prompt = create_prompt(question)
+        prompt = create_prompt(question, config)
         question_type = determine_question_type(question)
         
         # Get response with retry logic
@@ -745,8 +1074,15 @@ def run_test(config: TestConfig, provider: LLMProvider) -> TestResults:
             response = "[ERROR: No response]"
             is_error = True
         
+        # For CoT protocols, extract the final answer before comparing
+        answer_for_comparison = response
+        if config.protocol in ("zero_shot_cot", "few_shot_cot") and response and not is_error:
+            answer_for_comparison = extract_answer_from_cot(response, question_type)
+            if config.debug:
+                print(f"  CoT extracted answer: {answer_for_comparison[:100]}")
+
         # Compare answers
-        comparison = compare_answers(response, question.get('ground_truth'), question_type)
+        comparison = compare_answers(answer_for_comparison, question.get('ground_truth'), question_type)
         
         # Create result
         result = QuestionResult(
@@ -766,8 +1102,9 @@ def run_test(config: TestConfig, provider: LLMProvider) -> TestResults:
             has_cultural_override=question.get('has_cultural_override', False),
             bio_term=question.get('bio_term', ''),
             kin_term=question.get('kin_term', ''),
-            raw_response=str(response)[:500] if response else "",  # Safe truncation
-            is_error=is_error or comparison.get('error', False)
+            raw_response=str(response)[:1000] if response else "",  # Safe truncation (longer for CoT)
+            is_error=is_error or comparison.get('error', False),
+            protocol=config.protocol
         )
         
         results.add_result(result)
@@ -921,13 +1258,44 @@ def main():
     parser.add_argument("--categories", type=str, help="Test specific categories (e.g., '1,2,3,4')")
     parser.add_argument("--verbose", action="store_true")
     parser.add_argument("--debug", action="store_true")
-    
+
+    # Protocol options (new in v6)
+    parser.add_argument("--protocol", type=str, default="zero_shot_direct",
+                        choices=PROTOCOLS,
+                        help="Evaluation protocol (default: zero_shot_direct)")
+    parser.add_argument("--cot-style", type=str, default="structured",
+                        choices=COT_STYLES,
+                        help="CoT prompt style (default: structured)")
+    parser.add_argument("--few-shot-file", type=str,
+                        help="Path to few-shot examples JSON file")
+    parser.add_argument("--max-tokens", type=int, default=None,
+                        help="Override max output tokens (default: 512 for direct, 2048 for CoT)")
+    parser.add_argument("--with-rule-context", action="store_true",
+                        help="Prepend a one-sentence cultural override rule to each question "
+                             "(zero_shot_direct only). Used to isolate rule application from "
+                             "rule recall on Cat.4 Other-5 questions.")
+
     args = parser.parse_args()
     
     categories = None
     if args.categories:
         categories = [int(c.strip()) for c in args.categories.split(",")]
     
+    # Load few-shot examples if needed
+    few_shot_examples = None
+    if args.protocol == "few_shot_cot":
+        if not args.few_shot_file:
+            parser.error("--few-shot-file is required when using few_shot_cot protocol")
+        few_shot_examples = load_few_shot_examples(args.few_shot_file)
+        print(f"Loaded {len(few_shot_examples)} few-shot examples from {args.few_shot_file}")
+
+    # Increase max_tokens for CoT protocols (need space for reasoning)
+    max_tokens = 512
+    if args.protocol in ("zero_shot_cot", "few_shot_cot"):
+        max_tokens = 2048
+    if args.max_tokens is not None:
+        max_tokens = args.max_tokens
+
     config = TestConfig(
         provider=args.provider,
         model=args.model,
@@ -935,10 +1303,17 @@ def main():
         limit=args.limit,
         categories=categories,
         verbose=args.verbose,
-        debug=args.debug
+        debug=args.debug,
+        max_tokens=max_tokens,
+        protocol=args.protocol,
+        cot_style=args.cot_style,
+        few_shot_file=args.few_shot_file,
+        few_shot_examples=few_shot_examples,
+        with_rule_context=args.with_rule_context,
     )
-    
+
     print(f"Initializing {config.provider} provider with model {config.model}...")
+    print(f"Protocol: {config.protocol} | CoT style: {config.cot_style}")
     provider = create_provider(config)
     
     if args.all:

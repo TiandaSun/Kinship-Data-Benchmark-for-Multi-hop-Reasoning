@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+#SBATCH --job-name=kinshipqa_clutrr
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=150G
+#SBATCH --time=24:00:00
+#SBATCH --account=cs-ontrel-2021
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=tianda.sun@york.ac.uk
+#SBATCH --output=%x-%j.log
+#SBATCH --error=%x-%j.err
+#SBATCH --partition=gpuplus
+#SBATCH --gres=gpu:1
+
+# CLUTRR Cross-Benchmark Evaluation
+# Run 3 open-source models on CLUTRR (1,048 test questions, hops 2-10)
+# For comparison with KinshipQA results
+
+cd ~/scratch/Family-Tree-reasoning/familytree_v6/
+
+export PYTHONUNBUFFERED=1
+
+module load Miniconda3
+source activate MHQA
+
+OLLAMA_MODELS=~/scratch/ollama_model ~/scratch/bin/ollama serve &
+sleep 15
+
+echo "========================================"
+echo "CLUTRR Cross-Benchmark Evaluation"
+echo "Started: $(date)"
+echo "========================================"
+
+MODELS=("gemma3:27b" "deepseek-r1:32b" "qwen3:32b")
+MODEL_NAMES=("gemma3_27b" "deepseek_r1_32b" "qwen3_32b")
+
+for i in "${!MODELS[@]}"; do
+    MODEL="${MODELS[$i]}"
+    MODEL_NAME="${MODEL_NAMES[$i]}"
+    OUTPUT="./results_clutrr_${MODEL_NAME}.json"
+
+    echo ""
+    echo "========================================"
+    echo "Model: ${MODEL}"
+    echo "Output: ${OUTPUT}"
+    echo "Time: $(date)"
+    echo "========================================"
+
+    if [ -f "$OUTPUT" ]; then
+        echo "Results already exist, skipping..."
+        continue
+    fi
+
+    python clutrr_eval.py \
+        --provider ollama \
+        --model "$MODEL" \
+        --output "$OUTPUT" \
+        --verbose
+
+    echo "Completed: ${MODEL} at $(date)"
+done
+
+echo ""
+echo "========================================"
+echo "CLUTRR evaluation complete: $(date)"
+echo "========================================"

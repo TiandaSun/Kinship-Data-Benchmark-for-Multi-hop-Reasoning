@@ -1,0 +1,59 @@
+{
+  "cat_1": [
+    {
+      "category": 1,
+      "context": "Justin Williams's father is Larry Williams.",
+      "question_text": "Who is Justin Williams's father?",
+      "reasoning": "The context directly states that Justin Williams's father is Larry Williams. This is a single-hop fact retrieval.",
+      "answer": "Larry Williams"
+    }
+  ],
+  "cat_2": [
+    {
+      "category": 2,
+      "context": "Mia Johnson's father is George Johnson. George Johnson's mother is Eve Johnson.",
+      "question_text": "Who is Mia Johnson's paternal grandmother?",
+      "reasoning": "Step 1: Mia Johnson's father is George Johnson. Step 2: George Johnson's mother is Eve Johnson. Therefore Mia Johnson's paternal grandmother (father's mother) is Eve Johnson. This requires tracing a 2-hop chain: Mia -> father -> George -> mother -> Eve.",
+      "answer": "Eve Johnson"
+    },
+    {
+      "category": 2,
+      "context": "David Smith's mother is Sarah Brown. Sarah Brown's brother is James Brown. James Brown's daughter is Emily Brown.",
+      "question_text": "Who is David Smith's maternal cousin?",
+      "reasoning": "Step 1: David Smith's mother is Sarah Brown. Step 2: Sarah Brown's brother is James Brown (David's maternal uncle). Step 3: James Brown's daughter is Emily Brown. Therefore Emily Brown is David Smith's maternal cousin. This is a 3-hop chain: David -> mother -> Sarah -> brother -> James -> daughter -> Emily.",
+      "answer": "Emily Brown"
+    }
+  ],
+  "cat_3": [
+    {
+      "category": 3,
+      "context": "Patricia Williams has siblings: Justin Williams, Mark Williams.",
+      "question_text": "How many siblings does Patricia Williams have?",
+      "reasoning": "The context lists Patricia Williams's siblings: Justin Williams and Mark Williams. Counting these gives 2 siblings.",
+      "answer": "2"
+    },
+    {
+      "category": 3,
+      "context": "Robert Jones has children: Alice Jones, Tom Jones, Lucy Jones. Alice Jones has children: Emma Jones. Tom Jones has children: Jack Jones, Sophie Jones.",
+      "question_text": "How many grandchildren does Robert Jones have?",
+      "reasoning": "Step 1: Robert Jones has three children: Alice, Tom, and Lucy. Step 2: Alice has 1 child (Emma). Tom has 2 children (Jack, Sophie). Lucy has no children mentioned. Step 3: Total grandchildren = 1 + 2 = 3.",
+      "answer": "3"
+    }
+  ],
+  "cat_4": [
+    {
+      "category": 4,
+      "context": "Michelle Williams's mother is Amelia Smith. Amelia Smith's sister is Abigail Smith. Amelia Smith's sister is Susan Smith. In the Hawaiian kinship system, a mother's sisters are also classified as 'mothers'.",
+      "question_text": "In the Hawaiian system, who are Michelle Williams's mothers?",
+      "reasoning": "Step 1: Michelle Williams's biological mother is Amelia Smith. Step 2: Amelia Smith has sisters Abigail Smith and Susan Smith. Step 3: In the Hawaiian kinship system, mother's sisters are classified as 'mothers' (generational classification). Step 4: Applying the cultural override: Michelle's 'mothers' include her biological mother Amelia Smith AND her mother's sisters Abigail Smith and Susan Smith.",
+      "answer": "Amelia Smith, Abigail Smith, Susan Smith"
+    },
+    {
+      "category": 4,
+      "context": "Thomas Brown's father is William Brown. William Brown's brother is Henry Brown. In the Iroquois kinship system, father's brothers are classified as 'fathers'.",
+      "question_text": "In the Iroquois system, who are Thomas Brown's fathers?",
+      "reasoning": "Step 1: Thomas Brown's biological father is William Brown. Step 2: William Brown has a brother, Henry Brown. Step 3: In the Iroquois system, father's brothers (parallel uncles) are classified as 'fathers'. Step 4: Applying the cultural override: Thomas's 'fathers' include his biological father William Brown AND his father's brother Henry Brown.",
+      "answer": "William Brown, Henry Brown"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "extra_overrides_4hop": {
+    "hawaiian": [
+      "hasFather/hasBrother/hasChild/hasChild",
+      "hasMother/hasSister/hasChild/hasChild",
+      "hasFather/hasFather/hasBrother/hasChild",
+      "hasMother/hasMother/hasSister/hasChild"
+    ],
+    "iroquois": [
+      "hasFather/hasBrother/hasChild/hasChild",
+      "hasMother/hasSister/hasChild/hasChild",
+      "hasFather/hasFather/hasBrother/hasChild",
+      "hasMother/hasMother/hasSister/hasChild"
+    ],
+    "dravidian": [
+      "hasFather/hasBrother/hasChild/hasChild",
+      "hasMother/hasSister/hasChild/hasChild",
+      "hasFather/hasFather/hasBrother/hasChild",
+      "hasMother/hasMother/hasSister/hasChild"
+    ],
+    "crow": [
+      "hasFather/hasSister/hasChild/hasChild",
+      "hasFather/hasBrother/hasChild/hasChild",
+      "hasFather/hasFather/hasSister/hasChild"
+    ],
+    "omaha": [
+      "hasMother/hasBrother/hasChild/hasChild",
+      "hasMother/hasSister/hasChild/hasChild",
+      "hasMother/hasMother/hasBrother/hasChild"
+    ]
+  },
+  "files": [
+    {
+      "system": "hawaiian",
+      "n_original": 432,
+      "n_new_4hop_cat4": 50,
+      "out_path": "datasets_v6_2/hawaiian_dataset.jsonl"
+    },
+    {
+      "system": "iroquois",
+      "n_original": 432,
+      "n_new_4hop_cat4": 50,
+      "out_path": "datasets_v6_2/iroquois_dataset.jsonl"
+    },
+    {
+      "system": "dravidian",
+      "n_original": 432,
+      "n_new_4hop_cat4": 50,
+      "out_path": "datasets_v6_2/dravidian_dataset.jsonl"
+    },
+    {
+      "system": "crow",
+      "n_original": 432,
+      "n_new_4hop_cat4": 36,
+      "out_path": "datasets_v6_2/crow_dataset.jsonl"
+    },
+    {
+      "system": "omaha",
+      "n_original": 432,
+      "n_new_4hop_cat4": 34,
+      "out_path": "datasets_v6_2/omaha_dataset.jsonl"
+    },
+    {
+      "system": "eskimo",
+      "copied_unchanged": true,
+      "n_original": 487,
+      "out_path": "datasets_v6_2/eskimo_dataset.jsonl"
+    },
+    {
+      "system": "sudanese",
+      "copied_unchanged": true,
+      "n_original": 487,
+      "out_path": "datasets_v6_2/sudanese_dataset.jsonl"
+    }
+  ]
+}

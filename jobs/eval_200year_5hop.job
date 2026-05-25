@@ -1,0 +1,259 @@
+#!/usr/bin/env bash
+#SBATCH --job-name=kinshipqa_200yr
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=150G
+#SBATCH --time=48:00:00
+#SBATCH --account=cs-ontrel-2021
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=tianda.sun@york.ac.uk
+#SBATCH --output=%x-%j.log
+#SBATCH --error=%x-%j.err
+#SBATCH --partition=gpuplus
+#SBATCH --gres=gpu:1
+
+# 200-year 5-6 Hop Coverage for the THREE MISSING Systems
+# --------------------------------------------------------
+# This is the minimal-cost version: it only fills the cells that the
+# existing extended (150-year) dataset does not cover.  The four
+# systems with existing 5-6 hop data (Eskimo, Sudanese, Iroquois,
+# Dravidian) keep their 150-year-extended results.  Only Hawaiian,
+# Crow, and Omaha are regenerated at 200 years to bring them up to
+# the same 5-6 hop coverage.
+#
+# Pipeline:
+#   1) Generate 200-year ontologies for the three missing systems only
+#   2) Generate Cat.2 questions on those new ontologies, then filter
+#      JSONL to keep ONLY 5-6 hop instances (Cat.1/2/3/4 1-4 hop are
+#      already covered by the existing v6.1 datasets, no need to redo)
+#   3) Evaluate the three open-source models on the filtered 5-6 hop
+#      subset only
+#   4) Aggregate alongside the existing 150-year results to produce a
+#      full 7-system 1-6 hop summary
+#
+# Key methodological framing: per-system simulation horizon is the
+# shortest that yields 5-6 hop instances (50 yr for the 1-4 hop
+# baseline; 150 yr for Esk/Sud/Iro/Drav 5-6 hop; 200 yr for
+# Hawaiian/Crow/Omaha 5-6 hop).  This demonstrates the benchmark's
+# parametric extensibility.
+
+cd ~/scratch/Family-Tree-reasoning/familytree_v6/
+
+module load Miniconda3
+source activate MHQA
+
+ONTO_DIR="./ontologies_200yr"
+DATA_DIR="./datasets_200yr"
+mkdir -p "$ONTO_DIR" "$DATA_DIR"
+
+MISSING_SYSTEMS=("hawaiian" "crow" "omaha")
+
+echo "========================================"
+echo "Step 1: 200-year ontologies for missing systems only"
+echo "Started: $(date)"
+echo "========================================"
+
+for SYS in "${MISSING_SYSTEMS[@]}"; do
+    OUT="${ONTO_DIR}/${SYS}.ttl"
+    if [ -f "$OUT" ]; then
+        echo "  ${SYS}: ontology already exists, skipping"
+        continue
+    fi
+    python kinship_tree_generator.py \
+        --system "$SYS" \
+        --output "$OUT" \
+        --start-year 1900 \
+        --end-year 2099 \
+        --seed 42 \
+        --quiet
+    echo "  ${SYS}: $(wc -l <"$OUT") triples written to $OUT"
+done
+
+echo ""
+echo "========================================"
+echo "Step 2: Generate Cat.2 questions, then filter to 5-6 hop only"
+echo "========================================"
+
+for SYS in "${MISSING_SYSTEMS[@]}"; do
+    RAW="${DATA_DIR}/${SYS}_dataset_raw.jsonl"
+    FINAL="${DATA_DIR}/${SYS}_dataset.jsonl"
+
+    # Stronger guard: only skip if the FINAL file already contains 5-6 hop
+    # Cat.2 questions.  A leftover file with only 2-4 hop content (an
+    # earlier failed attempt) must be regenerated.
+    if [ -f "$FINAL" ]; then
+        n_56=$(python - <<EOF
+import json, sys
+n=0
+try:
+    with open("$FINAL") as f:
+        for line in f:
+            q=json.loads(line)
+            if q.get("category")==2 and q.get("n_hops") in (5,6):
+                n+=1
+    print(n)
+except Exception:
+    print(0)
+EOF
+)
+        if [ "$n_56" -gt 0 ]; then
+            echo "  ${SYS}: filtered dataset already has ${n_56} 5-6 hop entries, skipping"
+            continue
+        else
+            echo "  ${SYS}: stale dataset (no 5-6 hop content) - regenerating"
+            rm -f "$FINAL" "${DATA_DIR}/${SYS}_dataset.summary.json" "$RAW"
+        fi
+    fi
+
+    # Generate a generous pool of Cat.2 across all hop depths (incl. 5-6
+    # via --extended).  We will filter to 5-6 hop afterwards; cat1/3/4
+    # are zero so we don't waste generation on questions we already have
+    # on the 50-year ontology.
+    python kinshipqa_pipeline_v6.1.py \
+        --ttl "${ONTO_DIR}/${SYS}.ttl" \
+        --system "$SYS" \
+        --output "$RAW" \
+        --seed 42 \
+        --cat1-count 0 \
+        --cat2-count 1000 \
+        --cat3-count 0 \
+        --cat4-count 0 \
+        --extended
+done
+
+# Filter to 5-6 hop and report yields
+python - <<'PY'
+import json
+from pathlib import Path
+
+MISSING = ["hawaiian", "crow", "omaha"]
+DATA_DIR = Path("./datasets_200yr")
+
+print(f"\n{'system':<10} {'5-hop':>8} {'6-hop':>8} {'total':>8}")
+print("-" * 40)
+for s in MISSING:
+    raw = DATA_DIR / f"{s}_dataset_raw.jsonl"
+    final = DATA_DIR / f"{s}_dataset.jsonl"
+    if not raw.exists():
+        print(f"{s:<10}  raw missing"); continue
+    n5 = n6 = 0
+    with final.open("w") as fout:
+        for line in raw.open():
+            q = json.loads(line)
+            if q.get("category") == 2 and q.get("n_hops") in (5, 6):
+                fout.write(line)
+                if q["n_hops"] == 5: n5 += 1
+                else: n6 += 1
+    print(f"{s:<10} {n5:>8} {n6:>8} {n5+n6:>8}")
+PY
+
+echo ""
+echo "========================================"
+echo "Step 3: Evaluate 3 open-source models on filtered 5-6 hop only"
+echo "========================================"
+
+OLLAMA_MODELS=~/scratch/ollama_model ~/scratch/bin/ollama serve &
+OLLAMA_PID=$!
+sleep 10
+
+MODELS=("gemma3:27b" "deepseek-r1:32b" "qwen3:32b")
+MODEL_NAMES=("gemma3_27b" "deepseek_r1_32b" "qwen3_32b")
+
+for i in "${!MODELS[@]}"; do
+    MODEL="${MODELS[$i]}"
+    MODEL_NAME="${MODEL_NAMES[$i]}"
+    OUT="./results_200yr_${MODEL_NAME}_zero_shot_direct"
+
+    if [ -f "${OUT}/combined_results.json" ]; then
+        echo "Skipping ${MODEL}: results exist"
+        continue
+    fi
+
+    echo ""
+    echo "--- ${MODEL} | 3 systems x 5-6 hop only ---"
+    echo "Time: $(date)"
+
+    # llm_tester_v6 expects <system>_dataset.jsonl files in the dir.
+    # Our DATA_DIR contains only the 3 missing systems' filtered files.
+    python llm_tester_v6.py \
+        --all \
+        --dataset-dir "$DATA_DIR" \
+        --provider ollama \
+        --model "$MODEL" \
+        --protocol zero_shot_direct \
+        --categories 2 \
+        --output-dir "$OUT" \
+        --verbose
+
+    echo "Completed ${MODEL} at $(date)"
+done
+
+kill $OLLAMA_PID 2>/dev/null
+
+echo ""
+echo "========================================"
+echo "Step 4: Combine with existing 150-yr extended into full 7-system 1-6 hop summary"
+echo "========================================"
+
+python - <<'PY'
+import json
+from pathlib import Path
+from collections import defaultdict
+
+ALL_SYSTEMS = ["eskimo","sudanese","hawaiian","iroquois",
+               "dravidian","crow","omaha"]
+EXISTING = ["eskimo","sudanese","iroquois","dravidian"]   # 150-yr ext
+NEW      = ["hawaiian","crow","omaha"]                    # 200-yr
+MODELS   = ["gemma3_27b","deepseek_r1_32b","qwen3_32b"]
+HOPS     = [5, 6]
+
+def collect(dir_pattern, systems, source_label):
+    out = defaultdict(list)
+    for m in MODELS:
+        d = Path(dir_pattern.format(model=m))
+        for s in systems:
+            p = d / f"{s}_results.json"
+            if not p.exists(): continue
+            data = json.loads(p.read_text())
+            for q in data.get("questions", []):
+                if q.get("category") == 2 and q.get("n_hops") in HOPS:
+                    out[(s, q["n_hops"], m)].append(bool(q.get("exact_match")))
+    return out
+
+ext = collect("./results_extended_{model}_zero_shot_direct", EXISTING, "150yr")
+new = collect("./results_200yr_{model}_zero_shot_direct", NEW, "200yr")
+
+rows = []
+print(f"\n{'system':<10} {'horizon':<7} {'hop':>4} "
+      f"{'mean EM':>9} {'cross-mdl std':>14} {'n/model':>9}")
+print("-" * 60)
+for s in ALL_SYSTEMS:
+    horizon = "150" if s in EXISTING else "200"
+    src = ext if s in EXISTING else new
+    for hop in HOPS:
+        ems = []
+        ns = []
+        for m in MODELS:
+            v = src.get((s, hop, m), [])
+            if v:
+                ems.append(100*sum(v)/len(v))
+                ns.append(len(v))
+        if ems:
+            mean = sum(ems)/len(ems)
+            std  = (sum((e-mean)**2 for e in ems)/len(ems))**0.5 if len(ems)>1 else 0
+            print(f"{s:<10} {horizon:<7} {hop:>4} "
+                  f"{mean:>8.1f}% {std:>13.1f} {ns[0] if ns else 0:>9}")
+            rows.append({"system": s, "horizon_yr": int(horizon), "hop": hop,
+                         "mean_em": round(mean,2), "std_em": round(std,2),
+                         "n_per_model": ns[0] if ns else 0,
+                         "per_model_em": [round(e,2) for e in ems]})
+
+Path("./tables").mkdir(exist_ok=True)
+Path("./tables/all7_5_6hop_summary.json").write_text(
+    json.dumps(rows, indent=2))
+print("\nWrote ./tables/all7_5_6hop_summary.json")
+PY
+
+echo ""
+echo "Done: $(date)"

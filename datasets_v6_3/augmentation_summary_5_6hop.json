@@ -1,0 +1,101 @@
+{
+  "per_system_ontology": {
+    "hawaiian": "ontologies_200yr",
+    "crow": "ontologies_200yr",
+    "omaha": "ontologies_200yr",
+    "iroquois": "ontologies_extended",
+    "dravidian": "ontologies_extended"
+  },
+  "extra_overrides_5_6hop": {
+    "hawaiian": [
+      "hasFather/hasFather/hasBrother/hasChild/hasChild",
+      "hasMother/hasMother/hasSister/hasChild/hasChild",
+      "hasFather/hasFather/hasFather/hasBrother/hasChild",
+      "hasMother/hasMother/hasMother/hasSister/hasChild",
+      "hasFather/hasBrother/hasChild/hasChild/hasChild",
+      "hasMother/hasSister/hasChild/hasChild/hasChild",
+      "hasFather/hasFather/hasBrother/hasChild/hasChild/hasChild",
+      "hasMother/hasMother/hasSister/hasChild/hasChild/hasChild",
+      "hasFather/hasFather/hasFather/hasBrother/hasChild/hasChild",
+      "hasMother/hasMother/hasMother/hasSister/hasChild/hasChild"
+    ],
+    "iroquois": [
+      "hasFather/hasFather/hasBrother/hasChild/hasChild",
+      "hasMother/hasMother/hasSister/hasChild/hasChild",
+      "hasFather/hasFather/hasFather/hasBrother/hasChild",
+      "hasMother/hasMother/hasMother/hasSister/hasChild",
+      "hasFather/hasFather/hasBrother/hasChild/hasChild/hasChild",
+      "hasMother/hasMother/hasSister/hasChild/hasChild/hasChild",
+      "hasFather/hasFather/hasFather/hasBrother/hasChild/hasChild",
+      "hasMother/hasMother/hasMother/hasSister/hasChild/hasChild"
+    ],
+    "dravidian": [
+      "hasFather/hasFather/hasBrother/hasChild/hasChild",
+      "hasMother/hasMother/hasSister/hasChild/hasChild",
+      "hasFather/hasFather/hasFather/hasBrother/hasChild",
+      "hasMother/hasMother/hasMother/hasSister/hasChild",
+      "hasFather/hasFather/hasBrother/hasChild/hasChild/hasChild",
+      "hasMother/hasMother/hasSister/hasChild/hasChild/hasChild",
+      "hasFather/hasFather/hasFather/hasBrother/hasChild/hasChild",
+      "hasMother/hasMother/hasMother/hasSister/hasChild/hasChild"
+    ],
+    "crow": [
+      "hasFather/hasSister/hasChild/hasChild/hasChild",
+      "hasFather/hasFather/hasSister/hasChild/hasChild",
+      "hasFather/hasBrother/hasChild/hasChild/hasChild",
+      "hasFather/hasSister/hasChild/hasChild/hasChild/hasChild",
+      "hasFather/hasFather/hasSister/hasChild/hasChild/hasChild",
+      "hasFather/hasBrother/hasChild/hasChild/hasChild/hasChild"
+    ],
+    "omaha": [
+      "hasMother/hasBrother/hasChild/hasChild/hasChild",
+      "hasMother/hasMother/hasBrother/hasChild/hasChild",
+      "hasMother/hasSister/hasChild/hasChild/hasChild",
+      "hasMother/hasBrother/hasChild/hasChild/hasChild/hasChild",
+      "hasMother/hasMother/hasBrother/hasChild/hasChild/hasChild",
+      "hasMother/hasSister/hasChild/hasChild/hasChild/hasChild"
+    ]
+  },
+  "files": [
+    {
+      "system": "hawaiian",
+      "ontology": "/mnt/scratch/users/ts1201/Family-Tree-reasoning/familytree_v6/ontologies_200yr/hawaiian.ttl",
+      "n_new_5hop": 40,
+      "n_new_6hop": 0,
+      "n_total": 40,
+      "out_path": "datasets_v6_3/hawaiian_dataset.jsonl"
+    },
+    {
+      "system": "iroquois",
+      "ontology": "/mnt/scratch/users/ts1201/Family-Tree-reasoning/familytree_v6/ontologies_extended/iroquois.ttl",
+      "n_new_5hop": 40,
+      "n_new_6hop": 40,
+      "n_total": 80,
+      "out_path": "datasets_v6_3/iroquois_dataset.jsonl"
+    },
+    {
+      "system": "dravidian",
+      "ontology": "/mnt/scratch/users/ts1201/Family-Tree-reasoning/familytree_v6/ontologies_extended/dravidian.ttl",
+      "n_new_5hop": 40,
+      "n_new_6hop": 40,
+      "n_total": 80,
+      "out_path": "datasets_v6_3/dravidian_dataset.jsonl"
+    },
+    {
+      "system": "crow",
+      "ontology": "/mnt/scratch/users/ts1201/Family-Tree-reasoning/familytree_v6/ontologies_200yr/crow.ttl",
+      "n_new_5hop": 16,
+      "n_new_6hop": 0,
+      "n_total": 16,
+      "out_path": "datasets_v6_3/crow_dataset.jsonl"
+    },
+    {
+      "system": "omaha",
+      "ontology": "/mnt/scratch/users/ts1201/Family-Tree-reasoning/familytree_v6/ontologies_200yr/omaha.ttl",
+      "n_new_5hop": 33,
+      "n_new_6hop": 0,
+      "n_total": 33,
+      "out_path": "datasets_v6_3/omaha_dataset.jsonl"
+    }
+  ]
+}

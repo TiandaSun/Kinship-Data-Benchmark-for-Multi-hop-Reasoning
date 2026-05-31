@@ -1,0 +1,25 @@
+# SLURM noise
+*.log
+*.err
+*.job
+
+# Bundled archives
+*.zip
+
+# Python cruft
+**/__pycache__/
+*.pyc
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+.claude/
+
+# Local-only personal notes
+CLAUDE.md
+session_changelog.md
+
+# Raw per-question LLM responses are too large and not needed.
+# Only aggregated summary stats belong in git.
+**/results_*/*_results.json

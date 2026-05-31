@@ -1,0 +1,10 @@
+model,protocol,overall_em,western,non_western,gap,cat4,cat1,cat2,cat3,errors
+Gemma3-27B,Zero-Shot Direct,88.2,96.8,84.7,12.1,65.3,100.0,98.4,84.9,0
+Gemma3-27B,Zero-Shot CoT,60.2,64.8,58.4,6.4,35.8,77.1,66.9,67.9,0
+Gemma3-27B,Few-Shot CoT,86.6,97.6,82.1,15.5,54.2,100.0,99.9,85.6,0
+DeepSeek-R1-32B,Zero-Shot Direct,79.2,92.7,73.8,18.9,41.1,89.1,94.6,82.1,0
+DeepSeek-R1-32B,Zero-Shot CoT,60.9,61.7,60.5,1.2,33.3,62.6,73.1,76.1,0
+DeepSeek-R1-32B,Few-Shot CoT,84.3,98.4,78.7,19.7,42.7,100.0,99.9,86.1,0
+Qwen3-32B,Zero-Shot Direct,82.0,92.2,77.9,14.3,44.8,99.4,96.0,86.1,0
+Qwen3-32B,Zero-Shot CoT,79.6,90.5,75.3,15.1,48.8,96.0,87.1,84.6,0
+Qwen3-32B,Few-Shot CoT,86.0,98.2,81.2,16.9,51.4,100.0,100.0,85.3,0

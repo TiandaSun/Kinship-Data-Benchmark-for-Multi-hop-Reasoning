@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use KinshipQA in your work, please cite the paper below."
+title: "KinshipQA: A Multi-Hop Kinship Reasoning Benchmark Across Anthropological Kinship Systems"
+authors:
+  - family-names: "[Anonymous]"
+    given-names: "[Anonymous]"
+version: 6.0.0
+date-released: 2026-05-31
+repository-code: "https://github.com/[anonymous]/Kinship-Data-Benchmark-for-Multi-hop-Reasoning"
+license: MIT
+abstract: >
+  KinshipQA is a multi-hop kinship reasoning benchmark spanning seven
+  anthropological kinship systems (Eskimo, Sudanese, Hawaiian, Iroquois,
+  Dravidian, Crow, Omaha). Questions are procedurally generated from
+  RDF/OWL family-tree ontologies, with controlled difficulty along
+  category, hop count, and kinship system axes. The benchmark evaluates
+  whether LLMs can apply cultural kin-naming rules rather than defaulting
+  to English biological terms.
+preferred-citation:
+  type: conference-paper
+  title: "KinshipQA: A Multi-Hop Kinship Reasoning Benchmark Across Anthropological Kinship Systems"
+  authors:
+    - family-names: "[Anonymous]"
+      given-names: "[Anonymous]"
+  year: 2026
+  # Conference / DOI / pages to be filled in after acceptance.

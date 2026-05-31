@@ -1,0 +1,167 @@
+[
+  {
+    "model": "gemma3_27b",
+    "system": "hawaiian",
+    "real_em": 68.94,
+    "fictional_em": 64.39,
+    "delta": -4.55,
+    "n_real": 132,
+    "n_fictional": 132,
+    "real_em_frac": 0.6894,
+    "fictional_em_frac": 0.6439
+  },
+  {
+    "model": "gemma3_27b",
+    "system": "iroquois",
+    "real_em": 66.67,
+    "fictional_em": 71.97,
+    "delta": 5.3,
+    "n_real": 132,
+    "n_fictional": 132,
+    "real_em_frac": 0.6667,
+    "fictional_em_frac": 0.7197
+  },
+  {
+    "model": "gemma3_27b",
+    "system": "dravidian",
+    "real_em": 79.55,
+    "fictional_em": 83.33,
+    "delta": 3.78,
+    "n_real": 132,
+    "n_fictional": 132,
+    "real_em_frac": 0.7955,
+    "fictional_em_frac": 0.8333
+  },
+  {
+    "model": "gemma3_27b",
+    "system": "crow",
+    "real_em": 63.64,
+    "fictional_em": 59.09,
+    "delta": -4.55,
+    "n_real": 132,
+    "n_fictional": 132,
+    "real_em_frac": 0.6364,
+    "fictional_em_frac": 0.5909
+  },
+  {
+    "model": "gemma3_27b",
+    "system": "omaha",
+    "real_em": 47.73,
+    "fictional_em": 53.03,
+    "delta": 5.3,
+    "n_real": 132,
+    "n_fictional": 132,
+    "real_em_frac": 0.4773,
+    "fictional_em_frac": 0.5303
+  },
+  {
+    "model": "deepseek_r1_32b",
+    "system": "hawaiian",
+    "real_em": 62.12,
+    "fictional_em": 61.36,
+    "delta": -0.76,
+    "n_real": 132,
+    "n_fictional": 132,
+    "real_em_frac": 0.6212,
+    "fictional_em_frac": 0.6136
+  },
+  {
+    "model": "deepseek_r1_32b",
+    "system": "iroquois",
+    "real_em": 37.88,
+    "fictional_em": 46.21,
+    "delta": 8.33,
+    "n_real": 132,
+    "n_fictional": 132,
+    "real_em_frac": 0.3788,
+    "fictional_em_frac": 0.4621
+  },
+  {
+    "model": "deepseek_r1_32b",
+    "system": "dravidian",
+    "real_em": 51.52,
+    "fictional_em": 65.15,
+    "delta": 13.63,
+    "n_real": 132,
+    "n_fictional": 132,
+    "real_em_frac": 0.5152,
+    "fictional_em_frac": 0.6515
+  },
+  {
+    "model": "deepseek_r1_32b",
+    "system": "crow",
+    "real_em": 32.58,
+    "fictional_em": 30.3,
+    "delta": -2.28,
+    "n_real": 132,
+    "n_fictional": 132,
+    "real_em_frac": 0.3258,
+    "fictional_em_frac": 0.303
+  },
+  {
+    "model": "deepseek_r1_32b",
+    "system": "omaha",
+    "real_em": 21.21,
+    "fictional_em": 31.06,
+    "delta": 9.85,
+    "n_real": 132,
+    "n_fictional": 132,
+    "real_em_frac": 0.2121,
+    "fictional_em_frac": 0.3106
+  },
+  {
+    "model": "qwen3_32b",
+    "system": "hawaiian",
+    "real_em": 54.55,
+    "fictional_em": 61.36,
+    "delta": 6.81,
+    "n_real": 132,
+    "n_fictional": 132,
+    "real_em_frac": 0.5455,
+    "fictional_em_frac": 0.6136
+  },
+  {
+    "model": "qwen3_32b",
+    "system": "iroquois",
+    "real_em": 46.21,
+    "fictional_em": 62.88,
+    "delta": 16.67,
+    "n_real": 132,
+    "n_fictional": 132,
+    "real_em_frac": 0.4621,
+    "fictional_em_frac": 0.6288
+  },
+  {
+    "model": "qwen3_32b",
+    "system": "dravidian",
+    "real_em": 50.0,
+    "fictional_em": 63.64,
+    "delta": 13.64,
+    "n_real": 132,
+    "n_fictional": 132,
+    "real_em_frac": 0.5,
+    "fictional_em_frac": 0.6364
+  },
+  {
+    "model": "qwen3_32b",
+    "system": "crow",
+    "real_em": 44.7,
+    "fictional_em": 53.79,
+    "delta": 9.09,
+    "n_real": 132,
+    "n_fictional": 132,
+    "real_em_frac": 0.447,
+    "fictional_em_frac": 0.5379
+  },
+  {
+    "model": "qwen3_32b",
+    "system": "omaha",
+    "real_em": 28.79,
+    "fictional_em": 40.15,
+    "delta": 11.36,
+    "n_real": 132,
+    "n_fictional": 132,
+    "real_em_frac": 0.2879,
+    "fictional_em_frac": 0.4015
+  }
+]

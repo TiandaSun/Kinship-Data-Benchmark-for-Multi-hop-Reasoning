@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrrrrr}
+\toprule
+Model & Real & +Sys & +Term & +Full & $\Delta_{\text{sys}}$ & $\Delta_{\text{term}}$ & $\Delta_{\text{full}}$\\
+\midrule
+Gemma3-27B & 65.3 & 64.4 & 66.4 & 66.4 & -0.9 & +1.1 & +1.1\\
+DeepSeek-R1-32B & 41.1 & 40.9 & 44.5 & 46.8 & -0.1 & +3.5 & +5.8\\
+Qwen3-32B & 44.9 & 49.7 & 36.8 & 56.4 & +4.8 & -8.0 & +11.5\\
+\midrule
+\textit{Mean} & 50.4 & 51.7 & 49.2 & 56.5 & +1.3 & -1.2 & +6.1\\
+\bottomrule
+\end{tabular}
+\caption{2$\times$2 ablation of fictional substitution on Cat.\,4 (macro-averaged over the five non-Western systems). \textbf{+Sys} replaces the system label only (e.g.\ \emph{Hawaiian}$\to$\emph{Zorblax}). \textbf{+Term} replaces the cultural kin-term label only (e.g.\ \emph{classificatory mother}$\to$\emph{tier-mater}). \textbf{+Full} replaces both. Positive $\Delta$ values indicate that the fictional condition is easier than the real one.}
+\label{tab:fictional-2x2}
+\end{table}

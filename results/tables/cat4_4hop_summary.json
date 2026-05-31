@@ -1,0 +1,254 @@
+[
+  {
+    "system": "eskimo",
+    "hop": 2,
+    "n_per_model": 66,
+    "mean_em": 96.97,
+    "std_em": 2.47,
+    "per_model_em": [
+      100.0,
+      93.94,
+      96.97
+    ]
+  },
+  {
+    "system": "eskimo",
+    "hop": 3,
+    "n_per_model": 66,
+    "mean_em": 93.43,
+    "std_em": 6.1,
+    "per_model_em": [
+      98.48,
+      96.97,
+      84.85
+    ]
+  },
+  {
+    "system": "eskimo",
+    "hop": 4,
+    "n_per_model": 55,
+    "mean_em": 84.85,
+    "std_em": 7.32,
+    "per_model_em": [
+      90.91,
+      89.09,
+      74.55
+    ]
+  },
+  {
+    "system": "sudanese",
+    "hop": 2,
+    "n_per_model": 66,
+    "mean_em": 94.95,
+    "std_em": 3.57,
+    "per_model_em": [
+      100.0,
+      92.42,
+      92.42
+    ]
+  },
+  {
+    "system": "sudanese",
+    "hop": 3,
+    "n_per_model": 66,
+    "mean_em": 95.45,
+    "std_em": 3.71,
+    "per_model_em": [
+      100.0,
+      95.45,
+      90.91
+    ]
+  },
+  {
+    "system": "sudanese",
+    "hop": 4,
+    "n_per_model": 55,
+    "mean_em": 86.06,
+    "std_em": 7.47,
+    "per_model_em": [
+      94.55,
+      87.27,
+      76.36
+    ]
+  },
+  {
+    "system": "hawaiian",
+    "hop": 2,
+    "n_per_model": 66,
+    "mean_em": 74.24,
+    "std_em": 5.67,
+    "per_model_em": [
+      81.82,
+      72.73,
+      68.18
+    ]
+  },
+  {
+    "system": "hawaiian",
+    "hop": 3,
+    "n_per_model": 66,
+    "mean_em": 53.54,
+    "std_em": 1.89,
+    "per_model_em": [
+      56.06,
+      51.52,
+      53.03
+    ]
+  },
+  {
+    "system": "hawaiian",
+    "hop": 4,
+    "n_per_model": 50,
+    "mean_em": 21.33,
+    "std_em": 24.57,
+    "per_model_em": [
+      56.0,
+      2.0,
+      6.0
+    ]
+  },
+  {
+    "system": "iroquois",
+    "hop": 2,
+    "n_per_model": 66,
+    "mean_em": 49.49,
+    "std_em": 12.21,
+    "per_model_em": [
+      66.67,
+      39.39,
+      42.42
+    ]
+  },
+  {
+    "system": "iroquois",
+    "hop": 3,
+    "n_per_model": 66,
+    "mean_em": 51.52,
+    "std_em": 12.37,
+    "per_model_em": [
+      66.67,
+      36.36,
+      51.52
+    ]
+  },
+  {
+    "system": "iroquois",
+    "hop": 4,
+    "n_per_model": 50,
+    "mean_em": 14.67,
+    "std_em": 20.74,
+    "per_model_em": [
+      44.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "system": "dravidian",
+    "hop": 2,
+    "n_per_model": 66,
+    "mean_em": 64.14,
+    "std_em": 20.04,
+    "per_model_em": [
+      92.42,
+      51.52,
+      48.48
+    ]
+  },
+  {
+    "system": "dravidian",
+    "hop": 3,
+    "n_per_model": 66,
+    "mean_em": 55.05,
+    "std_em": 8.42,
+    "per_model_em": [
+      66.67,
+      51.52,
+      46.97
+    ]
+  },
+  {
+    "system": "dravidian",
+    "hop": 4,
+    "n_per_model": 50,
+    "mean_em": 12.67,
+    "std_em": 15.08,
+    "per_model_em": [
+      34.0,
+      2.0,
+      2.0
+    ]
+  },
+  {
+    "system": "crow",
+    "hop": 2,
+    "n_per_model": 66,
+    "mean_em": 58.08,
+    "std_em": 13.63,
+    "per_model_em": [
+      77.27,
+      50.0,
+      46.97
+    ]
+  },
+  {
+    "system": "crow",
+    "hop": 3,
+    "n_per_model": 66,
+    "mean_em": 33.33,
+    "std_em": 14.27,
+    "per_model_em": [
+      50.0,
+      15.15,
+      34.85
+    ]
+  },
+  {
+    "system": "crow",
+    "hop": 4,
+    "n_per_model": 36,
+    "mean_em": 19.44,
+    "std_em": 18.0,
+    "per_model_em": [
+      44.44,
+      11.11,
+      2.78
+    ]
+  },
+  {
+    "system": "omaha",
+    "hop": 2,
+    "n_per_model": 66,
+    "mean_em": 45.96,
+    "std_em": 14.44,
+    "per_model_em": [
+      65.15,
+      30.3,
+      42.42
+    ]
+  },
+  {
+    "system": "omaha",
+    "hop": 3,
+    "n_per_model": 66,
+    "mean_em": 19.19,
+    "std_em": 7.95,
+    "per_model_em": [
+      30.3,
+      12.12,
+      15.15
+    ]
+  },
+  {
+    "system": "omaha",
+    "hop": 4,
+    "n_per_model": 34,
+    "mean_em": 26.47,
+    "std_em": 29.22,
+    "per_model_em": [
+      67.65,
+      2.94,
+      8.82
+    ]
+  }
+]

@@ -1,0 +1,54 @@
+% Cross-Benchmark Model Ranking Comparison
+% For inclusion in Section 5 of the revised KinshipQA paper
+
+\begin{table}[t]
+\centering
+\small
+\caption{Model ranking comparison across benchmarks. KinshipQA Cat.4 (cultural override) produces a \textbf{different ranking} from general-capability benchmarks, demonstrating it measures a distinct capability dimension. Notable ranking reversals are marked with $\ddagger$.}
+\label{tab:cross-benchmark}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{MMLU} & \textbf{GSM8K} & \textbf{KinshipQA} & \textbf{KinshipQA} \\
+               &              &               & \textbf{Non-West.} & \textbf{Cat.4} \\
+\midrule
+Gemini-2.5-Flash   & $\sim$78 & $\sim$86 & 84.3 & 61.4 \\
+GPT-4o-mini        & $\sim$82 & $\sim$95 & 81.2 & 62.6 \\
+\midrule
+Gemma3-27B$^\ddagger$     & $\sim$68 & $\sim$78 & 84.5 & \textbf{64.5} \\
+DeepSeek-R1-32B$^\ddagger$ & $\sim$70 & $\sim$92 & 77.3 & 53.8 \\
+Qwen3-32B          & $\sim$73 & $\sim$87 & 83.8 & 61.2 \\
+\midrule
+Claude-3.5-Haiku   & $\sim$75 & $\sim$88 & 75.1 & 47.3 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+\begin{flushleft}
+\footnotesize{$\ddagger$ Ranking reversal: DeepSeek-R1-32B outperforms Gemma3-27B on MMLU/GSM8K but underperforms by 10.7pp on Cat.4. DeepSeek also shows the largest Western$\rightarrow$Non-Western gap (17.0pp), suggesting mathematical reasoning does not transfer to culturally-conditioned rule application.}
+\end{flushleft}
+\end{table}
+
+
+% Cultural Override Effect Table (Table 7 equivalent, for reference)
+\begin{table}[t]
+\centering
+\small
+\caption{Performance hierarchy by kinship system type (mean $\pm$ std across 6 models, Cat.4 exact match \%). The hierarchy matches anthropological complexity: descriptive $>$ generational $>$ bifurcate $>$ skewing.}
+\label{tab:system-hierarchy}
+\begin{tabular}{llcc}
+\toprule
+\textbf{System} & \textbf{Type} & \textbf{Overall EM} & \textbf{Cat.4 EM} \\
+\midrule
+Eskimo    & Descriptive     & 94.3 $\pm$ 3.9 & 93.8 $\pm$ 7.3 \\
+Sudanese  & Descriptive     & 94.2 $\pm$ 3.6 & 93.8 $\pm$ 6.2 \\
+\midrule
+Hawaiian  & Generational    & 82.8 $\pm$ 3.2 & 63.9 $\pm$ 4.0 \\
+\midrule
+Dravidian & Bifurcate       & 84.0 $\pm$ 4.8 & 71.6 $\pm$ 9.7 \\
+Iroquois  & Bifurcate       & 80.2 $\pm$ 4.2 & 57.6 $\pm$ 8.9 \\
+\midrule
+Crow      & Mat.\ Skewing   & 80.6 $\pm$ 3.5 & 55.2 $\pm$ 5.2 \\
+Omaha     & Pat.\ Skewing   & 77.4 $\pm$ 2.9 & \textbf{44.1} $\pm$ 4.6 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,68 @@
+{
+  "title": "Table 5: Performance by Kinship System",
+  "description": "Mean \u00b1 std across all models",
+  "columns": [
+    "System",
+    "Type",
+    "Overall",
+    "Cat.4"
+  ],
+  "data": [
+    {
+      "system": "Eskimo",
+      "type": "Descriptive",
+      "overall_mean": 94.25051334702259,
+      "overall_std": 3.872510652926939,
+      "cat4_mean": 93.76114081996434,
+      "cat4_std": 7.330083848467768
+    },
+    {
+      "system": "Hawaiian",
+      "type": "Generational",
+      "overall_mean": 82.8317901234568,
+      "overall_std": 3.1863173441290047,
+      "cat4_mean": 63.888888888888886,
+      "cat4_std": 4.024590265280108
+    },
+    {
+      "system": "Iroquois",
+      "type": "Bifurcate",
+      "overall_mean": 80.20833333333333,
+      "overall_std": 4.198162000935608,
+      "cat4_mean": 57.57575757575757,
+      "cat4_std": 8.942389499810997
+    },
+    {
+      "system": "Dravidian",
+      "type": "Bifurcate",
+      "overall_mean": 84.02777777777777,
+      "overall_std": 4.826078941701199,
+      "cat4_mean": 71.59090909090908,
+      "cat4_std": 9.659709823704631
+    },
+    {
+      "system": "Crow",
+      "type": "Mat. Skewing",
+      "overall_mean": 80.59413580246914,
+      "overall_std": 3.4604137340264134,
+      "cat4_mean": 55.176767676767675,
+      "cat4_std": 5.201345940415651
+    },
+    {
+      "system": "Omaha",
+      "type": "Pat. Skewing",
+      "overall_mean": 77.43055555555556,
+      "overall_std": 2.9424868774179536,
+      "cat4_mean": 44.06565656565656,
+      "cat4_std": 4.5542143426443005
+    },
+    {
+      "system": "Sudanese",
+      "type": "Descriptive",
+      "overall_mean": 94.21629021218344,
+      "overall_std": 3.621997840282076,
+      "cat4_mean": 93.76114081996435,
+      "cat4_std": 6.233764153313977
+    }
+  ]
+}

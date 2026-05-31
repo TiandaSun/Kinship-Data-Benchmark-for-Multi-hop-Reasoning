@@ -1,0 +1,184 @@
+[
+  {
+    "system": "eskimo",
+    "horizon_yr": 150,
+    "hop": 5,
+    "mean_em": 49.17,
+    "std_em": 6.56,
+    "n_per_model": 40,
+    "per_model_em": [
+      52.5,
+      55.0,
+      40.0
+    ]
+  },
+  {
+    "system": "eskimo",
+    "horizon_yr": 150,
+    "hop": 6,
+    "mean_em": 22.5,
+    "std_em": 28.36,
+    "n_per_model": 40,
+    "per_model_em": [
+      62.5,
+      0.0,
+      5.0
+    ]
+  },
+  {
+    "system": "sudanese",
+    "horizon_yr": 150,
+    "hop": 5,
+    "mean_em": 49.17,
+    "std_em": 6.56,
+    "n_per_model": 40,
+    "per_model_em": [
+      52.5,
+      55.0,
+      40.0
+    ]
+  },
+  {
+    "system": "sudanese",
+    "horizon_yr": 150,
+    "hop": 6,
+    "mean_em": 22.5,
+    "std_em": 28.36,
+    "n_per_model": 40,
+    "per_model_em": [
+      62.5,
+      0.0,
+      5.0
+    ]
+  },
+  {
+    "system": "hawaiian",
+    "horizon_yr": 200,
+    "hop": 5,
+    "mean_em": 52.59,
+    "std_em": 12.08,
+    "n_per_model": 45,
+    "per_model_em": [
+      35.56,
+      60.0,
+      62.22
+    ]
+  },
+  {
+    "system": "hawaiian",
+    "horizon_yr": 200,
+    "hop": 6,
+    "mean_em": 31.75,
+    "std_em": 44.9,
+    "n_per_model": 21,
+    "per_model_em": [
+      95.24,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "system": "iroquois",
+    "horizon_yr": 150,
+    "hop": 5,
+    "mean_em": 24.17,
+    "std_em": 8.25,
+    "n_per_model": 40,
+    "per_model_em": [
+      15.0,
+      35.0,
+      22.5
+    ]
+  },
+  {
+    "system": "iroquois",
+    "horizon_yr": 150,
+    "hop": 6,
+    "mean_em": 31.67,
+    "std_em": 32.43,
+    "n_per_model": 40,
+    "per_model_em": [
+      77.5,
+      7.5,
+      10.0
+    ]
+  },
+  {
+    "system": "dravidian",
+    "horizon_yr": 150,
+    "hop": 5,
+    "mean_em": 43.33,
+    "std_em": 11.79,
+    "n_per_model": 40,
+    "per_model_em": [
+      35.0,
+      60.0,
+      35.0
+    ]
+  },
+  {
+    "system": "dravidian",
+    "horizon_yr": 150,
+    "hop": 6,
+    "mean_em": 22.5,
+    "std_em": 31.82,
+    "n_per_model": 40,
+    "per_model_em": [
+      67.5,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "system": "crow",
+    "horizon_yr": 200,
+    "hop": 5,
+    "mean_em": 54.81,
+    "std_em": 4.19,
+    "n_per_model": 45,
+    "per_model_em": [
+      48.89,
+      57.78,
+      57.78
+    ]
+  },
+  {
+    "system": "crow",
+    "horizon_yr": 200,
+    "hop": 6,
+    "mean_em": 28.57,
+    "std_em": 40.41,
+    "n_per_model": 21,
+    "per_model_em": [
+      85.71,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "system": "omaha",
+    "horizon_yr": 200,
+    "hop": 5,
+    "mean_em": 49.02,
+    "std_em": 4.24,
+    "n_per_model": 51,
+    "per_model_em": [
+      47.06,
+      54.9,
+      45.1
+    ]
+  },
+  {
+    "system": "omaha",
+    "horizon_yr": 200,
+    "hop": 6,
+    "mean_em": 24.44,
+    "std_em": 25.4,
+    "n_per_model": 45,
+    "per_model_em": [
+      60.0,
+      11.11,
+      2.22
+    ]
+  }
+]

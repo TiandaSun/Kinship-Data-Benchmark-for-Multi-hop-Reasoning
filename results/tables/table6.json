@@ -1,0 +1,60 @@
+{
+  "title": "Table 6: Cultural Override Effect (Category 4)",
+  "description": "Performance on questions with vs without cultural override. Mean \u00b1 std across models.",
+  "columns": [
+    "System",
+    "w/ Override",
+    "w/o Override",
+    "Gap"
+  ],
+  "data": [
+    {
+      "system": "Hawaiian",
+      "with_override_mean": 72.43947858472997,
+      "with_override_std": 4.011295945724027,
+      "without_override_mean": 90.1844532279315,
+      "without_override_std": 3.0395973636519957,
+      "gap": 17.74497464320153
+    },
+    {
+      "system": "Iroquois",
+      "with_override_mean": 68.4981684981685,
+      "with_override_std": 7.210629921256235,
+      "without_override_mean": 88.73333333333333,
+      "without_override_std": 2.915857030483873,
+      "gap": 20.235164835164838
+    },
+    {
+      "system": "Dravidian",
+      "with_override_mean": 78.45303867403315,
+      "with_override_std": 7.993567003392527,
+      "without_override_mean": 88.04780876494023,
+      "without_override_std": 3.372755670438321,
+      "gap": 9.594770090907076
+    },
+    {
+      "system": "Crow",
+      "with_override_mean": 60.893246187363836,
+      "with_override_std": 4.954930464289394,
+      "without_override_mean": 91.39784946236558,
+      "without_override_std": 3.0059129331921426,
+      "gap": 30.50460327500175
+    },
+    {
+      "system": "Omaha",
+      "with_override_mean": 51.935483870967744,
+      "with_override_std": 4.419080126459036,
+      "without_override_mean": 91.69675090252707,
+      "without_override_std": 2.3855869556677485,
+      "gap": 39.76126703155933
+    },
+    {
+      "system": "Average",
+      "with_override_mean": 66.44388316305263,
+      "with_override_std": 9.227028661924457,
+      "without_override_mean": 90.01203913821954,
+      "without_override_std": 1.4339972173194637,
+      "gap": 23.568155975166903
+    }
+  ]
+}

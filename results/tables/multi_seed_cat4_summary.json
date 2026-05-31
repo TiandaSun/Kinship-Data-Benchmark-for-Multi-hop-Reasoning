@@ -1,0 +1,198 @@
+[
+  {
+    "system": "crow",
+    "n_models": 3,
+    "mean_em": 0.4983,
+    "cross_model_std": 0.1914,
+    "envelope_ci95_lo": 0.195,
+    "envelope_ci95_hi": 0.81,
+    "per_model": {
+      "gemma3_27b": {
+        "n_questions": 40,
+        "mean_em": 0.675,
+        "ci95_lo": 0.53,
+        "ci95_hi": 0.81
+      },
+      "deepseek_r1_32b": {
+        "n_questions": 40,
+        "mean_em": 0.295,
+        "ci95_lo": 0.195,
+        "ci95_hi": 0.4
+      },
+      "qwen3_32b": {
+        "n_questions": 40,
+        "mean_em": 0.525,
+        "ci95_lo": 0.4,
+        "ci95_hi": 0.65
+      }
+    }
+  },
+  {
+    "system": "dravidian",
+    "n_models": 3,
+    "mean_em": 0.61,
+    "cross_model_std": 0.2138,
+    "envelope_ci95_lo": 0.325,
+    "envelope_ci95_hi": 0.95,
+    "per_model": {
+      "gemma3_27b": {
+        "n_questions": 40,
+        "mean_em": 0.85,
+        "ci95_lo": 0.75,
+        "ci95_hi": 0.95
+      },
+      "deepseek_r1_32b": {
+        "n_questions": 40,
+        "mean_em": 0.44,
+        "ci95_lo": 0.325,
+        "ci95_hi": 0.565
+      },
+      "qwen3_32b": {
+        "n_questions": 40,
+        "mean_em": 0.54,
+        "ci95_lo": 0.425,
+        "ci95_hi": 0.66
+      }
+    }
+  },
+  {
+    "system": "eskimo",
+    "n_models": 3,
+    "mean_em": 0.91,
+    "cross_model_std": 0.0577,
+    "envelope_ci95_lo": 0.81,
+    "envelope_ci95_hi": 1.0,
+    "per_model": {
+      "gemma3_27b": {
+        "n_questions": 40,
+        "mean_em": 0.975,
+        "ci95_lo": 0.925,
+        "ci95_hi": 1.0
+      },
+      "deepseek_r1_32b": {
+        "n_questions": 40,
+        "mean_em": 0.865,
+        "ci95_lo": 0.81,
+        "ci95_hi": 0.915
+      },
+      "qwen3_32b": {
+        "n_questions": 40,
+        "mean_em": 0.89,
+        "ci95_lo": 0.82,
+        "ci95_hi": 0.95
+      }
+    }
+  },
+  {
+    "system": "hawaiian",
+    "n_models": 3,
+    "mean_em": 0.5733,
+    "cross_model_std": 0.0513,
+    "envelope_ci95_lo": 0.4,
+    "envelope_ci95_hi": 0.775,
+    "per_model": {
+      "gemma3_27b": {
+        "n_questions": 40,
+        "mean_em": 0.63,
+        "ci95_lo": 0.48,
+        "ci95_hi": 0.775
+      },
+      "deepseek_r1_32b": {
+        "n_questions": 40,
+        "mean_em": 0.53,
+        "ci95_lo": 0.4,
+        "ci95_hi": 0.665
+      },
+      "qwen3_32b": {
+        "n_questions": 40,
+        "mean_em": 0.56,
+        "ci95_lo": 0.435,
+        "ci95_hi": 0.685
+      }
+    }
+  },
+  {
+    "system": "iroquois",
+    "n_models": 3,
+    "mean_em": 0.4317,
+    "cross_model_std": 0.1831,
+    "envelope_ci95_lo": 0.18,
+    "envelope_ci95_hi": 0.785,
+    "per_model": {
+      "gemma3_27b": {
+        "n_questions": 40,
+        "mean_em": 0.635,
+        "ci95_lo": 0.485,
+        "ci95_hi": 0.785
+      },
+      "deepseek_r1_32b": {
+        "n_questions": 40,
+        "mean_em": 0.28,
+        "ci95_lo": 0.18,
+        "ci95_hi": 0.395
+      },
+      "qwen3_32b": {
+        "n_questions": 40,
+        "mean_em": 0.38,
+        "ci95_lo": 0.265,
+        "ci95_hi": 0.5
+      }
+    }
+  },
+  {
+    "system": "omaha",
+    "n_models": 3,
+    "mean_em": 0.3317,
+    "cross_model_std": 0.1815,
+    "envelope_ci95_lo": 0.095,
+    "envelope_ci95_hi": 0.675,
+    "per_model": {
+      "gemma3_27b": {
+        "n_questions": 40,
+        "mean_em": 0.525,
+        "ci95_lo": 0.375,
+        "ci95_hi": 0.675
+      },
+      "deepseek_r1_32b": {
+        "n_questions": 40,
+        "mean_em": 0.165,
+        "ci95_lo": 0.095,
+        "ci95_hi": 0.245
+      },
+      "qwen3_32b": {
+        "n_questions": 40,
+        "mean_em": 0.305,
+        "ci95_lo": 0.21,
+        "ci95_hi": 0.42
+      }
+    }
+  },
+  {
+    "system": "sudanese",
+    "n_models": 3,
+    "mean_em": 0.8867,
+    "cross_model_std": 0.1077,
+    "envelope_ci95_lo": 0.695,
+    "envelope_ci95_hi": 1.0,
+    "per_model": {
+      "gemma3_27b": {
+        "n_questions": 40,
+        "mean_em": 0.99,
+        "ci95_lo": 0.97,
+        "ci95_hi": 1.0
+      },
+      "deepseek_r1_32b": {
+        "n_questions": 40,
+        "mean_em": 0.895,
+        "ci95_lo": 0.855,
+        "ci95_hi": 0.935
+      },
+      "qwen3_32b": {
+        "n_questions": 40,
+        "mean_em": 0.775,
+        "ci95_lo": 0.695,
+        "ci95_hi": 0.85
+      }
+    }
+  }
+]

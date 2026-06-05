@@ -1,5 +1,6 @@
 # KinshipQA: A Cross-Cultural Kinship Multi-hop Reasoning Benchmark
 
+> 📄 **Paper:** [arXiv:2601.07794](https://arxiv.org/abs/2601.07794) 
 A procedurally-generated benchmark for evaluating multi-hop reasoning and
 cultural-rule application in Large Language Models, covering **seven
 anthropologically-documented kinship systems**.

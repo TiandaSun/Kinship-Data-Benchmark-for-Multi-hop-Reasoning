@@ -1,12 +1,14 @@
 cff-version: 1.2.0
 message: "If you use KinshipQA in your work, please cite the paper below."
-title: "KinshipQA: A Multi-Hop Kinship Reasoning Benchmark Across Anthropological Kinship Systems"
+title: "Kinship Data Benchmark for Multi-hop Reasoning"
 authors:
-  - family-names: "[Anonymous]"
-    given-names: "[Anonymous]"
+  - family-names: "Sun"
+    given-names: "Tianda"
+  - family-names: "Kazakov"
+    given-names: "Dimitar"
 version: 6.0.0
 date-released: 2026-05-31
-repository-code: "https://github.com/[anonymous]/Kinship-Data-Benchmark-for-Multi-hop-Reasoning"
+repository-code: "https://github.com/TiandaSun/Kinship-Data-Benchmark-for-Multi-hop-Reasoning"
 license: MIT
 abstract: >
   KinshipQA is a multi-hop kinship reasoning benchmark spanning seven
@@ -18,9 +20,13 @@ abstract: >
   to English biological terms.
 preferred-citation:
   type: conference-paper
-  title: "KinshipQA: A Multi-Hop Kinship Reasoning Benchmark Across Anthropological Kinship Systems"
+  title: "Kinship Data Benchmark for Multi-hop Reasoning"
   authors:
-    - family-names: "[Anonymous]"
-      given-names: "[Anonymous]"
+    - family-names: "Sun"
+      given-names: "Tianda"
+    - family-names: "Kazakov"
+      given-names: "Dimitar"
   year: 2026
-  # Conference / DOI / pages to be filled in after acceptance.
+  collection-title: "Findings of the Association for Computational Linguistics: EMNLP 2026"
+  url: "https://arxiv.org/abs/2601.07794"
+  notes: "Accepted; proceedings DOI and page numbers pending."

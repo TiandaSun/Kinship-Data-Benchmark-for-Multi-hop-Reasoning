@@ -1,9 +1,11 @@
 # KinshipQA: A Cross-Cultural Kinship Multi-hop Reasoning Benchmark
 
-> 📄 **Paper:** [arXiv:2601.07794](https://arxiv.org/abs/2601.07794) 
+> **Paper:** [Kinship Data Benchmark for Multi-hop Reasoning](https://arxiv.org/abs/2601.07794) — **accepted to Findings of EMNLP 2026**.
+> **Authors:** Tianda Sun and Dimitar Kazakov, University of York.
+
 A procedurally-generated benchmark for evaluating multi-hop reasoning and
 cultural-rule application in Large Language Models, covering **seven
-anthropologically-documented kinship systems**.
+anthropologically-documented kinship systems** and **up to six reasoning hops**.
 
 ## Overview
 
@@ -11,15 +13,15 @@ KinshipQA tests whether LLMs can chain biological-relation hops AND apply
 culture-specific classification rules that override the biological default.
 The benchmark covers Morgan's seven kinship typologies:
 
-| System | Type | Key Rule |
-|---|---|---|
-| Eskimo | Descriptive | F ≠ FB (Western nuclear-family focus) |
-| Sudanese | Descriptive | All terms unique |
-| Hawaiian | Generational | F = FB (same-generation merging) |
-| Iroquois | Bifurcate | Parallel ≠ Cross cousins |
-| Dravidian | Bifurcate | Cross-cousin = potential spouse |
-| Crow | Mat. Skewing | FZS = F (matrilineal generation skipping) |
-| Omaha | Pat. Skewing | MBS = MB (patrilineal generation skipping) |
+| System    | Type         | Key Rule                                   |
+| --------- | ------------ | ------------------------------------------ |
+| Eskimo    | Descriptive  | F ≠ FB (Western nuclear-family focus)      |
+| Sudanese  | Descriptive  | All terms unique                           |
+| Hawaiian  | Generational | F = FB (same-generation merging)           |
+| Iroquois  | Bifurcate    | Parallel ≠ Cross cousins                   |
+| Dravidian | Bifurcate    | Cross-cousin = potential spouse            |
+| Crow      | Mat. Skewing | FZS = F (matrilineal generation skipping)  |
+| Omaha     | Pat. Skewing | MBS = MB (patrilineal generation skipping) |
 
 ### Headline findings
 
@@ -30,7 +32,7 @@ The benchmark covers Morgan's seven kinship typologies:
 - **Two interventions distinguish contributing factors**:
   - Fictional-rule control (system-name + kin-term swap): +6.1% via surface-feature interaction.
   - In-context rule probe: +17.1 pp on skewing systems but **−13.4 pp** on high-baseline non-skewing systems.
-- **Human baseline** (*n*=280, IAA 96.8%): humans given the same in-context rule reach **89.0%** on Other-5 Cat. 4 vs. **50.7%** for LLMs.
+- **Human baseline** (_n_=280, IAA 96.8%): humans given the same in-context rule reach **89.0%** on Other-5 Cat. 4 vs. **50.7%** for LLMs.
 
 ## Repository structure
 
@@ -108,25 +110,26 @@ See [`docs/REPRODUCTION.md`](docs/REPRODUCTION.md) for the full per-table reprod
 
 ## Probes and ablations
 
-| Probe | What it measures | Where the results live |
-|---|---|---|
-| Cat. 4 error taxonomy | 6-category breakdown of non-EM Cat. 4 errors; identifies biological-default leakage | `results/cat4_error_taxonomy.json` |
-| Paraphrase robustness | Cat. 4 accuracy under rule-paraphrased questions (entity / system / kin term preserved, frame varies) | `data/paraphrase_robustness/` |
-| Fictional-rule control | +6.1% Cat. 4 gain when both system label + kin terms swapped to invented strings | `data/fictional/full/` |
-| Orthogonal 2×2 decomposition | Decomposes +6.1% into system-name vs kin-term factors (interaction, not additive) | `data/fictional/system_only/` + `data/fictional/term_only/`; aggregate in `results/orthogonal_fictional_ablation.json` |
-| In-context rule probe | +17.1 pp on skewing; −13.4 pp on high-baseline non-skewing | `pipeline/llm_tester.py --with-rule-context` |
-| Multi-seed Cat. 4 | T=0.7, n=5 stochastic decoding; preserves system-type ordering | `results/tables/multi_seed_cat4_*` |
-| Bootstrap CIs | 95% percentile CIs on headline aggregates | `results/headline_cis.json` |
+| Probe                        | What it measures                                                                                      | Where the results live                                                                                                 |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Cat. 4 error taxonomy        | 6-category breakdown of non-EM Cat. 4 errors; identifies biological-default leakage                   | `results/cat4_error_taxonomy.json`                                                                                     |
+| Paraphrase robustness        | Cat. 4 accuracy under rule-paraphrased questions (entity / system / kin term preserved, frame varies) | `data/paraphrase_robustness/`                                                                                          |
+| Fictional-rule control       | +6.1% Cat. 4 gain when both system label + kin terms swapped to invented strings                      | `data/fictional/full/`                                                                                                 |
+| Orthogonal 2×2 decomposition | Decomposes +6.1% into system-name vs kin-term factors (interaction, not additive)                     | `data/fictional/system_only/` + `data/fictional/term_only/`; aggregate in `results/orthogonal_fictional_ablation.json` |
+| In-context rule probe        | +17.1 pp on skewing; −13.4 pp on high-baseline non-skewing                                            | `pipeline/llm_tester.py --with-rule-context`                                                                           |
+| Multi-seed Cat. 4            | T=0.7, n=5 stochastic decoding; preserves system-type ordering                                        | `results/tables/multi_seed_cat4_*`                                                                                     |
+| Bootstrap CIs                | 95% percentile CIs on headline aggregates                                                             | `results/headline_cis.json`                                                                                            |
 
 ## Citation
 
-See [`CITATION.cff`](CITATION.cff). A full bibliographic entry will be added upon publication.
+See [`CITATION.cff`](CITATION.cff). The paper is accepted to Findings of EMNLP 2026; proceedings page numbers and DOI will be added when available.
 
 ```bibtex
 @inproceedings{kinshipqa2026,
-  title={KinshipQA: A Multi-Hop Kinship Reasoning Benchmark Across Anthropological Kinship Systems},
-  author={[Anonymous]},
-  booktitle={Submission under review},
+  title={Kinship Data Benchmark for Multi-hop Reasoning},
+  author={Sun, Tianda and Kazakov, Dimitar},
+  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2026},
+  note={Accepted; arXiv:2601.07794},
   year={2026}
 }
 ```
